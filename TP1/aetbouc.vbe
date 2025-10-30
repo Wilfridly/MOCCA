@@ -1,0 +1,28 @@
+-- VHDL data flow description generated from `aetbouc`
+--              date : Wed Oct 29 19:34:04 2025
+
+
+-- Entity Declaration
+
+ENTITY aetbouc IS
+  PORT (
+  a : in BIT;   -- a
+  b : in BIT;   -- b
+  c : in BIT;   -- c
+  q : out BIT;  -- q
+  vdd : in BIT; -- vdd
+  vss : in BIT  -- vss
+  );
+END aetbouc;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF aetbouc IS
+  SIGNAL mbk_sig1 : BIT;                -- mbk_sig1
+
+BEGIN
+  mbk_sig1 <= not (b);
+
+q <= ((not (c) and not (a)) or (not (c) and not (mbk_sig1)));
+END;

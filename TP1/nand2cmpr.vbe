@@ -1,0 +1,25 @@
+-- VHDL data flow description generated from `nand2`
+--              date : Wed Oct 29 14:50:27 2025
+
+
+-- Entity Declaration
+
+ENTITY nand2 IS
+  PORT (
+  a : in BIT;   -- a
+  b : in BIT;   -- b
+  nq : out BIT; -- nq
+  vdd : in BIT; -- vdd
+  vss : in BIT  -- vss
+  );
+END nand2;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF nand2 IS
+
+BEGIN
+
+nq <= not(a and b);
+END
