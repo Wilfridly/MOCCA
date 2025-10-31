@@ -8,7 +8,8 @@ PORT(
     plus  : IN  std_logic;
     raz   : IN  std_logic;
     led   : OUT std_logic_vector (0 to 6);
-    led_segment : OUT std_logic_vector(1 downto 0);
+    led_segment : OUT std_logic_vector(1 downto 0)
+    -- led_segment : OUT std_logic_vector(3 downto 0)
 );
 END clicker4;
 
@@ -31,27 +32,31 @@ BEGIN
             if plus = '1' and old_plus = '0' then
                 if count(3 downto 0) = "1001" then
                     count(3 downto 0) <= "0000";
-                    count(7 downto 4) <= count(7 downto 4) + 1;
+
                     if count(7 downto 4) = "1001" then
                         count(7 downto 4) <= "0000";
-                        count(11 downto 8) <= count(11 downto 8) + 1;
-                        if count( 11 downto 8) = "1001" then
-                            count( 11 downto 8) <= "0000";
-                            count( 15 downto 12) <= count( 15 downto 12) + 1;
-                            if count( 15 downto 12) = "1001" then
-                                count( 15 downto 12) <= "0000";
+
+                        if count(11 downto 8) = "1001" then
+                            count(11 downto 8) <= "0000";
+
+                            if count(15 downto 12) = "1001" then
+                                count(15 downto 12) <= "0000";
                             else
-                                count( 15 downto 12) <= count( 15 downto 12) + 1;
+                                count(15 downto 12) <= count( 15 downto 12) + 1;
                             end if;
+
                         else
-                            count( 11 downto 8) <= count( 11 downto 8) + 1;
+                            count(11 downto 8) <= count( 11 downto 8) + 1;
                         end if;
+
                     else
-                        count( 7 downto 4) <= count( 7 downto 4) + 1;
+                        count(7 downto 4) <= count( 7 downto 4) + 1;
                     end if;
+                    
                 else
-                    count(3 downto 0) = count(3 downto 0) + 1;    
+                    count(3 downto 0) <= count(3 downto 0) + 1;    
                 end if;
+
             end if;
             old_plus <= plus;
         end if;
@@ -64,12 +69,18 @@ BEGIN
         end if;
     end process;
 
-    with cmpt_seg select led_segment <=
-        "00" when "00",
-        "01" when "01",
-        "11" when "11",
-        "10" when "10";
-            
+    -- with cmpt_seg select led_segment <= --depend de l'afficheur
+    --     "1110" when "00",
+    --     "1101" when "01",
+    --     "1011" when "10",
+    --     "0111" when others;
+    led_segment <= cmpt_seg;
+
+    with cmpt_seg select val <=
+        std_logic_vector(count(3 downto 0)  ) when "00",
+        std_logic_vector(count(7 downto 4)  ) when "01",
+        std_logic_vector(count(11 downto 8) ) when "10",
+        std_logic_vector(count(15 downto 12)) when others;
 
     with val select led (0 to 6) <= 
         "1111110" when x"0",
