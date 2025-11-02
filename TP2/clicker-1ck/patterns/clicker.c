@@ -27,14 +27,27 @@ int main ()
     DECLAR ("plus",     ":2", "B", IN,  "", "");
     DECLAR ("vdd",      ":2", "B", IN,  "", "");
     DECLAR ("vss",      ":2", "B", IN,  "", "");
+    DECLAR ("led_seg",  ":2", "B", OUT, vector(1,0), "");
     DECLAR ("led",      ":2", "B", OUT, vector(0,6), "");
 
 /// Internal Signals (optionnal)
 
-    if (strcmp(TYPE,"BEH") == 0)
-        DECLAR (toa("%s_v.%s",MODEL,"val"), ":2", "X", REGISTER, vector(3,0), "");
-    else
-        DECLAR (toa("%s","val"), ":2", "X", SIGNAL, vector(3,0), "");
+    if (strcmp(TYPE,"BEH") == 0){
+        // DECLAR (toa("%s_v.%s",MODEL,"val"), ":2", "X", REGISTER, vector(3,0), "");
+        DECLAR (toa("%s_v.%s",MODEL,"val0")     , ":2", "X", REGISTER, vector(3,0), "");
+        DECLAR (toa("%s_v.%s",MODEL,"val1")     , ":2", "X", REGISTER, vector(3,0), "");
+        DECLAR (toa("%s_v.%s",MODEL,"val2")     , ":2", "X", REGISTER, vector(3,0), "");
+        DECLAR (toa("%s_v.%s",MODEL,"val3")     , ":2", "X", REGISTER, vector(3,0), "");
+        DECLAR (toa("%s_v.%s",MODEL,"cmpt_sel") , ":2", "X", REGISTER, vector(1,0), "");
+    }
+    else{
+        // DECLAR (toa("%s","val"), ":2", "X", SIGNAL, vector(3,0), "");
+        DECLAR (toa("%s","val0")    , ":2"      , "X", SIGNAL, vector(3,0), "");
+        DECLAR (toa("%s","val1")    , ":2"      , "X", SIGNAL, vector(3,0), "");
+        DECLAR (toa("%s","val2")    , ":2"      , "X", SIGNAL, vector(3,0), "");
+        DECLAR (toa("%s","val3")    , ":2"      , "X", SIGNAL, vector(3,0), "");
+        DECLAR (toa("%s","cmpt_sel"), ":2"      , "X", SIGNAL, vector(1,0), "");
+    }
 
 /// Signal Values
    
@@ -52,6 +65,10 @@ int main ()
     for (c = 0; c <= CYCLES; c++) {
         AFFECT (cycle (c), "ck", itoa (0));
         AFFECT (next_cycle (c), "ck", itoa (1));
+        if (c % 2 == 0)
+            AFFECT (cycle(c), "plus", "0");
+        else
+            AFFECT (cycle(c), "plus", "1");
     }
 
 /// Save The Generated Patterns

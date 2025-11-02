@@ -1,6 +1,6 @@
 include help.mk
 
-ALLIANCE=/users/outil/alliance/alliance/Linux.el7_64/install
+ALLIANCE=/home/wixley/alliance/install
 CMOS = $(ALLIANCE)/etc/cmos.rds
 SLIB = $(ALLIANCE)/cells/sxlib
 PLIB = $(ALLIANCE)/cells/pxlib
@@ -48,7 +48,7 @@ simul_gpat: vasy ## Simule un jeu de patterns générés
 
 ## > Synthèse
 
-synth: simul_pat ## Synthétise pour produire la netlist de porte
+synth: simul_gpat ## Synthétise pour produire la netlist de porte
 	$(BOOM) $(MODEL)_v $(MODEL)_o
 	$(BOOG) $(MODEL)_o $(MODEL)_o
 	@if [[ "$(VERBOSE)" == "1" ]]; then $(XSCH) -l $(MODEL)_o; fi

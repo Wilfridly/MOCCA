@@ -5,7 +5,7 @@
 
 east  (p_ck p_raz p_led_0)
 west  (p_led_1 p_led_2 p_led_3)
-north (p_led_4 p_led_5 p_led_6 p_plus) 
+north (p_led_4 p_led_5 p_led_6 p_plus p_led_seg_0 p_led_seg_1) 
 south (p_vdde p_vddi p_vssi p_vsse)
 
 #else
@@ -16,6 +16,7 @@ PORT (
     raz         : IN  bit;
     plus        : IN  bit;
     led         : OUT bit_vector (0 to 6);
+    led_seg     : OUT bit_vector (1 downto 0);
     vddi, vssi  : IN  bit;
     vdde, vsse  : IN  bit
 );
@@ -35,12 +36,14 @@ component CORE port(
     raz         : IN  bit;
     plus        : IN  bit;
     led         : OUT bit_vector (0 to 6);
+    led_seg     : OUT bit_vector (1 downto 0);
     vdd,  vss   : IN  bit 
 );
 END component;
 
 signal ck_i, raz_i, ck_p, plus_i : bit;
 signal led_i : bit_vector(0 to 6);
+signal led_seg_i : bit_vector (1 downto 0);
 
 begin
 
@@ -56,6 +59,9 @@ p_led_4 : pi_sp     port map ( pad=>led(4), t=>led_i(4), POWER );
 p_led_5 : pi_sp     port map ( pad=>led(5), t=>led_i(5), POWER );
 p_led_6 : pi_sp     port map ( pad=>led(6), t=>led_i(6), POWER );
 
+p_led_seg_0 : pi_sp     port map ( pad =>led_seg(0), t=>led_seg_i(0), POWER);
+p_led_seg_1 : pi_sp     port map ( pad =>led_seg(1), t=>led_seg_i(1), POWER);
+
 p_vdde  : pvdde_sp  port map ( POWER );
 p_vsse  : pvsse_sp  port map ( POWER );
 p_vddi  : pvddi_sp  port map ( POWER );
@@ -66,6 +72,7 @@ clicker : CORE port map (
     raz     => raz_i,
     plus    => plus_i,
     led     => led_i(0 to 6),
+    led_seg => led_seg_i(1 downto 0),
     vdd     => vddi,
     vss     => vssi
 );
