@@ -42,33 +42,34 @@ BEGIN
     -- qui sont défini plus bas 
     -- et le process utilisé pour l'affectation du registre d'état
 
-    n_read_opa  <= (write_res   AND wok_res_p)
-                OR (read_opa    AND not rok_arg_p)
-                ;
+    n_read_opa  <= (write_res AND wok_res_p) OR (read_opa AND not rok_arg_p);
 
-    n_read_opb  <= ;
-    n_compare   <= ;
-    n_decr_a    <= ;
-    n_decr_b    <= ;
-    n_write_res <= ;
+    n_read_opb  <= (read_opb  AND not rok_arg_p) or (read_opa and rok_arg_p);
+                
+    n_compare   <= (read_opb and rok_arg_p) or decr_a or decr_b;
+
+    n_decr_a    <= compare and opa_sup_opb;
+    n_decr_b    <= compare and opb_sup_opa;
+
+    n_write_res <= (not wok_res_p and write_res) or (compare and opa_equal_opb);
 
     FSM : PROCESS (ck) begin
     if ((ck = '1') AND NOT(ck'STABLE))
     then
         if (nreset = '0') then
-            read_opa    <= ;
-            read_opb    <= ;
-            compare     <= ;
-            decr_a      <= ;
-            decr_b      <= ;
-            write_res   <= ;
+            read_opa    <= '1';
+            read_opb    <= '0';
+            compare     <= '0';
+            decr_a      <= '0';
+            decr_b      <= '0';
+            write_res   <= '0';
         else
             read_opa    <= n_read_opa ;
-            read_opb    <= ;
-            compare     <= ;
-            decr_a      <= ;
-            decr_b      <= ;
-            write_res   <= ;
+            read_opb    <= n_read_opb;
+            compare     <= n_compare;
+            decr_a      <= n_decr_a;
+            decr_b      <= n_decr_b;
+            write_res   <= n_write_res;
         end if;
     end if;
     end process FSM;
