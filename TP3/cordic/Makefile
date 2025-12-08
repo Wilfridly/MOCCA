@@ -13,16 +13,35 @@ help:
 	@echo "  - clean     : delete all generated files"
 	@echo ""
 
+synthesis:
+	boom $(MODEL)_ctl $(MODEL)_ctl
+	boog $(MODEL)_ctl $(MODEL)_ctl
+	loon $(MODEL)_ctl $(MODEL)_ctl_o 
+
+	boom $(MODEL)_dp $(MODEL)_dp
+	boog $(MODEL)_dp $(MODEL)_dp
+	loon $(MODEL)_dp $(MODEL)_dp_o
+
+	vasy -a -I vhd -p -o $(MODEL)_net $(MODEL)_net 
+
+	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res
+
 plot: cercle
 	./cercle
-	gnuplot \
-            -e 'plot [-130:130] [-130:130] "$(MODEL).dat" with lines;'\
-            -e 'replot "cossin.dat" with lines;' \
-            -e 'pause -1' 
+# 	gnuplot \
+#             -e 'plot [-130:130] [-130:130] "$(MODEL).dat" with lines;'\
+#             -e 'replot "cossin.dat" with lines;' \
+#             -e 'pause -1' 
+	gnuplot -e "set terminal pngcairo size 800,800; set output 'plot.png'; plot [-130:130] [-130:130] 'cordic.dat' with lines; replot 'cossin.dat' with lines; set output"
+
+
+cercle:
+	cc $(CFLAGS) cercle.c $(LDFLAGS) -o cercle
 
 valid_cor: 
 	vasy -a -I vhd -p -o $(MODEL)_cor $(MODEL)_cor 
-	export PATNAME=$(MODEL)_cor DECSIG; genpat $(MODEL)_pat
+	export PATNAME=$(MODEL)_cor DECSIG;
+	genpat $(MODEL)_pat
 	asimut -b $(MODEL)_cor $(MODEL)_cor $(MODEL)_cor_res
 
 valid_net: 
@@ -32,10 +51,15 @@ valid_net:
 	export PATNAME=$(MODEL)_net; genpat $(MODEL)_pat
 	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res
 
+synthesis:
+	
 
 clean:
 	rm  *.dat *~ cercle Makefile.*\
 		$(MODEL)_cor.vbe \
 		$(MODEL)_cor.pat $(MODEL)_cor_res.pat \
 		$(MODEL)_dp.vbe $(MODEL)_ctl.vbe $(MODEL)_net.vst \
-		$(MODEL)_net.pat $(MODEL)_net_res.pat
+		$(MODEL)_net.pat $(MODEL)_net_res.pat \
+		*.xsc \
+		*.vst \
+		*.pat

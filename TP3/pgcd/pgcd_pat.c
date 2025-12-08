@@ -5,25 +5,25 @@
 #include "alloca.h"
 #include "mut.h"
 
-// Constante générales
+// Constante gï¿½nï¿½rales
 const PERIOD = 2;
 
 //--------------------------------------------------------------------------------------------------
-// rend la date du cycle n°i ou du cycle n°i + 1 demi-cycle 
+// rend la date du cycle nï¿½i ou du cycle nï¿½i + 1 demi-cycle 
 //--------------------------------------------------------------------------------------------------
 #define cycle(i)        inttostr(i*PERIOD)
 #define next_cycle(i)   inttostr(i*PERIOD + PERIOD/2)
 
 //--------------------------------------------------------------------------------------------------
-// Fabriquer une chaine de caractères à partir d'un entier
+// Fabriquer une chaine de caractï¿½res ï¿½ partir d'un entier
 //
-// namealloc fait l'équivalent de strdup() mais en plus il teste que la chaine 
-//           en paramètre n'a pas déjà été allouée, si oui, namealloc rend
-//           le pointeur sur la chaine déjà allouée, cette opération utilise
+// namealloc fait l'ï¿½quivalent de strdup() mais en plus il teste que la chaine 
+//           en paramï¿½tre n'a pas dï¿½jï¿½ ï¿½tï¿½ allouï¿½e, si oui, namealloc rend
+//           le pointeur sur la chaine dï¿½jï¿½ allouï¿½e, cette opï¿½ration utilise
 //           un dictionnaire (table de hachage)
 //
 // inttostr(42)         rend un pointeur sur "42"
-// inttostr(42)         rend LE MÊME pointeur sur "42"
+// inttostr(42)         rend LE Mï¿½ME pointeur sur "42"
 // inttostrx(0x42,4)    rend "0x0042"
 // inttostrx(0x42,1)    rend "0x2"
 // inttostrx(0x42,8)    rend "0x00000042"
@@ -97,7 +97,7 @@ int main ()
     DECLAR ("data.opb", ":1", "B", REGISTER, "", "");
     DECLAR ("data.res", ":1", "B", REGISTER, "", "");
     DECLAR ("data.stop", ":1", "B", REGISTER, "", "");
-    DECLAR ("data.lastpt", ":1", "B", SIGNAL, "", "");
+    // DECLAR ("data.lastpt", ":1", "B", SIGNAL, "", "");
 
     DECLAR ("core.read_opa", ":1", "B", REGISTER, "", "");
     DECLAR ("core.read_opb", ":1", "B", REGISTER, "", "");
@@ -110,7 +110,7 @@ int main ()
     AFFECT (cycle (0), "nreset", "0");
     AFFECT (cycle (1), "nreset", "1");
 
-    // la génération du signal d'horloge
+    // la gï¿½nï¿½ration du signal d'horloge
     int c;
     for (c = 0; c <= CYCLES; c++) {
         AFFECT (cycle (c), "ck", inttostr (0));

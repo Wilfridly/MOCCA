@@ -76,7 +76,6 @@ BEGIN
 
     -- Sorties issues de l'automate
     
-    -- A FAIRE
     -- Completer les valeur de sorties
 
     rd_arg_p      <= read_opa OR read_opb;

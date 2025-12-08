@@ -1,0 +1,6 @@
+- pgcd_core.vhd :  reçoit les nombres en argument, calcule le résultat et l'envoie
+- pgcd_data.vhd :  envoie des nombres en argument et attend le résultat qu'il vérifie et signale les erreurs
+- pgcd_pat.c   :  Génère des motifs de tests pour un circuit
+- pgcd_tb.vhdl : englobe le core et la data.
+- rom.c : génère un jeu de test aléatoire pour opa, opb. 
+- Makefile : Execute une suite de commande

@@ -18,8 +18,7 @@ valid_pgcd:
 	./rom	$(ADDRWD) $(VALWD) > rom.txt
 	export PATNAME=$(MODEL)_tb ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES);\
 	genpat $(MODEL)_pat
-	gcc -w -E -DADDRWD=$(ADDRWD) -DVALWD=$(VALWD) -DLASTPT=$(LASTPT) $(MODEL)_data.vhd.c\
-	| grep -v "^#" > $(MODEL)_data.vhd
+	gcc -w -E -DADDRWD=$(ADDRWD) -DVALWD=$(VALWD) -DLASTPT=$(LASTPT) $(MODEL)_data.vhd.c | grep -v "^#" > $(MODEL)_data.vhd
 	vasy -a -I vhd -p -o $(MODEL)_data $(MODEL)_data
 	vasy -a -I vhd -p -o $(MODEL)_core $(MODEL)_core
 	vasy -a -I vhd -p -o $(MODEL)_tb   $(MODEL)_tb  
@@ -27,6 +26,34 @@ valid_pgcd:
 	awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
 	@grep ": ?1" $(MODEL)_tbres.pat || echo "Lucky no error"
 
+synthesis:
+## Method 1
+# 	boom $(MODEL)_core $(MODEL)_core_o
+# 	boog $(MODEL)_core_o $(MODEL)_core_o
+# 	loon $(MODEL)_core_o $(MODEL)_core 
+
+# 	boom $(MODEL)_data $(MODEL)_data_o
+# 	boog $(MODEL)_data_o $(MODEL)_data_o
+# 	loon $(MODEL)_data_o $(MODEL)_data
+
+# 	vasy -a -I vst -p -o $(MODEL)_tb $(MODEL)_tb 
+
+# 	asimut $(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres
+
+## Method 2
+# Avec cette méthode il faut supprimer datalastpt qui est optimisé lors de la synthèse dans pgcd_pat.c
+	boom $(MODEL)_core $(MODEL)_core
+	boog $(MODEL)_core $(MODEL)_core
+	loon $(MODEL)_core $(MODEL)_core_o 
+
+	boom $(MODEL)_data $(MODEL)_data
+	boog $(MODEL)_data $(MODEL)_data
+	loon $(MODEL)_data $(MODEL)_data_o
+
+	vasy -a -I vhd -p -o $(MODEL)_tb $(MODEL)_tb 
+
+	asimut $(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres
+  
 clean:
 	rm  Makefile.*\
 		$(MODEL)_core.vbe\
@@ -35,6 +62,8 @@ clean:
 		$(MODEL)_tb.vst\
 		$(MODEL)_tb.pat\
 		$(MODEL)_tbres.pat\
+		*.vst\
+		*.xsc\
 		default.pat\
 		rom rom.txt\
 		2> /dev/null || true

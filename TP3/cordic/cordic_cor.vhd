@@ -63,23 +63,12 @@ BEGIN
 
     -- FSM transition
 
-    n_get       <= (get  AND NOT wr_axy_p)
-                OR (put  AND rd_nxy_p)
-                ;
-    n_norm      <= (get  AND wr_axy_p)
-                OR (norm AND NOT quadrant_0)
-                ;
-    n_calc      <= (norm AND quadrant_0)
-                OR (calc AND NOT (i = 7))
-                ;
-    n_mkc       <= (calc AND (i = 7))
-                OR (mkc  AND NOT (i = 2))
-                ;
-    n_place     <= (mkc  AND (i = 2))
-                ;
-    n_put       <= (place)
-                OR (put  AND NOT rd_nxy_p)
-                ;
+    n_get       <= (get  AND NOT wr_axy_p) OR (put  AND rd_nxy_p);
+    n_norm      <= (get  AND wr_axy_p) OR (norm AND NOT quadrant_0);
+    n_calc      <= (norm AND quadrant_0) OR (calc AND NOT (i = 7));
+    n_mkc       <= (calc AND (i = 7)) OR (mkc  AND NOT (i = 2));
+    n_place     <= (mkc  AND (i = 2));
+    n_put       <= (place) OR (put  AND NOT rd_nxy_p);
 
     FSM : PROCESS (ck) begin
     if ((ck = '1') AND NOT(ck'STABLE) )
