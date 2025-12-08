@@ -1,0 +1,573 @@
+-- VHDL data flow description generated from `pgcd_core_boom`
+--		date : Mon Dec  8 22:53:37 2025
+
+
+-- Entity Declaration
+
+ENTITY pgcd_core_boom IS
+  PORT (
+  ck : in BIT;	-- ck
+  nreset : in BIT;	-- nreset
+  rd_arg_p : out BIT;	-- rd_arg_p
+  arg_p : in bit_vector(7 DOWNTO 0) ;	-- arg_p
+  rok_arg_p : in BIT;	-- rok_arg_p
+  wr_res_p : out BIT;	-- wr_res_p
+  res_p : out bit_vector(7 DOWNTO 0) ;	-- res_p
+  wok_res_p : in BIT;	-- wok_res_p
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END pgcd_core_boom;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF pgcd_core_boom IS
+  SIGNAL read_opa : REG_BIT REGISTER;	-- read_opa
+  SIGNAL read_opb : REG_BIT REGISTER;	-- read_opb
+  SIGNAL compare : REG_BIT REGISTER;	-- compare
+  SIGNAL decr_a : REG_BIT REGISTER;	-- decr_a
+  SIGNAL decr_b : REG_BIT REGISTER;	-- decr_b
+  SIGNAL write_res : REG_BIT REGISTER;	-- write_res
+  SIGNAL opa : REG_VECTOR(7 DOWNTO 0) REGISTER;	-- opa
+  SIGNAL opb : REG_VECTOR(7 DOWNTO 0) REGISTER;	-- opb
+  SIGNAL aux0 : BIT;		-- aux0
+  SIGNAL aux1 : BIT;		-- aux1
+  SIGNAL aux2 : BIT;		-- aux2
+  SIGNAL aux3 : BIT;		-- aux3
+  SIGNAL aux4 : BIT;		-- aux4
+  SIGNAL aux5 : BIT;		-- aux5
+  SIGNAL aux6 : BIT;		-- aux6
+  SIGNAL aux7 : BIT;		-- aux7
+  SIGNAL aux9 : BIT;		-- aux9
+  SIGNAL aux10 : BIT;		-- aux10
+  SIGNAL aux11 : BIT;		-- aux11
+  SIGNAL aux12 : BIT;		-- aux12
+  SIGNAL aux13 : BIT;		-- aux13
+  SIGNAL aux14 : BIT;		-- aux14
+  SIGNAL aux16 : BIT;		-- aux16
+  SIGNAL aux19 : BIT;		-- aux19
+  SIGNAL aux22 : BIT;		-- aux22
+  SIGNAL aux23 : BIT;		-- aux23
+  SIGNAL aux24 : BIT;		-- aux24
+  SIGNAL aux25 : BIT;		-- aux25
+  SIGNAL aux26 : BIT;		-- aux26
+  SIGNAL aux27 : BIT;		-- aux27
+  SIGNAL aux29 : BIT;		-- aux29
+  SIGNAL aux30 : BIT;		-- aux30
+  SIGNAL aux31 : BIT;		-- aux31
+  SIGNAL aux35 : BIT;		-- aux35
+  SIGNAL aux38 : BIT;		-- aux38
+  SIGNAL aux39 : BIT;		-- aux39
+  SIGNAL aux48 : BIT;		-- aux48
+  SIGNAL aux49 : BIT;		-- aux49
+  SIGNAL aux50 : BIT;		-- aux50
+  SIGNAL aux51 : BIT;		-- aux51
+  SIGNAL aux52 : BIT;		-- aux52
+  SIGNAL aux53 : BIT;		-- aux53
+  SIGNAL aux54 : BIT;		-- aux54
+  SIGNAL aux55 : BIT;		-- aux55
+  SIGNAL aux56 : BIT;		-- aux56
+  SIGNAL aux60 : BIT;		-- aux60
+  SIGNAL aux62 : BIT;		-- aux62
+  SIGNAL aux63 : BIT;		-- aux63
+  SIGNAL aux64 : BIT;		-- aux64
+  SIGNAL aux65 : BIT;		-- aux65
+  SIGNAL aux66 : BIT;		-- aux66
+  SIGNAL aux67 : BIT;		-- aux67
+  SIGNAL aux68 : BIT;		-- aux68
+  SIGNAL aux70 : BIT;		-- aux70
+  SIGNAL aux72 : BIT;		-- aux72
+  SIGNAL aux73 : BIT;		-- aux73
+  SIGNAL aux76 : BIT;		-- aux76
+  SIGNAL aux78 : BIT;		-- aux78
+  SIGNAL aux79 : BIT;		-- aux79
+  SIGNAL aux80 : BIT;		-- aux80
+  SIGNAL aux81 : BIT;		-- aux81
+  SIGNAL aux82 : BIT;		-- aux82
+  SIGNAL aux83 : BIT;		-- aux83
+  SIGNAL aux84 : BIT;		-- aux84
+  SIGNAL aux85 : BIT;		-- aux85
+  SIGNAL aux86 : BIT;		-- aux86
+  SIGNAL aux87 : BIT;		-- aux87
+  SIGNAL aux88 : BIT;		-- aux88
+  SIGNAL aux89 : BIT;		-- aux89
+  SIGNAL aux90 : BIT;		-- aux90
+  SIGNAL aux91 : BIT;		-- aux91
+  SIGNAL aux92 : BIT;		-- aux92
+  SIGNAL aux94 : BIT;		-- aux94
+  SIGNAL aux96 : BIT;		-- aux96
+  SIGNAL aux97 : BIT;		-- aux97
+  SIGNAL aux98 : BIT;		-- aux98
+  SIGNAL aux101 : BIT;		-- aux101
+  SIGNAL aux103 : BIT;		-- aux103
+  SIGNAL aux104 : BIT;		-- aux104
+  SIGNAL aux105 : BIT;		-- aux105
+  SIGNAL aux108 : BIT;		-- aux108
+  SIGNAL aux109 : BIT;		-- aux109
+  SIGNAL aux110 : BIT;		-- aux110
+  SIGNAL aux113 : BIT;		-- aux113
+  SIGNAL aux114 : BIT;		-- aux114
+  SIGNAL aux119 : BIT;		-- aux119
+  SIGNAL aux121 : BIT;		-- aux121
+  SIGNAL aux122 : BIT;		-- aux122
+  SIGNAL aux123 : BIT;		-- aux123
+  SIGNAL aux124 : BIT;		-- aux124
+  SIGNAL aux132 : BIT;		-- aux132
+  SIGNAL aux136 : BIT;		-- aux136
+  SIGNAL aux137 : BIT;		-- aux137
+  SIGNAL aux138 : BIT;		-- aux138
+  SIGNAL aux139 : BIT;		-- aux139
+  SIGNAL aux140 : BIT;		-- aux140
+  SIGNAL aux141 : BIT;		-- aux141
+  SIGNAL aux142 : BIT;		-- aux142
+  SIGNAL aux143 : BIT;		-- aux143
+  SIGNAL aux144 : BIT;		-- aux144
+  SIGNAL aux145 : BIT;		-- aux145
+  SIGNAL aux146 : BIT;		-- aux146
+  SIGNAL aux147 : BIT;		-- aux147
+  SIGNAL aux148 : BIT;		-- aux148
+  SIGNAL aux149 : BIT;		-- aux149
+  SIGNAL aux150 : BIT;		-- aux150
+  SIGNAL aux151 : BIT;		-- aux151
+  SIGNAL aux152 : BIT;		-- aux152
+  SIGNAL aux153 : BIT;		-- aux153
+  SIGNAL aux154 : BIT;		-- aux154
+  SIGNAL aux155 : BIT;		-- aux155
+  SIGNAL aux156 : BIT;		-- aux156
+  SIGNAL aux157 : BIT;		-- aux157
+  SIGNAL aux158 : BIT;		-- aux158
+  SIGNAL aux159 : BIT;		-- aux159
+  SIGNAL aux160 : BIT;		-- aux160
+  SIGNAL aux161 : BIT;		-- aux161
+  SIGNAL aux162 : BIT;		-- aux162
+  SIGNAL aux163 : BIT;		-- aux163
+  SIGNAL aux164 : BIT;		-- aux164
+  SIGNAL aux165 : BIT;		-- aux165
+  SIGNAL aux166 : BIT;		-- aux166
+  SIGNAL aux167 : BIT;		-- aux167
+  SIGNAL aux168 : BIT;		-- aux168
+  SIGNAL aux169 : BIT;		-- aux169
+  SIGNAL aux170 : BIT;		-- aux170
+  SIGNAL aux171 : BIT;		-- aux171
+  SIGNAL aux172 : BIT;		-- aux172
+  SIGNAL aux173 : BIT;		-- aux173
+  SIGNAL aux174 : BIT;		-- aux174
+  SIGNAL aux175 : BIT;		-- aux175
+  SIGNAL aux176 : BIT;		-- aux176
+  SIGNAL aux177 : BIT;		-- aux177
+  SIGNAL aux178 : BIT;		-- aux178
+  SIGNAL aux179 : BIT;		-- aux179
+  SIGNAL aux180 : BIT;		-- aux180
+  SIGNAL aux181 : BIT;		-- aux181
+  SIGNAL aux182 : BIT;		-- aux182
+  SIGNAL aux184 : BIT;		-- aux184
+  SIGNAL aux186 : BIT;		-- aux186
+  SIGNAL aux187 : BIT;		-- aux187
+  SIGNAL aux188 : BIT;		-- aux188
+  SIGNAL aux189 : BIT;		-- aux189
+  SIGNAL aux191 : BIT;		-- aux191
+  SIGNAL aux192 : BIT;		-- aux192
+  SIGNAL aux194 : BIT;		-- aux194
+  SIGNAL aux195 : BIT;		-- aux195
+  SIGNAL aux197 : BIT;		-- aux197
+  SIGNAL aux199 : BIT;		-- aux199
+  SIGNAL aux202 : BIT;		-- aux202
+
+BEGIN
+  aux202 <= NOT(((aux191 AND NOT(aux142)) AND aux49) AND NOT(
+aux13));
+  aux199 <= NOT((aux124 AND NOT(aux142)) AND aux49);
+  aux197 <= ((aux62 AND aux132) AND NOT(aux26));
+  aux195 <= (aux49 AND NOT(aux13));
+  aux194 <= ((aux108 AND (aux105 OR NOT(opa(0)))) AND ((aux88
+ OR aux60) OR opb(1)));
+  aux192 <= (aux132 AND NOT(aux26));
+  aux191 <= ((((aux113 AND aux110) OR opa(2)) AND (((aux54 OR
+ NOT(opb(2))) OR (opa(1) XOR opb(1))) OR opa(0))) 
+AND ((aux56 OR opa(1)) OR NOT(opb(1))));
+  aux189 <= (aux49 AND aux55);
+  aux188 <= (NOT(opa(6)) AND aux62);
+  aux187 <= (aux63 AND aux62);
+  aux186 <= ((aux30 AND (aux27 OR opa(0))) AND ((NOT(aux7) OR
+ aux56) OR NOT(opb(1))));
+  aux184 <= ((((aux38 AND (aux13 OR NOT(aux1))) OR NOT(opa(2)
+)) AND (((aux35 OR opb(2)) OR (opa(1) XOR opb(1)))
+ OR NOT(opa(0)))) AND (aux13 OR NOT(aux12)));
+  aux182 <= (compare AND nreset);
+  aux181 <= (aux137 AND NOT(opb(6)));
+  aux180 <= (aux136 AND opb(6));
+  aux179 <= (aux136 AND NOT(opb(6)));
+  aux178 <= (aux137 AND opb(6));
+  aux177 <= (NOT(read_opa) AND NOT(opb(5)));
+  aux176 <= (NOT(read_opa) AND opb(5));
+  aux175 <= (decr_a AND NOT(opa(4)));
+  aux174 <= (decr_a AND opa(4));
+  aux173 <= (aux122 AND NOT(opb(5)));
+  aux172 <= (aux121 AND opb(5));
+  aux171 <= (aux121 AND NOT(opb(5)));
+  aux170 <= (aux122 AND opb(5));
+  aux169 <= (decr_a AND NOT(opb(4)));
+  aux168 <= (decr_a AND opb(4));
+  aux167 <= (NOT(aux98) AND opa(2));
+  aux166 <= (NOT(read_opa) AND NOT(opa(3)));
+  aux165 <= (NOT(read_opa) AND opa(3));
+  aux164 <= (NOT(opa(1) XOR opb(1)) AND NOT(opa(0)));
+  aux163 <= (opa(5) AND NOT(opa(7)));
+  aux162 <= (opa(5) AND opa(7));
+  aux161 <= (NOT(opa(5)) AND NOT(opa(7)));
+  aux160 <= (NOT(opa(5)) AND opa(7));
+  aux159 <= NOT(NOT(aux65) AND NOT(opb(5)));
+  aux158 <= NOT(NOT(aux66) AND opb(5));
+  aux157 <= (NOT(read_opb) AND NOT(opa(4)));
+  aux156 <= (NOT(read_opb) AND opa(4));
+  aux155 <= (NOT(read_opb) AND NOT(opb(4)));
+  aux154 <= (NOT(read_opb) AND opb(4));
+  aux153 <= (NOT(read_opb) AND NOT(opa(2)));
+  aux152 <= (NOT(opb(2)) AND aux149);
+  aux151 <= (NOT(read_opb) AND opa(2));
+  aux150 <= (opb(2) AND aux149);
+  aux149 <= (NOT(opa(1) XOR opb(1)) AND opa(0));
+  aux148 <= (NOT(opb(2)) AND NOT(opa(1)));
+  aux147 <= (opb(2) AND opa(1));
+  aux146 <= NOT(opb(7) OR NOT(opa(7)));
+  aux145 <= NOT(NOT(opa(6)) OR opb(5));
+  aux144 <= NOT(opa(6) OR NOT(opb(5)));
+  aux143 <= (arg_p(7) AND read_opa);
+  aux142 <= NOT(opa(6) OR NOT(opb(6)));
+  aux141 <= ((opb(7) XOR opa(7)) AND NOT(read_opa));
+  aux140 <= NOT(NOT(opa(6)) OR opb(6));
+  aux139 <= (NOT(opb(7) XOR opa(7)) AND NOT(read_opa));
+  aux138 <= (arg_p(6) AND read_opa);
+  aux137 <= (opa(6) AND NOT(read_opa));
+  aux136 <= (NOT(opa(6)) AND NOT(read_opa));
+  aux132 <= (aux35 OR aux11);
+  aux124 <= (NOT(aux119) OR NOT(opb(4)));
+  aux123 <= (aux119 OR opb(4));
+  aux122 <= (opa(5) AND NOT(read_opa));
+  aux121 <= (NOT(opa(5)) AND NOT(read_opa));
+  aux119 <= NOT(NOT(aux108) OR (aux113 AND ((NOT(opb(3)) AND 
+(NOT(aux97) OR opa(3))) OR NOT(aux114))));
+  aux114 <= NOT(NOT(aux97) AND opa(3));
+  aux113 <= (((aux54 OR opb(2)) OR (opa(1) XOR opb(1))) OR 
+opa(0));
+  aux110 <= (aux26 OR NOT(aux97));
+  aux109 <= (NOT(aux13) AND NOT(read_opa));
+  aux108 <= ((aux103 OR (aux13 OR aux98)) OR NOT(opa(2)));
+  aux105 <= (aux13 OR aux97);
+  aux104 <= (aux101 AND NOT(opb(2)));
+  aux103 <= NOT((NOT(aux4) OR (opa(1) XOR opb(1))) OR opa(0));
+  aux101 <= ((aux92 AND opa(3)) OR (aux94 AND NOT(opa(3))));
+  aux98 <= NOT(aux23 OR NOT(opb(1)));
+  aux97 <= (opb(2) OR aux90);
+  aux96 <= ((aux94 AND opa(3)) OR (aux92 AND NOT(opa(3))));
+  aux94 <= (opb(3) AND NOT(read_opa));
+  aux92 <= (NOT(opb(3)) AND NOT(read_opa));
+  aux91 <= NOT(opb(2) XOR aux90);
+  aux90 <= (NOT(opa(1)) AND opb(1));
+  aux89 <= (NOT(read_opa) AND NOT(opb(2)));
+  aux88 <= NOT(NOT(opb(0)) OR opa(1));
+  aux87 <= (NOT(read_opa) AND opb(2));
+  aux86 <= (NOT(read_opa) OR arg_p(1));
+  aux85 <= (NOT(opb(0)) AND NOT(read_opa));
+  aux84 <= (opb(0) AND NOT(read_opa));
+  aux83 <= (NOT(opb(7)) AND NOT(opa(6)));
+  aux82 <= (opb(7) AND NOT(opa(6)));
+  aux81 <= (opb(7) AND opa(6));
+  aux80 <= (NOT(opb(7)) AND opa(6));
+  aux79 <= (aux78 OR NOT(opb(6)));
+  aux78 <= (opa(6) AND (decr_b OR NOT(opa(7))));
+  aux76 <= ((opb(7) AND opa(7)) OR (aux68 AND NOT(opa(7))));
+  aux73 <= (aux72 OR opb(6));
+  aux72 <= (NOT(opa(6)) AND (decr_b OR opa(7)));
+  aux70 <= ((aux68 AND opa(7)) OR aux67);
+  aux68 <= (NOT(opb(7)) AND decr_b);
+  aux67 <= (opb(7) AND NOT(opa(7)));
+  aux66 <= NOT(NOT(opa(6)) AND NOT(opa(5)));
+  aux65 <= NOT(opa(6) AND opa(5));
+  aux64 <= (NOT(opa(6)) AND decr_b);
+  aux63 <= (opa(6) AND decr_b);
+  aux62 <= (NOT(opa(5)) OR opb(5));
+  aux60 <= (aux13 OR opb(2));
+  aux56 <= (aux26 OR NOT(opb(2)));
+  aux55 <= (aux54 OR aux23);
+  aux54 <= (NOT(opb(0)) OR aux26);
+  aux53 <= (aux50 OR NOT(opb(4)));
+  aux52 <= (decr_b AND NOT(opa(5)));
+  aux51 <= (NOT(aux50) OR opb(4));
+  aux50 <= NOT(NOT(aux30) OR NOT(aux39));
+  aux49 <= NOT(NOT(opa(5)) AND opb(5));
+  aux48 <= (decr_b AND opa(5));
+  aux39 <= NOT(aux38 AND ((opb(3) AND (NOT(aux1) OR NOT(
+opa(3)))) OR NOT(aux31)));
+  aux38 <= (((aux35 OR NOT(opb(2))) OR (opa(1) XOR opb(1))) 
+OR NOT(opa(0)));
+  aux35 <= (opb(0) OR aux13);
+  aux31 <= NOT(NOT(aux1) AND NOT(opa(3)));
+  aux30 <= (aux29 OR opa(2));
+  aux29 <= (aux19 OR (aux26 OR aux12));
+  aux27 <= (aux26 OR aux1);
+  aux26 <= (NOT(opb(3)) AND opa(3));
+  aux25 <= (opb(0) AND opb(3));
+  aux24 <= (NOT(opb(0)) AND opb(3));
+  aux23 <= (NOT(opb(2)) OR opa(1));
+  aux22 <= ((opb(3) AND opa(3)) OR (aux14 AND NOT(opa(3))));
+  aux19 <= NOT(((opb(0) OR opb(2)) OR (opa(1) XOR opb(1))) 
+OR NOT(opa(0)));
+  aux16 <= ((aux14 AND opa(3)) OR aux13);
+  aux14 <= (decr_b AND NOT(opb(3)));
+  aux13 <= (opb(3) AND NOT(opa(3)));
+  aux12 <= NOT(aux11 OR opb(1));
+  aux11 <= (opb(2) OR NOT(opa(1)));
+  aux10 <= (decr_b AND opb(0));
+  aux9 <= NOT((aux7 AND opb(2)) AND opb(1));
+  aux7 <= (opb(0) OR NOT(opa(1)));
+  aux6 <= (decr_b AND NOT(opb(2)));
+  aux5 <= NOT(aux4 AND NOT(opa(1)));
+  aux4 <= (opb(0) AND opb(2));
+  aux3 <= (decr_b AND NOT(opb(0)));
+  aux2 <= NOT(NOT(aux1) AND NOT(opa(0)));
+  aux1 <= NOT(opb(2) AND NOT(aux0));
+  aux0 <= NOT(NOT(opa(1)) OR opb(1));
+  label0 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (0) <= GUARDED ((arg_p(0) AND read_opb) OR ((((decr_b XOR opb(0)
+) AND opa(0)) OR (opb(0) AND NOT(opa(0)))) AND NOT
+(read_opb)));
+  END BLOCK label0;
+  label1 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (1) <= GUARDED ((arg_p(1) AND read_opb) OR (((((decr_b AND NOT(
+opb(0) XOR opa(1))) XOR opb(1)) AND opa(0)) OR (((
+decr_b AND opa(1)) XOR opb(1)) AND NOT(opa(0)))) AND 
+NOT(read_opb)));
+  END BLOCK label1;
+  label2 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (2) <= GUARDED ((arg_p(2) AND read_opb) OR (NOT(decr_b) AND 
+opb(2) AND NOT(read_opb)) OR (((aux7 AND aux6 AND 
+opb(1)) OR ((aux147 OR (aux10 AND aux148)) AND NOT(
+opb(1))) OR (NOT(opb(0)) AND aux150) OR (aux6 AND NOT(
+aux0) AND NOT(opa(0)))) AND aux151) OR ((NOT(aux9) OR
+ (((aux6 AND opa(1)) OR NOT(aux5)) AND NOT(opb(1))
+) OR (aux3 AND aux152) OR NOT(aux2)) AND aux153));
+  END BLOCK label2;
+  label3 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (3) <= GUARDED ((arg_p(3) AND read_opb) OR (((((aux10 AND NOT(
+opb(3)) AND opa(3)) OR (aux25 AND NOT(opa(3)))) AND NOT
+(aux23)) OR (NOT(decr_b) AND opb(3)) OR (aux7 AND 
+aux16 AND opb(2) AND opb(1)) OR (aux22 AND NOT(opb(2))
+ AND opa(1) AND NOT(opb(1))) OR (((aux24 AND 
+opa(3)) OR (aux3 AND NOT(opb(3)) AND NOT(opa(3)))) AND 
+aux152) OR (aux16 AND NOT(aux1) AND NOT(opa(0)))) AND 
+NOT(read_opb)) OR (aux2 AND aux9 AND aux5 AND aux22 
+AND aux151) OR (NOT(aux19) AND aux16 AND NOT(aux12) 
+AND aux153));
+  END BLOCK label3;
+  label4 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (4) <= GUARDED ((NOT(decr_b) AND aux154) OR (arg_p(4) AND 
+read_opb) OR (((aux30 AND aux39 AND aux154) OR (aux184 
+AND decr_b AND NOT(aux26) AND aux155)) AND opa(4)) 
+OR (((((NOT(aux29) AND aux153) OR (NOT(aux39) AND 
+NOT(read_opb))) AND opb(4)) OR (aux30 AND ((aux3 AND
+ NOT(opb(3) XOR opa(3)) AND aux150) OR (aux27 AND 
+decr_b AND NOT(aux13))) AND aux155)) AND NOT(opa(4))));
+  END BLOCK label4;
+  label5 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (5) <= GUARDED ((arg_p(5) AND read_opb) OR (NOT(decr_b) AND 
+opb(5) AND NOT(read_opb)) OR (aux184 AND ((NOT(opa(5)) 
+AND NOT(aux26) AND opb(5)) OR (aux48 AND NOT(aux26) 
+AND NOT(opb(5)))) AND aux154) OR (aux186 AND ((aux55
+ AND opa(5) AND NOT(aux13) AND opb(5)) OR (aux55 
+AND aux52 AND NOT(aux13) AND NOT(opb(5)))) AND 
+aux155) OR (aux53 AND ((opa(5) AND opb(5)) OR (aux52 
+AND NOT(opb(5)))) AND aux156) OR (aux51 AND (NOT(
+aux49) OR (aux48 AND NOT(opb(5)))) AND aux157));
+  END BLOCK label5;
+  label6 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (6) <= GUARDED ((arg_p(6) AND read_opb) OR ((((NOT(decr_b) OR 
+NOT(aux158) OR NOT(aux159)) AND opb(6)) OR (((aux63 
+AND NOT(opa(5)) AND opb(5)) OR (aux64 AND opa(5) AND
+ NOT(opb(5)))) AND NOT(opb(6)))) AND NOT(read_opb)
+) OR (aux184 AND ((aux188 AND NOT(aux26) AND 
+opb(6)) OR (aux187 AND NOT(aux26) AND NOT(opb(6)))) AND
+ aux154) OR (aux186 AND ((aux189 AND opa(6) AND 
+NOT(aux13) AND opb(6)) OR (aux189 AND aux64 AND NOT(
+aux13) AND NOT(opb(6)))) AND aux155) OR (aux53 AND ((
+opa(6) AND aux49 AND opb(6)) OR (aux64 AND aux49 AND 
+NOT(opb(6)))) AND aux156) OR (aux51 AND ((aux188 AND
+ opb(6)) OR (aux187 AND NOT(opb(6)))) AND aux157));
+  END BLOCK label6;
+  label7 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb (7) <= GUARDED ((arg_p(7) AND read_opb) OR (((opb(7) AND NOT(
+decr_b)) OR (((aux83 AND decr_b AND aux160) OR (aux82 
+AND decr_b AND aux161)) AND opb(5)) OR (((aux81 AND 
+decr_b AND aux162) OR (aux80 AND decr_b AND aux163)) 
+AND NOT(opb(5))) OR ((aux72 OR opb(5)) AND ((aux65 
+AND aux68 AND opa(7)) OR ((aux64 OR NOT(opa(5))) AND
+ opb(7) AND NOT(opa(7)))) AND opb(6)) OR ((aux78 
+OR NOT(opb(5))) AND (((aux63 OR opa(5)) AND opb(7) 
+AND opa(7)) OR (aux66 AND aux68 AND NOT(opa(7)))) 
+AND NOT(opb(6)))) AND NOT(read_opb)) OR (aux184 AND 
+aux73 AND aux62 AND NOT(aux26) AND aux70 AND aux154) 
+OR (aux186 AND aux79 AND aux49 AND aux55 AND NOT(
+aux13) AND aux76 AND aux155) OR (aux53 AND aux79 AND 
+aux49 AND aux76 AND aux156) OR (aux51 AND aux73 AND 
+aux62 AND aux70 AND aux157));
+  END BLOCK label7;
+  label8 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (0) <= GUARDED ((aux85 AND opa(0)) OR (arg_p(0) AND read_opa) OR
+ (aux84 AND NOT(opa(0)) AND decr_a) OR (NOT(
+read_opa) AND opa(0) AND NOT(decr_a)));
+  END BLOCK label8;
+  label9 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (1) <= GUARDED (((((read_opa OR (opa(1) XOR opb(1))) AND aux86 
+AND NOT(aux84)) OR (NOT(read_opa) AND (opa(1) XOR 
+opb(1)) AND opa(0)) OR (opb(0) AND aux86 AND aux164)) 
+AND decr_a) OR ((read_opa OR opa(1)) AND aux86 AND 
+NOT(decr_a)));
+  END BLOCK label9;
+  label10 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (2) <= GUARDED ((((NOT(read_opa) AND aux91 AND opa(0)) OR (((
+aux85 AND NOT(opb(2)) AND opa(1)) OR (aux84 AND opb(2)
+ AND NOT(opa(1))) OR (aux7 AND aux87 AND opb(1)) 
+OR (NOT(aux88) AND aux89 AND NOT(opb(1)))) AND NOT(
+opa(0)))) AND opa(2)) OR (arg_p(2) AND read_opa) OR (((
+NOT(read_opa) AND NOT(aux91) AND opa(0)) OR (((aux85
+ AND aux147) OR (aux84 AND aux148) OR (aux7 AND 
+aux89 AND opb(1)) OR (NOT(aux88) AND aux87 AND NOT(
+opb(1)))) AND NOT(opa(0)))) AND NOT(opa(2)) AND decr_a)
+ OR (NOT(read_opa) AND opa(2) AND NOT(decr_a)));
+  END BLOCK label10;
+  label11 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (3) <= GUARDED ((((((NOT(opb(0)) AND NOT(opb(3)) AND aux165) OR 
+(aux24 AND aux166)) AND NOT(aux11)) OR (arg_p(3) 
+AND read_opa) OR (aux96 AND opb(2) AND NOT(opa(1)) 
+AND opb(1)) OR (NOT(aux88) AND aux104 AND NOT(opb(1)
+)) OR (aux104 AND NOT(aux90) AND opa(0)) OR (((
+aux25 AND aux165) OR (opb(0) AND NOT(opb(3)) AND 
+aux166)) AND opb(2) AND aux164) OR (NOT(aux103) AND 
+aux101 AND aux167) OR ((aux97 OR NOT(opa(0))) AND (
+aux88 OR opb(2) OR opb(1)) AND (opb(0) OR aux11) AND 
+aux96 AND NOT(opa(2)))) AND decr_a) OR (NOT(aux166) 
+AND (arg_p(3) OR NOT(read_opa)) AND NOT(decr_a)));
+  END BLOCK label11;
+  label12 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (4) <= GUARDED ((arg_p(4) AND read_opa) OR ((((aux119 OR NOT(
+decr_a)) AND NOT(read_opa) AND opb(4)) OR ((NOT(aux119)
+ OR NOT(decr_a)) AND NOT(read_opa) AND NOT(opb(4))
+)) AND opa(4)) OR (((((NOT(aux103) AND aux109 AND 
+aux167) OR (aux113 AND aux110 AND aux109)) AND aux168) 
+OR (aux108 AND ((NOT(aux26) AND aux84 AND NOT(
+opb(2)) AND aux164) OR (aux105 AND NOT(aux26) AND NOT(
+read_opa))) AND aux169)) AND NOT(opa(4))));
+  END BLOCK label12;
+  label13 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (5) <= GUARDED ((aux122 AND NOT(decr_a)) OR (arg_p(5) AND 
+read_opa) OR (aux194 AND ((aux192 AND aux170) OR (aux192 
+AND aux171)) AND aux168) OR (aux191 AND ((NOT(aux13)
+ AND aux172) OR (NOT(aux13) AND aux173)) AND 
+aux169) OR (aux124 AND (aux172 OR aux173) AND aux174) 
+OR (aux123 AND (aux170 OR aux171) AND aux175));
+  END BLOCK label13;
+  label14 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (6) <= GUARDED (((aux138 OR (((opa(6) AND aux172) OR (NOT(opa(6)
+) AND aux173)) AND opb(6)) OR (((NOT(aux66) AND 
+aux176) OR (NOT(aux65) AND aux177)) AND NOT(opb(6)))) 
+AND decr_a) OR ((aux138 OR aux137) AND NOT(decr_a)) 
+OR (aux194 AND ((aux197 AND aux178) OR (aux197 AND 
+aux179)) AND aux168) OR (aux191 AND ((aux195 AND aux180
+) OR (aux195 AND aux181)) AND aux169) OR (aux124 
+AND ((aux49 AND aux180) OR (aux49 AND aux181)) AND 
+aux174) OR (aux123 AND ((aux62 AND aux178) OR (aux62 
+AND aux179)) AND aux175));
+  END BLOCK label14;
+  label15 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa (7) <= GUARDED (((aux143 OR (((aux82 AND aux160) OR (aux83 AND 
+aux161)) AND aux176) OR (((aux80 AND aux162) OR (aux81 
+AND aux163)) AND aux177) OR (NOT(aux145) AND ((
+opb(7) AND aux65 AND opa(7)) OR (NOT(opb(7)) AND aux65 
+AND NOT(opa(7)))) AND NOT(read_opa) AND opb(6)) OR (
+NOT(aux144) AND ((NOT(opb(7)) AND aux66 AND opa(7)) 
+OR (opb(7) AND aux66 AND NOT(opa(7)))) AND NOT(
+read_opa) AND NOT(opb(6)))) AND decr_a) OR ((aux143 OR (
+opa(7) AND NOT(read_opa))) AND NOT(decr_a)) OR (aux194 
+AND NOT(aux140) AND aux62 AND aux132 AND NOT(aux26) 
+AND aux139 AND aux168) OR (NOT(aux202) AND aux141 
+AND aux169) OR (NOT(aux199) AND aux141 AND aux174) 
+OR (aux123 AND NOT(aux140) AND aux62 AND aux139 AND
+ aux175));
+  END BLOCK label15;
+  label16 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    write_res <= GUARDED ((NOT(opa(6) XOR opb(6)) AND NOT(opb(4) XOR 
+opa(4)) AND NOT(opb(3) XOR opa(3)) AND compare AND NOT(
+opa(1) XOR opb(1)) AND NOT(opb(2) XOR opa(2)) AND NOT(
+opb(0) XOR opa(0)) AND NOT(opa(5) XOR opb(5)) AND 
+nreset AND NOT(opb(7) XOR opa(7))) OR (write_res AND 
+NOT(wok_res_p) AND nreset));
+  END BLOCK label16;
+  label17 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    decr_b <= GUARDED ((aux199 OR aux67 OR NOT(opa(4))) AND (aux202 OR 
+aux67 OR opb(4)) AND (aux144 OR aux67 OR NOT(aux66) OR
+ opb(6)) AND (aux67 OR aux159) AND NOT(aux146) AND
+ aux182);
+  END BLOCK label17;
+  label18 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    decr_a <= GUARDED ((NOT(aux51) OR aux140 OR NOT(aux62) OR aux146 OR
+ opa(4)) AND (NOT(aux184) OR aux140 OR NOT(aux62) 
+OR aux26 OR aux146 OR NOT(opb(4))) AND (aux145 OR 
+aux146 OR NOT(aux65) OR NOT(opb(6))) AND (aux146 OR 
+aux158) AND NOT(aux67) AND aux182);
+  END BLOCK label18;
+  label19 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    compare <= GUARDED ((decr_b OR (rok_arg_p AND read_opb) OR decr_a) 
+AND nreset);
+  END BLOCK label19;
+  label20 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    read_opb <= GUARDED ((rok_arg_p OR read_opb) AND (NOT(rok_arg_p) OR 
+read_opa) AND nreset);
+  END BLOCK label20;
+  label21 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    read_opa <= GUARDED ((write_res AND wok_res_p) OR (NOT(rok_arg_p) AND
+ read_opa) OR NOT(nreset));
+  END BLOCK label21;
+
+res_p (0) <= opa(0);
+
+res_p (1) <= opa(1);
+
+res_p (2) <= opa(2);
+
+res_p (3) <= opa(3);
+
+res_p (4) <= opa(4);
+
+res_p (5) <= opa(5);
+
+res_p (6) <= opa(6);
+
+res_p (7) <= opa(7);
+
+wr_res_p <= write_res;
+
+rd_arg_p <= (read_opa OR read_opb);
+END;

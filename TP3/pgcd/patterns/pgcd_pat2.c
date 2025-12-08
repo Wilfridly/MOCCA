@@ -83,16 +83,20 @@ int main ()
     DECLAR ("vss",      ":2", "B", IN,  "", "");
     DECLAR ("ck",       ":2", "B", IN,  "", "");
     DECLAR ("nreset",   ":2", "B", IN,  "", "");
-
+    
+    DECLAR ("arg_p",     ":2", "X", IN, vector(8-1,0), "");
+    DECLAR ("rok_arg_p",   ":2", "B", IN,  "", "");
+    DECLAR ("wok_res_p",   ":2", "B", IN,  "", "");
+    
     // It is possible to see internal signals
     DECLAR ("wr_arg",   ":2", "B", SIGNAL, "", "");
-    DECLAR ("argd",     ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR ("argd",     ":2", "X", SIGNAL, vector(8-1,0), "");
     DECLAR ("rd_arg",   ":2", "B", SIGNAL, "", "");
     DECLAR ("rd_res",   ":2", "B", SIGNAL, "", "");
-    DECLAR ("res",      ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR ("res",      ":2", "X", SIGNAL, vector(8-1,0), "");
     DECLAR ("wr_res",   ":2", "B", SIGNAL, "", "");
 
-    DECLAR ("data.pt", ":1", "x", REGISTER, vector(ADDRWD-1,0), "");
+    DECLAR ("data.pt", ":1", "x", REGISTER, vector(8-1,0), "");
     DECLAR ("data.opa", ":1", "B", REGISTER, "", "");
     DECLAR ("data.opb", ":1", "B", REGISTER, "", "");
     DECLAR ("data.res", ":1", "B", REGISTER, "", "");
@@ -105,19 +109,40 @@ int main ()
     DECLAR ("core.decr_a",   ":1", "B", REGISTER, "", "");
     DECLAR ("core.decr_b",   ":1", "B", REGISTER, "", "");
 
+    // Affectation
+    AFFECT (cycle (0), "ck", "0");
     AFFECT (cycle (0), "vdd", "1");
     AFFECT (cycle (0), "vss", "0");
     AFFECT (cycle (0), "nreset", "0");
     AFFECT (cycle (1), "nreset", "1");
 
+    AFFECT (cycle (0), "arg_p", "0");
+    AFFECT (cycle (0), "rok_arg_p", "0");
+    AFFECT (cycle (0), "wok_res_p", "0");
+    
+    // test 1
+    AFFECT (next_cycle (0), "rok_arg_p", "1");
+    AFFECT (next_cycle (0), "arg_p", "120");
+    AFFECT (next_cycle (1), "arg_p", "16");
+    AFFECT (next_cycle (2), "arg_p", "8");
+    AFFECT (next_cycle (2), "rok_arg_p", "0");
+    AFFECT (next_cycle (5), "wok_res_p", "1");
+
+    // test 2
+    AFFECT (next_cycle (6), "wok_res_p", "0");
+    AFFECT (next_cycle (6), "rok_arg_p", "1");
+    AFFECT (next_cycle (6), "arg_p", "64");
+    AFFECT (next_cycle (7), "arg_p", "17");
+    AFFECT (next_cycle (8), "arg_p", "1");
+    AFFECT (next_cycle (8), "rok_arg_p", "0");
+
+    SAV_GENPAT ();
     // la génération du signal d'horloge
     int c;
     for (c = 0; c <= CYCLES; c++) {
         AFFECT (cycle (c), "ck", inttostr (0));
         AFFECT (next_cycle (c), "ck", inttostr (1));
     }
-    AFFECT (cycle (0), "nreset", "0");
 
-    SAV_GENPAT ();
     return 0;
 }

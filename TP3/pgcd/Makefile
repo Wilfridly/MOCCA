@@ -22,38 +22,29 @@ valid_pgcd:
 	vasy -a -I vhd -p -o $(MODEL)_data $(MODEL)_data
 	vasy -a -I vhd -p -o $(MODEL)_core $(MODEL)_core
 	vasy -a -I vhd -p -o $(MODEL)_tb   $(MODEL)_tb  
-	asimut	$(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres |\
-	awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
+	asimut	$(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres | awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
 	@grep ": ?1" $(MODEL)_tbres.pat || echo "Lucky no error"
 
-synthesis:
-## Method 1
-# 	boom $(MODEL)_core $(MODEL)_core_o
-# 	boog $(MODEL)_core_o $(MODEL)_core_o
-# 	loon $(MODEL)_core_o $(MODEL)_core 
+synthesis: valid_pgcd
 
-# 	boom $(MODEL)_data $(MODEL)_data_o
-# 	boog $(MODEL)_data_o $(MODEL)_data_o
-# 	loon $(MODEL)_data_o $(MODEL)_data
+# synthèse
+	boom $(MODEL)_core $(MODEL)_core_loon
+	boog $(MODEL)_core_boom $(MODEL)_core_boog
+	loon $(MODEL)_core_boog $(MODEL)_core_loon 
 
-# 	vasy -a -I vst -p -o $(MODEL)_tb $(MODEL)_tb 
+	boom $(MODEL)_data $(MODEL)_data_boom
+	boog $(MODEL)_data_boom $(MODEL)_data_boog
+	loon $(MODEL)_data_boog $(MODEL)_data_loon
 
-# 	asimut $(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres
+# Simulation post synthèse
+post_synth: synthesis
+	export PATNAME=$(MODEL)_tb2 ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES);\
+	genpat patterns/pgcd_pat2 
 
-## Method 2
-# Avec cette méthode il faut supprimer datalastpt qui est optimisé lors de la synthèse dans pgcd_pat.c
-	boom $(MODEL)_core $(MODEL)_core
-	boog $(MODEL)_core $(MODEL)_core
-	loon $(MODEL)_core $(MODEL)_core_o 
+	asimut -zd pgcd_core_loon patterns/pgcd_pat2 pgcd_tb2
 
-	boom $(MODEL)_data $(MODEL)_data
-	boog $(MODEL)_data $(MODEL)_data
-	loon $(MODEL)_data $(MODEL)_data_o
 
-	vasy -a -I vhd -p -o $(MODEL)_tb $(MODEL)_tb 
 
-	asimut $(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres
-  
 clean:
 	rm  Makefile.*\
 		$(MODEL)_core.vbe\
@@ -64,6 +55,9 @@ clean:
 		$(MODEL)_tbres.pat\
 		*.vst\
 		*.xsc\
+		*_boom.vbe\
+		*_boog.vbe\
+		*_loon.vbe\
 		default.pat\
 		rom rom.txt\
 		2> /dev/null || true

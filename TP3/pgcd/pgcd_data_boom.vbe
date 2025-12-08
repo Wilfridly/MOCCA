@@ -1,0 +1,608 @@
+-- VHDL data flow description generated from `pgcd_data_boom`
+--		date : Mon Dec  8 22:53:41 2025
+
+
+-- Entity Declaration
+
+ENTITY pgcd_data_boom IS
+  PORT (
+  ck : in BIT;	-- ck
+  nreset : in BIT;	-- nreset
+  wr_arg_p : out BIT;	-- wr_arg_p
+  arg_p : out bit_vector(7 DOWNTO 0) ;	-- arg_p
+  wok_arg_p : in BIT;	-- wok_arg_p
+  rd_res_p : out BIT;	-- rd_res_p
+  res_p : in bit_vector(7 DOWNTO 0) ;	-- res_p
+  rok_res_p : in BIT;	-- rok_res_p
+  ko_p : out BIT;	-- ko_p
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END pgcd_data_boom;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF pgcd_data_boom IS
+  SIGNAL opa : REG_BIT REGISTER;	-- opa
+  SIGNAL opb : REG_BIT REGISTER;	-- opb
+  SIGNAL res : REG_BIT REGISTER;	-- res
+  SIGNAL stop : REG_BIT REGISTER;	-- stop
+  SIGNAL pt : REG_VECTOR(7 DOWNTO 0) REGISTER;	-- pt
+  SIGNAL aux0 : BIT;		-- aux0
+  SIGNAL aux1 : BIT;		-- aux1
+  SIGNAL aux2 : BIT;		-- aux2
+  SIGNAL aux6 : BIT;		-- aux6
+  SIGNAL aux7 : BIT;		-- aux7
+  SIGNAL aux8 : BIT;		-- aux8
+  SIGNAL aux14 : BIT;		-- aux14
+  SIGNAL aux15 : BIT;		-- aux15
+  SIGNAL aux16 : BIT;		-- aux16
+  SIGNAL aux22 : BIT;		-- aux22
+  SIGNAL aux23 : BIT;		-- aux23
+  SIGNAL aux25 : BIT;		-- aux25
+  SIGNAL aux33 : BIT;		-- aux33
+  SIGNAL aux34 : BIT;		-- aux34
+  SIGNAL aux36 : BIT;		-- aux36
+  SIGNAL aux41 : BIT;		-- aux41
+  SIGNAL aux42 : BIT;		-- aux42
+  SIGNAL aux48 : BIT;		-- aux48
+  SIGNAL aux49 : BIT;		-- aux49
+  SIGNAL aux51 : BIT;		-- aux51
+  SIGNAL aux53 : BIT;		-- aux53
+  SIGNAL aux63 : BIT;		-- aux63
+  SIGNAL aux64 : BIT;		-- aux64
+  SIGNAL aux66 : BIT;		-- aux66
+  SIGNAL aux78 : BIT;		-- aux78
+  SIGNAL aux79 : BIT;		-- aux79
+  SIGNAL aux80 : BIT;		-- aux80
+  SIGNAL aux84 : BIT;		-- aux84
+  SIGNAL aux85 : BIT;		-- aux85
+  SIGNAL aux86 : BIT;		-- aux86
+  SIGNAL aux87 : BIT;		-- aux87
+  SIGNAL aux95 : BIT;		-- aux95
+  SIGNAL aux100 : BIT;		-- aux100
+  SIGNAL aux101 : BIT;		-- aux101
+  SIGNAL aux103 : BIT;		-- aux103
+  SIGNAL aux109 : BIT;		-- aux109
+  SIGNAL aux110 : BIT;		-- aux110
+  SIGNAL aux113 : BIT;		-- aux113
+  SIGNAL aux121 : BIT;		-- aux121
+  SIGNAL aux122 : BIT;		-- aux122
+  SIGNAL aux123 : BIT;		-- aux123
+  SIGNAL aux128 : BIT;		-- aux128
+  SIGNAL aux133 : BIT;		-- aux133
+  SIGNAL aux134 : BIT;		-- aux134
+  SIGNAL aux138 : BIT;		-- aux138
+  SIGNAL aux140 : BIT;		-- aux140
+  SIGNAL aux148 : BIT;		-- aux148
+  SIGNAL aux153 : BIT;		-- aux153
+  SIGNAL aux155 : BIT;		-- aux155
+  SIGNAL aux162 : BIT;		-- aux162
+  SIGNAL aux165 : BIT;		-- aux165
+  SIGNAL aux171 : BIT;		-- aux171
+  SIGNAL aux180 : BIT;		-- aux180
+  SIGNAL aux186 : BIT;		-- aux186
+  SIGNAL aux187 : BIT;		-- aux187
+  SIGNAL aux188 : BIT;		-- aux188
+  SIGNAL aux193 : BIT;		-- aux193
+  SIGNAL aux195 : BIT;		-- aux195
+  SIGNAL aux198 : BIT;		-- aux198
+  SIGNAL aux200 : BIT;		-- aux200
+  SIGNAL aux207 : BIT;		-- aux207
+  SIGNAL aux211 : BIT;		-- aux211
+  SIGNAL aux212 : BIT;		-- aux212
+  SIGNAL aux219 : BIT;		-- aux219
+  SIGNAL aux230 : BIT;		-- aux230
+  SIGNAL aux231 : BIT;		-- aux231
+  SIGNAL aux236 : BIT;		-- aux236
+  SIGNAL aux237 : BIT;		-- aux237
+  SIGNAL aux242 : BIT;		-- aux242
+  SIGNAL aux246 : BIT;		-- aux246
+  SIGNAL aux247 : BIT;		-- aux247
+  SIGNAL aux255 : BIT;		-- aux255
+  SIGNAL aux275 : BIT;		-- aux275
+  SIGNAL aux279 : BIT;		-- aux279
+  SIGNAL aux284 : BIT;		-- aux284
+  SIGNAL aux285 : BIT;		-- aux285
+  SIGNAL aux290 : BIT;		-- aux290
+  SIGNAL aux292 : BIT;		-- aux292
+  SIGNAL aux301 : BIT;		-- aux301
+  SIGNAL aux312 : BIT;		-- aux312
+  SIGNAL aux317 : BIT;		-- aux317
+  SIGNAL aux326 : BIT;		-- aux326
+  SIGNAL aux327 : BIT;		-- aux327
+  SIGNAL aux328 : BIT;		-- aux328
+  SIGNAL aux331 : BIT;		-- aux331
+  SIGNAL aux339 : BIT;		-- aux339
+  SIGNAL aux356 : BIT;		-- aux356
+  SIGNAL aux358 : BIT;		-- aux358
+  SIGNAL aux374 : BIT;		-- aux374
+  SIGNAL aux375 : BIT;		-- aux375
+  SIGNAL aux376 : BIT;		-- aux376
+  SIGNAL aux390 : BIT;		-- aux390
+  SIGNAL aux391 : BIT;		-- aux391
+  SIGNAL aux393 : BIT;		-- aux393
+  SIGNAL aux402 : BIT;		-- aux402
+  SIGNAL aux406 : BIT;		-- aux406
+  SIGNAL aux416 : BIT;		-- aux416
+  SIGNAL aux417 : BIT;		-- aux417
+  SIGNAL aux418 : BIT;		-- aux418
+  SIGNAL aux422 : BIT;		-- aux422
+  SIGNAL aux427 : BIT;		-- aux427
+  SIGNAL aux442 : BIT;		-- aux442
+  SIGNAL aux449 : BIT;		-- aux449
+  SIGNAL aux450 : BIT;		-- aux450
+  SIGNAL aux469 : BIT;		-- aux469
+  SIGNAL aux471 : BIT;		-- aux471
+  SIGNAL aux472 : BIT;		-- aux472
+  SIGNAL aux484 : BIT;		-- aux484
+  SIGNAL aux503 : BIT;		-- aux503
+  SIGNAL aux515 : BIT;		-- aux515
+  SIGNAL aux526 : BIT;		-- aux526
+  SIGNAL aux545 : BIT;		-- aux545
+  SIGNAL aux558 : BIT;		-- aux558
+  SIGNAL aux562 : BIT;		-- aux562
+  SIGNAL aux582 : BIT;		-- aux582
+  SIGNAL aux599 : BIT;		-- aux599
+  SIGNAL aux601 : BIT;		-- aux601
+  SIGNAL aux604 : BIT;		-- aux604
+  SIGNAL aux640 : BIT;		-- aux640
+  SIGNAL aux659 : BIT;		-- aux659
+  SIGNAL aux739 : BIT;		-- aux739
+  SIGNAL aux740 : BIT;		-- aux740
+  SIGNAL aux741 : BIT;		-- aux741
+  SIGNAL aux742 : BIT;		-- aux742
+  SIGNAL aux743 : BIT;		-- aux743
+  SIGNAL aux745 : BIT;		-- aux745
+  SIGNAL aux747 : BIT;		-- aux747
+  SIGNAL aux748 : BIT;		-- aux748
+  SIGNAL aux749 : BIT;		-- aux749
+  SIGNAL aux751 : BIT;		-- aux751
+  SIGNAL aux754 : BIT;		-- aux754
+  SIGNAL aux755 : BIT;		-- aux755
+  SIGNAL aux756 : BIT;		-- aux756
+  SIGNAL aux757 : BIT;		-- aux757
+  SIGNAL aux758 : BIT;		-- aux758
+  SIGNAL aux759 : BIT;		-- aux759
+  SIGNAL aux762 : BIT;		-- aux762
+  SIGNAL aux763 : BIT;		-- aux763
+  SIGNAL aux764 : BIT;		-- aux764
+  SIGNAL aux765 : BIT;		-- aux765
+  SIGNAL aux766 : BIT;		-- aux766
+  SIGNAL aux767 : BIT;		-- aux767
+  SIGNAL aux768 : BIT;		-- aux768
+  SIGNAL aux769 : BIT;		-- aux769
+  SIGNAL aux770 : BIT;		-- aux770
+  SIGNAL aux771 : BIT;		-- aux771
+  SIGNAL aux775 : BIT;		-- aux775
+  SIGNAL aux778 : BIT;		-- aux778
+  SIGNAL aux779 : BIT;		-- aux779
+  SIGNAL aux780 : BIT;		-- aux780
+
+BEGIN
+  aux780 <= (pt(6) AND aux778);
+  aux779 <= (pt(5) AND aux775);
+  aux778 <= (pt(5) AND (nreset AND (pt(2) AND aux768)));
+  aux775 <= (nreset AND (res AND (pt(2) AND (pt(4) AND aux767
+))));
+  aux771 <= (nreset AND NOT(aux759));
+  aux770 <= (nreset AND aux759);
+  aux769 <= (NOT(pt(5)) OR NOT(res));
+  aux768 <= (pt(4) AND aux766);
+  aux767 <= (pt(0) AND rok_res_p);
+  aux766 <= (pt(0) AND NOT(rok_res_p));
+  aux765 <= (NOT(pt(0)) AND rok_res_p);
+  aux764 <= (res AND rok_res_p);
+  aux763 <= (NOT(aux358) OR NOT(pt(5)));
+  aux762 <= (((opa AND pt(1)) AND pt(3)) AND wok_arg_p);
+  aux759 <= NOT(aux758 OR NOT(pt(0)));
+  aux758 <= (NOT(pt(2)) OR NOT(pt(4)));
+  aux757 <= (NOT(aux740) AND aux756);
+  aux756 <= (aux23 AND wok_arg_p);
+  aux755 <= NOT(NOT(pt(2)) OR NOT(pt(0)));
+  aux754 <= ((aux745 AND (aux743 AND pt(3))) AND nreset);
+  aux751 <= NOT(NOT(aux740) AND (pt(1) AND wok_arg_p));
+  aux749 <= (aux742 AND pt(2));
+  aux748 <= (pt(1) AND nreset);
+  aux747 <= ((aux745 AND (aux743 AND pt(1))) AND nreset);
+  aux745 <= (NOT(wok_arg_p) OR NOT(opb));
+  aux743 <= (NOT(opa) OR NOT(wok_arg_p));
+  aux742 <= (aux741 AND nreset);
+  aux741 <= (aux740 OR NOT(wok_arg_p));
+  aux740 <= NOT(opa OR opb);
+  aux739 <= (((((((((aux237 OR aux285) AND pt(5)) OR ((((
+aux186 OR aux123) AND pt(6)) OR (aux180 AND NOT(pt(6)))
+) AND NOT(pt(5)))) AND pt(2)) OR (((((aux1 OR NOT(
+pt(6))) AND aux103) AND pt(5)) OR (((NOT(aux375) AND 
+pt(6)) OR aux242) AND NOT(pt(5)))) AND NOT(pt(2)))) 
+AND pt(4)) OR ((((((aux255 OR (aux7 AND NOT(pt(6))))
+ AND pt(5)) OR ((aux317 AND aux604) AND NOT(pt(5))
+)) AND pt(2)) OR ((aux601 OR (((aux442 AND NOT(
+pt(6))) AND pt(5)) OR (((NOT(aux187) AND pt(6)) OR 
+aux113) AND NOT(pt(5))))) AND NOT(pt(2)))) AND NOT(
+pt(4)))) AND pt(0)) OR (((((((((aux290 AND pt(6)) OR 
+aux211) AND pt(5)) OR (((aux515 AND pt(6)) OR ((aux390 
+OR aux0) AND NOT(pt(6)))) AND NOT(pt(5)))) AND 
+pt(2)) OR (((((aux33 OR NOT(pt(6))) AND aux450) AND 
+pt(5)) OR (((aux66 OR NOT(pt(6))) AND aux375) AND NOT(
+pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR ((((((aux219 
+OR aux79) AND pt(5)) OR ((aux279 AND aux356) AND 
+NOT(pt(5)))) AND pt(2)) OR (((((aux78 AND pt(6)) OR 
+(aux193 AND NOT(pt(6)))) AND pt(5)) OR (((((pt(1) 
+AND NOT(aux22)) OR aux51) AND pt(6)) OR aux599) AND 
+NOT(pt(5)))) AND NOT(pt(2)))) AND NOT(pt(4)))) AND 
+NOT(pt(0))));
+  aux659 <= (((((((((((aux193 OR aux34) AND pt(6)) OR aux640)
+ AND pt(5)) OR (aux558 AND NOT(pt(5)))) AND pt(2))
+ OR ((((aux562 OR (aux402 AND NOT(pt(6)))) AND 
+pt(5)) OR ((aux358 OR aux640) AND NOT(pt(5)))) AND NOT
+(pt(2)))) AND pt(4)) OR (((((((pt(1) AND NOT(aux41
+)) AND pt(6)) AND pt(5)) OR ((aux562 OR aux327) 
+AND NOT(pt(5)))) AND pt(2)) OR (((((aux138 AND pt(6)
+) OR (aux86 AND NOT(pt(6)))) AND pt(5)) OR (((NOT(
+aux103) AND pt(6)) OR aux484) AND NOT(pt(5)))) AND NOT(
+pt(2)))) AND NOT(pt(4)))) AND pt(0)) OR ((((((((aux472
+ OR aux148) AND pt(5)) OR ((aux301 OR (NOT(aux110)
+ AND NOT(pt(6)))) AND NOT(pt(5)))) AND pt(2)) OR (
+((((NOT(aux604) AND pt(6)) OR aux526) AND pt(5)) 
+OR ((aux601 OR aux599) AND NOT(pt(5)))) AND NOT(
+pt(2)))) AND pt(4)) OR ((((((aux418 OR ((NOT(aux133) 
+OR aux34) AND NOT(pt(6)))) AND pt(5)) OR (((aux391 
+AND pt(6)) OR aux471) AND NOT(pt(5)))) AND pt(2)) OR
+ ((((aux469 OR aux236) AND pt(5)) OR (aux328 AND 
+NOT(pt(5)))) AND NOT(pt(2)))) AND NOT(pt(4)))) AND 
+NOT(pt(0))));
+  aux640 <= ((aux207 OR aux100) AND NOT(pt(6)));
+  aux604 <= NOT(aux186 OR aux34);
+  aux601 <= ((NOT(pt(1)) AND aux15) AND pt(6));
+  aux599 <= (aux34 AND NOT(pt(6)));
+  aux582 <= ((((((((NOT(aux42) OR NOT(pt(6))) AND NOT(aux25))
+ AND pt(5)) OR (aux128 AND NOT(pt(5)))) AND pt(2))
+ OR ((((aux472 OR aux49) AND pt(5)) OR ((aux562 OR
+ (aux109 AND NOT(pt(6)))) AND NOT(pt(5)))) AND NOT
+(pt(2)))) AND pt(4)) OR ((((aux562 OR (((aux418 OR
+ aux558) AND pt(5)) OR (((aux84 AND pt(6)) OR 
+aux449) AND NOT(pt(5))))) AND pt(2)) OR ((((aux376 OR (
+aux393 AND NOT(pt(6)))) AND pt(5)) OR ((aux134 OR ((
+aux165 AND pt(6)) OR aux471)) AND NOT(pt(5)))) AND NOT(
+pt(2)))) AND NOT(pt(4))));
+  aux562 <= (aux207 AND pt(6));
+  aux558 <= (aux186 AND NOT(pt(6)));
+  aux545 <= (((((((((NOT(aux165) AND aux6) AND pt(6)) OR 
+aux211) AND pt(5)) OR (((aux110 AND pt(6)) OR ((NOT(
+aux0) AND aux6) AND NOT(pt(6)))) AND NOT(pt(5)))) AND
+ pt(2)) OR (((((aux64 AND pt(6)) OR aux526) AND 
+pt(5)) OR ((NOT(aux14) AND (NOT(aux64) AND aux6)) AND 
+NOT(pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR ((((((
+aux247 OR (aux515 AND NOT(pt(6)))) AND pt(5)) OR (((
+aux406 AND pt(6)) OR aux427) AND NOT(pt(5)))) AND pt(2)
+) OR (((((aux87 OR NOT(pt(6))) AND aux356) AND 
+pt(5)) OR (((aux292 AND pt(6)) OR aux417) AND NOT(
+pt(5)))) AND NOT(pt(2)))) AND NOT(pt(4))));
+  aux526 <= (aux85 AND NOT(pt(6)));
+  aux515 <= (aux207 OR aux84);
+  aux503 <= (((((((((((NOT(pt(1)) AND NOT(aux15)) AND pt(6)) 
+OR (aux123 AND NOT(pt(6)))) AND pt(5)) OR ((aux53 
+AND NOT(aux290)) AND NOT(pt(5)))) AND pt(2)) OR ((((
+(aux390 AND pt(6)) OR aux484) AND pt(5)) OR ((
+aux100 OR (aux331 OR (aux390 AND NOT(pt(6))))) AND NOT(
+pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR ((((((aux472 
+OR aux471) AND pt(5)) OR (aux469 AND NOT(pt(5)))) 
+AND pt(2)) OR (((aux34 OR NOT(pt(5))) AND ((aux16 
+AND pt(6)) OR aux113)) AND NOT(pt(2)))) AND NOT(
+pt(4)))) AND pt(0)) OR ((((((((aux195 OR (aux375 AND 
+NOT(pt(6)))) AND pt(5)) OR (((aux450 AND pt(6)) OR 
+aux449) AND NOT(pt(5)))) AND pt(2)) OR (((((NOT(aux442)
+ AND pt(6)) OR aux327) AND pt(5)) OR (((aux66 AND 
+pt(6)) OR (aux25 AND NOT(pt(6)))) AND NOT(pt(5)))) AND
+ NOT(pt(2)))) AND pt(4)) OR ((((((aux188 OR (
+aux207 AND NOT(pt(6)))) AND pt(5)) OR (((aux101 AND 
+pt(6)) OR aux427) AND NOT(pt(5)))) AND pt(2)) OR ((((
+aux422 OR (aux0 AND NOT(pt(6)))) AND pt(5)) OR ((aux418
+ OR aux417) AND NOT(pt(5)))) AND NOT(pt(2)))) AND 
+NOT(pt(4)))) AND NOT(pt(0))));
+  aux484 <= ((aux186 OR aux134) AND NOT(pt(6)));
+  aux472 <= (aux284 AND pt(6));
+  aux471 <= (aux155 AND NOT(pt(6)));
+  aux469 <= (NOT(pt(1) XOR NOT(aux8)) AND pt(6));
+  aux450 <= (aux33 XOR pt(7));
+  aux449 <= ((aux165 OR aux6) AND NOT(pt(6)));
+  aux442 <= NOT(aux42 OR aux8);
+  aux427 <= (aux339 AND NOT(pt(6)));
+  aux422 <= (aux23 AND pt(6));
+  aux418 <= (aux312 AND pt(6));
+  aux417 <= (aux41 AND NOT(pt(6)));
+  aux416 <= (((((((((aux237 OR (aux406 AND NOT(pt(6)))) AND 
+pt(5)) OR (((aux402 AND pt(6)) OR aux246) AND NOT(
+pt(5)))) AND pt(2)) OR (((((aux231 AND pt(6)) OR 
+aux113) AND pt(5)) OR (((aux393 AND pt(6)) OR (aux391 
+AND NOT(pt(6)))) AND NOT(pt(5)))) AND NOT(pt(2)))) 
+AND pt(4)) OR ((((((aux25 XOR pt(6)) AND pt(5)) OR (
+((aux207 OR aux8) AND NOT(pt(6))) AND NOT(pt(5))))
+ AND pt(2)) OR ((((aux376 OR aux374) AND pt(5)) OR
+ (((aux15 AND pt(6)) OR ((aux66 XOR pt(7)) AND NOT
+(pt(6)))) AND NOT(pt(5)))) AND NOT(pt(2)))) AND 
+NOT(pt(4)))) AND pt(0)) OR ((((((((aux212 OR aux123)
+ AND pt(5)) OR ((aux358 OR (aux356 AND NOT(pt(6)))
+) AND NOT(pt(5)))) AND pt(2)) OR ((((((NOT(aux64) 
+AND NOT(aux6)) AND pt(6)) OR aux79) AND pt(5)) OR ((
+(aux339 AND pt(6)) OR aux122) AND NOT(pt(5)))) AND
+ NOT(pt(2)))) AND pt(4)) OR ((((((aux188 OR (NOT(
+aux339) AND NOT(pt(6)))) AND pt(5)) OR (((aux198 AND 
+pt(6)) OR aux49) AND NOT(pt(5)))) AND pt(2)) OR ((((
+aux331 OR aux236) AND pt(5)) OR ((aux328 OR aux327) AND
+ NOT(pt(5)))) AND NOT(pt(2)))) AND NOT(pt(4)))) 
+AND NOT(pt(0))));
+  aux406 <= (aux133 AND NOT(aux33));
+  aux402 <= (aux153 OR aux134);
+  aux393 <= (NOT(aux64) AND pt(3));
+  aux391 <= (aux390 OR aux123);
+  aux390 <= (aux33 AND pt(7));
+  aux376 <= (aux375 AND pt(6));
+  aux375 <= (aux153 OR aux48);
+  aux374 <= (aux23 AND NOT(pt(6)));
+  aux358 <= (aux186 AND pt(6));
+  aux356 <= (aux193 OR aux22);
+  aux339 <= (pt(1) XOR aux15);
+  aux331 <= (aux193 AND pt(6));
+  aux328 <= (NOT(aux284) AND pt(6));
+  aux327 <= (aux16 AND NOT(pt(6)));
+  aux326 <= (((((((((aux317 AND NOT(aux7)) AND pt(5)) OR ((((
+aux153 OR aux312) AND pt(6)) OR (aux80 AND NOT(pt(6))))
+ AND NOT(pt(5)))) AND pt(2)) OR (((((aux275 AND 
+pt(6)) OR (aux103 AND NOT(pt(6)))) AND pt(5)) OR ((NOT
+(aux133) OR (aux301 OR (aux15 AND NOT(pt(6))))) 
+AND NOT(pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR ((((
+(((NOT(aux292) AND pt(6)) OR (aux290 AND NOT(pt(6)
+))) AND pt(5)) OR ((aux85 OR ((aux34 AND pt(6)) OR
+ aux285)) AND NOT(pt(5)))) AND pt(2)) OR ((((NOT(
+aux279) OR aux25) AND pt(5)) OR ((aux200 OR (aux275 AND
+ NOT(pt(6)))) AND NOT(pt(5)))) AND NOT(pt(2)))) 
+AND NOT(pt(4)))) AND pt(0)) OR ((((((((aux212 OR 
+aux100) AND pt(5)) OR ((aux66 AND aux171) AND NOT(pt(5)
+))) AND pt(2)) OR ((((((NOT(aux165) AND NOT(aux1))
+ AND pt(6)) OR (aux165 AND NOT(pt(6)))) AND pt(5))
+ OR ((aux255 OR (aux33 AND NOT(pt(6)))) AND NOT(
+pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR ((((((aux247 
+OR aux246) AND pt(5)) OR (((aux123 AND pt(6)) OR 
+aux242) AND NOT(pt(5)))) AND pt(2)) OR ((((aux237 OR 
+aux236) AND pt(5)) OR ((aux162 OR (aux231 AND NOT(pt(6)
+))) AND NOT(pt(5)))) AND NOT(pt(2)))) AND NOT(
+pt(4)))) AND NOT(pt(0))));
+  aux317 <= (NOT(aux133) OR NOT(pt(6)));
+  aux312 <= (aux1 AND NOT(pt(7)));
+  aux301 <= (aux41 AND pt(6));
+  aux292 <= NOT(aux41 OR aux0);
+  aux290 <= (aux51 OR aux134);
+  aux285 <= (aux284 AND NOT(pt(6)));
+  aux284 <= (aux133 AND pt(3));
+  aux279 <= NOT(NOT(aux64) AND NOT(pt(6)));
+  aux275 <= (aux51 OR aux123);
+  aux255 <= (aux134 AND pt(6));
+  aux247 <= (aux153 AND pt(6));
+  aux246 <= (aux110 AND NOT(pt(6)));
+  aux242 <= (aux66 AND NOT(pt(6)));
+  aux237 <= (aux85 AND pt(6));
+  aux236 <= ((NOT(pt(1)) AND NOT(aux8)) AND NOT(pt(6)));
+  aux231 <= (pt(1) XOR aux41);
+  aux230 <= (((((((((aux79 OR aux36) AND pt(5)) OR ((aux219 
+OR (pt(1) AND NOT(pt(6)))) AND NOT(pt(5)))) AND 
+pt(2)) OR ((((aux66 OR (aux212 OR aux211)) AND pt(5)) 
+OR (((aux100 AND NOT(pt(6))) OR aux207) AND NOT(
+pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR ((((((aux200 
+OR (NOT(aux198) AND NOT(pt(6)))) AND pt(5)) OR ((
+NOT(aux195) AND (aux193 OR aux8)) AND NOT(pt(5)))) 
+AND pt(2)) OR ((((aux188 OR ((NOT(aux8) AND NOT(
+aux66)) AND NOT(pt(6)))) AND pt(5)) OR (((aux180 AND 
+pt(6)) OR (aux134 AND NOT(pt(6)))) AND NOT(pt(5)))) 
+AND NOT(pt(2)))) AND NOT(pt(4)))) AND pt(0)) OR ((((
+(((pt(3) AND NOT(aux171)) OR ((((aux51 OR NOT(
+pt(6))) AND (aux165 OR aux8)) AND pt(5)) OR ((aux162 
+OR aux95) AND NOT(pt(5))))) AND pt(2)) OR (((((
+aux155 AND pt(6)) OR (aux153 AND NOT(pt(6)))) AND pt(5)
+) OR ((((NOT(aux64) AND NOT(aux1)) AND pt(6)) OR 
+aux148) AND NOT(pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR
+ (((((((aux140 AND pt(6)) OR (NOT(aux138) AND NOT(
+pt(6)))) AND pt(5)) OR (((aux134 OR NOT(pt(6))) AND 
+aux133) AND NOT(pt(5)))) AND pt(2)) OR ((((NOT(aux128) 
+AND pt(3)) AND pt(5)) OR ((((aux41 OR aux123) AND 
+pt(6)) OR aux122) AND NOT(pt(5)))) AND NOT(pt(2)))) 
+AND NOT(pt(4)))) AND NOT(pt(0))));
+  aux219 <= (aux7 AND pt(6));
+  aux212 <= (aux51 AND pt(6));
+  aux211 <= (aux64 AND NOT(pt(6)));
+  aux207 <= (aux66 AND pt(7));
+  aux200 <= (aux22 AND pt(6));
+  aux198 <= NOT(NOT(aux133) OR aux8);
+  aux195 <= NOT(NOT(aux87) OR NOT(pt(6)));
+  aux193 <= (aux6 AND pt(7));
+  aux188 <= (aux187 AND pt(6));
+  aux187 <= (aux186 OR aux64);
+  aux186 <= (aux23 AND pt(7));
+  aux180 <= (aux85 OR aux34);
+  aux171 <= NOT(pt(7) XOR pt(6));
+  aux165 <= (NOT(pt(1)) AND pt(7));
+  aux162 <= ((NOT(pt(1)) AND NOT(aux51)) AND pt(6));
+  aux155 <= (pt(1) AND NOT(aux15));
+  aux153 <= (NOT(aux6) AND pt(7));
+  aux148 <= (aux140 AND NOT(pt(6)));
+  aux140 <= (aux133 AND NOT(pt(3)));
+  aux138 <= NOT(pt(3) OR NOT(aux87));
+  aux134 <= (aux66 AND NOT(pt(7)));
+  aux133 <= (NOT(pt(1)) OR NOT(pt(7)));
+  aux128 <= NOT(NOT(pt(1)) OR NOT(aux14));
+  aux123 <= (aux6 AND NOT(pt(7)));
+  aux122 <= (aux42 AND NOT(pt(6)));
+  aux121 <= ((((((((NOT(aux34) AND pt(6)) OR aux113) OR NOT(
+pt(5))) AND ((NOT(pt(1)) AND pt(6)) OR NOT(aux110))) 
+AND pt(2)) OR (((aux33 OR ((aux103 AND pt(6)) OR (
+aux101 AND NOT(pt(6))))) OR (((pt(1) AND pt(6)) AND 
+pt(5)) OR (aux95 AND NOT(pt(5))))) AND NOT(pt(2)))) 
+AND pt(4)) OR (((((((aux87 AND NOT(pt(6))) OR aux86)
+ AND pt(5)) OR (((NOT(aux80) AND pt(6)) OR aux79) 
+AND NOT(pt(5)))) AND pt(2)) OR (((((NOT(aux8) AND 
+NOT(aux23)) OR ((aux0 AND pt(6)) OR aux14)) AND 
+pt(5)) OR ((((aux66 OR pt(7)) OR NOT(pt(6))) AND (
+aux64 OR pt(3))) AND NOT(pt(5)))) AND NOT(pt(2)))) AND
+ NOT(pt(4))));
+  aux113 <= (aux8 AND NOT(pt(6)));
+  aux110 <= NOT(aux51 OR aux109);
+  aux109 <= (NOT(aux33) AND NOT(pt(7)));
+  aux103 <= (NOT(aux23) XOR pt(7));
+  aux101 <= (aux51 OR aux100);
+  aux100 <= (aux23 AND NOT(pt(7)));
+  aux95 <= (pt(3) AND NOT(pt(6)));
+  aux87 <= (pt(1) XOR pt(7));
+  aux86 <= (aux85 OR aux84);
+  aux85 <= (aux1 AND pt(7));
+  aux84 <= (NOT(aux6) AND NOT(pt(7)));
+  aux80 <= NOT(aux33 OR NOT(pt(7)));
+  aux79 <= (aux78 AND NOT(pt(6)));
+  aux78 <= (pt(1) AND NOT(aux8));
+  aux66 <= (NOT(pt(1)) AND pt(3));
+  aux64 <= (NOT(pt(1)) AND NOT(pt(7)));
+  aux63 <= (((((((aux2 OR aux8) AND pt(6)) OR (((NOT(aux53) 
+OR (aux51 AND NOT(pt(6)))) AND pt(5)) OR (aux49 AND
+ NOT(pt(5))))) AND pt(2)) OR (((((NOT(aux42) AND 
+pt(6)) OR (NOT(pt(7)) AND NOT(pt(6)))) AND pt(5)) OR (
+((aux36 AND pt(6)) OR (NOT(aux34) AND NOT(pt(6))))
+ AND NOT(pt(5)))) AND NOT(pt(2)))) AND pt(4)) OR (
+((((((NOT(aux25) AND pt(6)) OR ((aux0 OR NOT(pt(3)
+)) AND NOT(pt(6)))) AND pt(5)) OR (((NOT(aux16) 
+AND pt(6)) OR aux14) AND NOT(pt(5)))) AND pt(2)) OR 
+(((((aux8 AND pt(6)) OR aux7) AND pt(5)) OR (((
+aux2 AND NOT(pt(6))) OR aux0) AND NOT(pt(5)))) AND 
+NOT(pt(2)))) AND NOT(pt(4))));
+  aux53 <= NOT(pt(3) AND pt(6));
+  aux51 <= (NOT(pt(3)) AND pt(7));
+  aux49 <= (aux48 AND NOT(pt(6)));
+  aux48 <= (NOT(aux23) AND NOT(pt(7)));
+  aux42 <= NOT(pt(1) OR aux41);
+  aux41 <= (pt(3) AND pt(7));
+  aux36 <= (NOT(aux0) AND NOT(pt(3)));
+  aux34 <= NOT(NOT(aux33) OR pt(7));
+  aux33 <= NOT(pt(1) OR pt(3));
+  aux25 <= NOT((NOT(aux23) AND pt(7)) OR aux22);
+  aux23 <= NOT(NOT(pt(1)) OR NOT(pt(3)));
+  aux22 <= (pt(3) AND NOT(pt(7)));
+  aux16 <= NOT(NOT(pt(1)) OR NOT(aux15));
+  aux15 <= (pt(3) XOR pt(7));
+  aux14 <= (pt(7) AND NOT(pt(6)));
+  aux8 <= (NOT(pt(3)) AND NOT(pt(7)));
+  aux7 <= (NOT(aux0) AND NOT(aux6));
+  aux6 <= (pt(1) XOR pt(3));
+  aux2 <= (NOT(aux1) AND pt(7));
+  aux1 <= NOT(NOT(pt(1)) OR pt(3));
+  aux0 <= (pt(1) AND NOT(pt(7)));
+  label0 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (0) <= GUARDED ((aux742 AND NOT(res) AND pt(0)) OR (NOT(aux741) 
+AND nreset AND NOT(pt(0))) OR (nreset AND res AND 
+aux765) OR (aux742 AND aux766));
+  END BLOCK label0;
+  label1 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (1) <= GUARDED ((((aux747 AND NOT(res)) OR (NOT(aux740) AND NOT(
+pt(1)) AND wok_arg_p AND nreset)) AND pt(0)) OR (
+aux748 AND NOT(pt(0))) OR (NOT(pt(1)) AND nreset AND 
+res AND aux767) OR (aux747 AND aux766));
+  END BLOCK label1;
+  label2 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (2) <= GUARDED (((((NOT(pt(1)) OR NOT(res)) AND aux751 AND 
+nreset AND pt(2)) OR (NOT(aux751) AND nreset AND NOT(
+pt(2)))) AND pt(0)) OR (nreset AND pt(2) AND NOT(pt(0)
+)) OR (aux748 AND res AND NOT(pt(2)) AND aux767) 
+OR (aux749 AND aux766));
+  END BLOCK label2;
+  label3 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (3) <= GUARDED ((((aux754 AND NOT(res)) OR ((opa OR pt(3) OR NOT
+(wok_arg_p) OR opb) AND (NOT(pt(1)) OR wok_arg_p) 
+AND aux6 AND nreset)) AND aux755) OR (pt(3) AND 
+nreset AND NOT(aux755)) OR (aux1 AND nreset AND res AND
+ pt(2) AND aux767) OR (aux754 AND pt(2) AND aux766
+));
+  END BLOCK label3;
+  label4 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (4) <= GUARDED ((((((aux741 AND NOT(res)) OR NOT(aux23) OR NOT(
+pt(2))) AND nreset AND pt(4)) OR (aux757 AND nreset 
+AND pt(2) AND NOT(pt(4)))) AND pt(0)) OR (nreset AND
+ pt(4) AND NOT(pt(0))) OR (aux23 AND nreset AND 
+res AND pt(2) AND NOT(pt(4)) AND aux767) OR (aux749 
+AND aux768));
+  END BLOCK label4;
+  label5 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (5) <= GUARDED (((NOT(aux23) OR aux769) AND (aux757 XOR pt(5)) 
+AND aux770) OR (pt(5) AND aux771) OR (aux23 AND NOT(
+pt(5)) AND aux775) OR (aux741 AND aux778));
+  END BLOCK label5;
+  label6 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (6) <= GUARDED (((NOT(aux422) OR aux769) AND (((((aux756 XOR 
+pt(6)) AND opb) OR ((aux762 XOR pt(6)) AND NOT(opb))) 
+AND pt(5)) OR (pt(6) AND NOT(pt(5)))) AND aux770) OR
+ (pt(6) AND aux771) OR (aux374 AND aux779) OR (
+aux745 AND aux743 AND aux780));
+  END BLOCK label6;
+  label7 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    pt (7) <= GUARDED (((aux763 OR NOT(res)) AND (((((((aux756 XOR 
+pt(7)) AND pt(6)) OR aux14) AND opb) OR ((((aux762 XOR
+ pt(7)) AND pt(6)) OR aux14) AND NOT(opb))) AND 
+pt(5)) OR (pt(7) AND NOT(pt(5)))) AND aux770) OR (
+pt(7) AND aux771) OR (aux100 AND pt(6) AND aux779) OR 
+(aux745 AND aux743 AND pt(7) AND aux780));
+  END BLOCK label7;
+  label8 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    stop <= GUARDED ((stop OR (res AND pt(2) AND pt(4) AND aux765)) 
+AND (stop OR NOT(aux763)) AND nreset);
+  END BLOCK label8;
+  label9 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    res <= GUARDED ((NOT(aux745) OR (res AND NOT(rok_res_p))) AND 
+nreset);
+  END BLOCK label9;
+  label10 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opb <= GUARDED ((wok_arg_p OR opb) AND (opa OR NOT(wok_arg_p)) 
+AND nreset);
+  END BLOCK label10;
+  label11 : BLOCK ((NOT((ck'STABLE)) AND ck) = '1')
+  BEGIN
+    opa <= GUARDED (((aux763 OR aux758 OR pt(0)) AND aux764) OR (opa
+ AND NOT(wok_arg_p)) OR NOT(nreset));
+  END BLOCK label11;
+
+ko_p <= (((((aux121 XOR res_p(0)) AND pt(0)) OR ((aux63 
+XOR res_p(0)) AND NOT(pt(0)))) OR (aux326 XOR 
+res_p(2)) OR (aux503 XOR res_p(4)) OR (((aux582 XOR 
+res_p(5)) AND pt(0)) OR ((aux545 XOR res_p(5)) AND NOT(
+pt(0)))) OR (aux230 XOR res_p(1)) OR (aux416 XOR 
+res_p(3)) OR (aux659 XOR res_p(6)) OR (aux739 XOR 
+res_p(7))) AND aux764);
+
+rd_res_p <= res;
+
+arg_p (0) <= ((aux121 AND pt(0)) OR (aux63 AND NOT(pt(0))));
+
+arg_p (1) <= aux230;
+
+arg_p (2) <= aux326;
+
+arg_p (3) <= aux416;
+
+arg_p (4) <= aux503;
+
+arg_p (5) <= ((aux582 AND pt(0)) OR (aux545 AND NOT(pt(0))));
+
+arg_p (6) <= aux659;
+
+arg_p (7) <= aux739;
+
+wr_arg_p <= NOT(aux740);
+END;
