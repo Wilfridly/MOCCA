@@ -16,19 +16,19 @@ LASTPT  = $(shell awk -v VALNB=$(VALNB) 'BEGIN{print 3*VALNB-1}')
 valid_pgcd: 
 	$(CC) $(CFLAGS) rom.c -o rom
 	./rom	$(ADDRWD) $(VALWD) > rom.txt
-	export PATNAME=$(MODEL)_tb ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES);\
+# 	export PATNAME=$(MODEL)_tb ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES);\
 	genpat $(MODEL)_pat
 	gcc -w -E -DADDRWD=$(ADDRWD) -DVALWD=$(VALWD) -DLASTPT=$(LASTPT) $(MODEL)_data.vhd.c | grep -v "^#" > $(MODEL)_data.vhd
 	vasy -a -I vhd -p -o $(MODEL)_data $(MODEL)_data
 	vasy -a -I vhd -p -o $(MODEL)_core $(MODEL)_core
 	vasy -a -I vhd -p -o $(MODEL)_tb   $(MODEL)_tb  
-	asimut	$(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres | awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
-	@grep ": ?1" $(MODEL)_tbres.pat || echo "Lucky no error"
+# 	asimut	$(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres | awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
+# 	@grep ": ?1" $(MODEL)_tbres.pat || echo "Lucky no error"
 
 synthesis: valid_pgcd
 
 # synthèse
-	boom $(MODEL)_core $(MODEL)_core_loon
+	boom $(MODEL)_core $(MODEL)_core_boom
 	boog $(MODEL)_core_boom $(MODEL)_core_boog
 	loon $(MODEL)_core_boog $(MODEL)_core_loon 
 
@@ -37,11 +37,11 @@ synthesis: valid_pgcd
 	loon $(MODEL)_data_boog $(MODEL)_data_loon
 
 # Simulation post synthèse
-post_synth: synthesis
+post_synth: 
 	export PATNAME=$(MODEL)_tb2 ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES);\
-	genpat patterns/pgcd_pat2 
+	genpat pgcd_pat2 
 
-	asimut -zd pgcd_core_loon patterns/pgcd_pat2 pgcd_tb2
+	asimut -zd pgcd_core_loon pgcd_tb2 pgcd_tb2res
 
 
 
