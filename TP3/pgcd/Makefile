@@ -37,7 +37,7 @@ synthesis: valid_pgcd
 	loon $(MODEL)_data_boog $(MODEL)_data_loon
 
 # Simulation post synthèse
-post_synth: 
+post_synth: synthesis
 	export PATNAME=$(MODEL)_tb2 ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES);\
 	genpat pgcd_pat2 
 
