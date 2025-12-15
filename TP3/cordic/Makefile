@@ -13,19 +13,6 @@ help:
 	@echo "  - clean     : delete all generated files"
 	@echo ""
 
-synthesis:
-	boom $(MODEL)_ctl $(MODEL)_ctl
-	boog $(MODEL)_ctl $(MODEL)_ctl
-	loon $(MODEL)_ctl $(MODEL)_ctl_o 
-
-	boom $(MODEL)_dp $(MODEL)_dp
-	boog $(MODEL)_dp $(MODEL)_dp
-	loon $(MODEL)_dp $(MODEL)_dp_o
-
-	vasy -a -I vhd -p -o $(MODEL)_net $(MODEL)_net 
-
-	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res
-
 plot: cercle
 	./cercle
 # 	gnuplot \
@@ -44,15 +31,35 @@ valid_cor:
 	genpat $(MODEL)_pat
 	asimut -b $(MODEL)_cor $(MODEL)_cor $(MODEL)_cor_res
 
-valid_net: 
+valid_net:
+	$(CC) $(CFLAGS) rom.c -o rom
+	./rom	$(ADDRWD) $(VALWD) > rom.txt
+	export PATNAME=$(MODEL)_net; genpat $(MODEL)_pat
+	 
 	vasy -a -I vhd -p -o $(MODEL)_dp $(MODEL)_dp 
 	vasy -a -I vhd -p -o $(MODEL)_ctl $(MODEL)_ctl 
-	vasy -a -I vhd -p -o $(MODEL)_net $(MODEL)_net 
-	export PATNAME=$(MODEL)_net; genpat $(MODEL)_pat
+	vasy -a -I vhd -p -o $(MODEL)_net $(MODEL)_net
+
 	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res
 
 synthesis:
+	boom $(MODEL)_ctl $(MODEL)_ctl_boom
+	boog $(MODEL)_ctl_boom $(MODEL)_ctl_boog
+	loon $(MODEL)_ctl_boog $(MODEL)_ctl 
+
+	boom $(MODEL)_dp $(MODEL)_dp_boom
+	boog $(MODEL)_dp_boom $(MODEL)_dp_boog
+	loon $(MODEL)_dp_boog $(MODEL)_dp
 	
+	rm $(MODEL)_ctl_boom.*
+	rm $(MODEL)_ctl_boog.*
+	rm $(MODEL)_dp_boom.*
+	rm $(MODEL)_dp_boog.*
+
+post_synth:
+#Cherche dans le CATAL
+	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res2
+
 
 clean:
 	rm  *.dat *~ cercle Makefile.*\
@@ -62,4 +69,6 @@ clean:
 		$(MODEL)_net.pat $(MODEL)_net_res.pat \
 		*.xsc \
 		*.vst \
-		*.pat
+		*.pat \
+		.txt \
+		a.out

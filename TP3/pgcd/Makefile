@@ -26,7 +26,6 @@ valid_pgcd:
 	@grep ": ?1" $(MODEL)_tbres.pat || echo "Lucky no error"
 
 synthesis: valid_pgcd
-
 # synthèse
 	boom $(MODEL)_core $(MODEL)_core_boom
 	boog $(MODEL)_core_boom $(MODEL)_core_boog
@@ -42,7 +41,7 @@ synthesis: valid_pgcd
 	rm pgcd_data_boog.*
 # Simulation post synthèse
 post_synth: synthesis
-
+#Cherche dans le CATAL
 	asimut	$(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres2 | awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
 	@grep ": ?1" $(MODEL)_tbres2.pat || echo "Lucky no error"
 
