@@ -114,8 +114,6 @@ unsigned twopow(unsigned n) {
 
 int main( int argc, char * argv[]) {
 
-    char nx_p;
-    char ny_p;
     if (argc < 3) usage("Too few arguments");
     if (argc > 3) usage("Too much arguments");
     unsigned addrwd = atoi(argv[1]); 

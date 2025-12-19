@@ -1,6 +1,8 @@
 CFLAGS=-Wall -O3 -std=c99 #-DDEBUG
 LDFLAGS=-lm
 MODEL=cordic
+ADDRWD  = 8#		bit width of addresses for the rom
+VALWD   = 8#		bit width of operands for the rom
 
 help:
 	@echo ""
@@ -41,6 +43,14 @@ valid_net:
 	vasy -a -I vhd -p -o $(MODEL)_net $(MODEL)_net
 
 	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res
+
+
+potatoe:
+	$(CC) $(CFLAGS) rom.c -lm -o rom
+	./rom	$(ADDRWD) $(VALWD) > rom.txt
+# 	export PATNAME=$(MODEL)_tb ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES);
+# 	genpat $(MODEL)_pat
+	gcc -w -E -DADDRWD=$(ADDRWD) -DVALWD=$(VALWD) -DLASTPT=$(LASTPT) $(MODEL)_data.vhd.c | grep -v "^#" > $(MODEL)_data.vhd
 
 synthesis:
 	boom $(MODEL)_ctl $(MODEL)_ctl_boom
