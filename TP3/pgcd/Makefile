@@ -1,4 +1,4 @@
-CFLAGS	= -Wall -O3 -std=c99 #-DDEBUG
+zzzzzzzCFLAGS	= -Wall -O3 -std=c99 #-DDEBUG
 LDFLAGS	= -lm
 	
 MODEL	= pgcd#		model name to validate

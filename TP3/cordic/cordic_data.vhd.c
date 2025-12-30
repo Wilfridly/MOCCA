@@ -15,14 +15,14 @@ PORT(
 );
 END cordic_data;
 
-ARCHITECTURE vhd OF pgcd_data IS
+ARCHITECTURE vhd OF cordic_data IS
 
     SIGNAL          -- FSM states
         x_p,        -- set x
         y_p,        -- set y
         a_p,        -- set angle
-        nx_p        -- get result
-        ny_p        -- get result
+        nx_p,        -- get result
+        ny_p,        -- get result
         stop,       -- it's over
         lastpt      -- 1 when pt = address of the last filled box in ROM 
     : std_logic;
@@ -48,15 +48,15 @@ BEGIN
             stop <= '0';
             pt   <= (others=>'0');
         else
-            x_p  <= (res AND rok_res_p AND not lastpt) OR (x_p AND not wok_arg_p);
+            x_p  <= (ny_p AND rok_res_p AND not lastpt) OR (x_p AND not wok_arg_p);
 
             y_p  <= (x_p AND wok_arg_p) OR (y_p AND not wok_arg_p);
 
-            a_p  <= (y_p AND wok_arg_p) OR (res AND not rok_res_p);
+            a_p  <= (y_p AND wok_arg_p) OR (a_p AND not rok_res_p);
 
             nx_p <= (a_p AND wok_arg_p) OR (nx_p AND not rok_res_p);
 
-            ny_p <= (nx_p AND wok_arg_p) OR (ny_p AND not rok_res_p);;
+            ny_p <= (nx_p AND wok_arg_p) OR (ny_p AND not rok_res_p);
 
             stop <= (ny_p AND rok_res_p AND lastpt) OR stop;
 
