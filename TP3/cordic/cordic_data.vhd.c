@@ -26,7 +26,7 @@ ARCHITECTURE vhd OF cordic_data IS
         stop,       -- it's over
         lastpt      -- 1 when pt = address of the last filled box in ROM 
     : std_logic;
-
+    
     SIGNAL
         pt          -- rom_pointer
     : std_logic_vector(ADDRWD-1 downto 0);
@@ -49,20 +49,19 @@ BEGIN
             pt   <= (others=>'0');
         else
             x_p  <= (ny_p AND rok_res_p AND not lastpt) OR (x_p AND not wok_arg_p);
-
             y_p  <= (x_p AND wok_arg_p) OR (y_p AND not wok_arg_p);
-
-            a_p  <= (y_p AND wok_arg_p) OR (a_p AND not rok_res_p);
-
+            a_p  <= (y_p AND wok_arg_p) OR (a_p AND not wok_arg_p);
             nx_p <= (a_p AND wok_arg_p) OR (nx_p AND not rok_res_p);
-
-            ny_p <= (nx_p AND wok_arg_p) OR (ny_p AND not rok_res_p);
-
+            ny_p <= (nx_p AND not wok_arg_p) OR (ny_p AND not rok_res_p);
             stop <= (ny_p AND rok_res_p AND lastpt) OR stop;
 
-            if ((x_p AND wok_arg_p) OR (y_p AND wok_arg_p) OR (a_p AND wok_arg_p) OR ((nx_p OR ny_p) AND rok_res_p)) then
+            if ((x_p AND wok_arg_p) OR (y_p AND wok_arg_p) OR (a_p AND wok_arg_p)) OR ((nx_p OR ny_p) and rok_res_p)then
                 pt   <= pt + 1;
             end if;
+
+            // if (((x_p OR y_p OR a_p) and wr_arg_p = '1' and wok_arg_p = '1') or ((nx_p OR ny_p) and rd_res_p = '1' and rok_res_p = '1')) then
+            //     pt <= pt + 1;
+            // end if;
         end if;
     end if;
     end process REG;

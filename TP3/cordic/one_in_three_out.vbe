@@ -6,13 +6,13 @@ PORT(
   ck	: IN BIT;
   raz	: IN BIT;
   data_in	: IN BIT_VECTOR(7 DOWNTO 0);
+  a_p	: OUT BIT_VECTOR(7 DOWNTO 0);
   x_p	: OUT BIT_VECTOR(7 DOWNTO 0);
   y_p	: OUT BIT_VECTOR(7 DOWNTO 0);
-  a_p	: OUT BIT_VECTOR(7 DOWNTO 0);
-  rok_nxy_p	: IN BIT;
-  rd_nxy_p	: OUT BIT;
-  wok_axy_p	: IN BIT;
+  wr_arg_p	: IN BIT;
+  wok_arg_p	: OUT BIT;
   wr_axy_p	: OUT BIT;
+  wok_axy_p	: IN BIT;
   vdd	: IN BIT;
   vss	: IN BIT
 );
@@ -20,87 +20,121 @@ END one_in_three_out;
 
 ARCHITECTURE VBE OF one_in_three_out IS
 
-  SIGNAL rtlsum_0	: BIT_VECTOR(1 DOWNTO 0);
-  SIGNAL rtlcarry_0	: BIT_VECTOR(1 DOWNTO 0);
+  SIGNAL rtlsum_0	: BIT_VECTOR(2 DOWNTO 0);
+  SIGNAL rtlcarry_0	: BIT_VECTOR(2 DOWNTO 0);
+  SIGNAL rtldef_12	: BIT;
+  SIGNAL rtldef_11	: BIT;
+  SIGNAL rtldef_10	: BIT;
+  SIGNAL rtldef_9	: BIT;
+  SIGNAL rtldef_8	: BIT;
+  SIGNAL rtldef_7	: BIT;
+  SIGNAL rtldef_6	: BIT;
+  SIGNAL rtldef_5	: BIT;
+  SIGNAL rtldef_4	: BIT;
+  SIGNAL rtldef_3	: BIT;
   SIGNAL rtldef_2	: BIT;
   SIGNAL rtldef_1	: BIT;
   SIGNAL rtldef_0	: BIT;
-  SIGNAL send	: REG_BIT REGISTER;
-  SIGNAL comp	: BIT;
-  SIGNAL wait0	: REG_BIT REGISTER;
-  SIGNAL read0	: REG_BIT REGISTER;
-  SIGNAL counter	: REG_VECTOR(1 DOWNTO 0) REGISTER;
-  SIGNAL n_counter	: BIT_VECTOR(1 DOWNTO 0);
-  SIGNAL temp_x	: REG_VECTOR(7 DOWNTO 0) REGISTER;
-  SIGNAL temp_y	: REG_VECTOR(7 DOWNTO 0) REGISTER;
-  SIGNAL temp_a	: REG_VECTOR(7 DOWNTO 0) REGISTER;
-  SIGNAL n_temp_x	: BIT_VECTOR(7 DOWNTO 0);
-  SIGNAL n_temp_y	: BIT_VECTOR(7 DOWNTO 0);
-  SIGNAL n_temp_a	: BIT_VECTOR(7 DOWNTO 0);
-  SIGNAL fsm_def_7	: BIT;
+  SIGNAL state	: REG_BIT REGISTER;
+  SIGNAL n_state	: BIT;
+  SIGNAL counter	: REG_VECTOR(2 DOWNTO 0) REGISTER;
+  SIGNAL n_counter	: BIT_VECTOR(2 DOWNTO 0);
+  SIGNAL a_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
+  SIGNAL x_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
+  SIGNAL y_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
+  SIGNAL rx_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
+  SIGNAL ry_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
+  SIGNAL p177_2_reddef_51	: BIT;
+  SIGNAL p177_2_reddef_50	: BIT;
+  SIGNAL p144_1_def_9	: BIT;
+  SIGNAL p177_2_def_7	: BIT;
+  SIGNAL p177_2_def_6	: BIT;
 BEGIN
 
   rtlcarry_0(0) <= '0';
-  rtlsum_0 <= ((counter XOR "01") XOR rtlcarry_0);
-  rtlcarry_0(1) <= ((counter(0) OR (counter(0) AND rtlcarry_0(0))) OR rtlcarry_0(0));
-  a_p <= temp_a WHEN send ELSE
+  rtlsum_0 <= ((counter XOR "001") XOR rtlcarry_0);
+  rtlcarry_0(2 downto 1) <= (((counter(1 downto 0) AND "01") OR (counter(1 downto 0) AND rtlcarry_0(1 downto 0)
+)) OR ("01" AND rtlcarry_0(1 downto 0)));
+  y_p <= y_reg WHEN (state = '1') ELSE
      "00000000";
-  y_p <= temp_y WHEN send ELSE
+  x_p <= x_reg WHEN (state = '1') ELSE
      "00000000";
-  x_p <= temp_x WHEN send ELSE
+  a_p <= a_reg WHEN (state = '1') ELSE
      "00000000";
-  n_temp_a <= data_in WHEN ((counter = "10") AND rok_nxy_p) ELSE
-     temp_a;
-  n_temp_y <= data_in WHEN ((counter = "01") AND rok_nxy_p) ELSE
-     temp_y;
-  n_temp_x <= data_in WHEN ((counter = "00") AND rok_nxy_p) ELSE
-     temp_x;
+  wr_axy_p <= '1' WHEN (state = '1') ELSE
+     '0';
+  wok_arg_p <= '1' WHEN (state = '0') ELSE
+     '0';
+  rtldef_12 <= '1' WHEN p177_2_reddef_51 ELSE
+     '0';
+  rtldef_11 <= '1' WHEN p177_2_reddef_50 ELSE
+     '0';
+  n_counter <= (((rtldef_11 & rtldef_11 & rtldef_11) AND (((rtldef_5 & rtldef_5 & rtldef_5) 
+AND ((rtldef_3 & rtldef_3 & rtldef_3) AND rtlsum_0)) OR ((rtldef_6 & rtldef_6 & rtldef_6
+) AND counter))) OR ((rtldef_12 & rtldef_12 & rtldef_12) AND counter));
+  rtldef_10 <= '1' WHEN p177_2_reddef_51 ELSE
+     '0';
+  rtldef_9 <= '1' WHEN p177_2_reddef_50 ELSE
+     '0';
+  n_state <= ((rtldef_9 AND ((rtldef_7 AND (p177_2_def_7 OR (rtldef_4 AND state))) OR (rtldef_8
+ AND state))) OR (rtldef_10 AND (rtldef_2 AND state)));
+  rtldef_8 <= '1' WHEN NOT(p177_2_def_6) ELSE
+     '0';
+  rtldef_7 <= '1' WHEN p177_2_def_6 ELSE
+     '0';
+  rtldef_6 <= '1' WHEN NOT(p177_2_def_6) ELSE
+     '0';
+  rtldef_5 <= '1' WHEN p177_2_def_6 ELSE
+     '0';
+  rtldef_4 <= '1' WHEN NOT(p177_2_def_7) ELSE
+     '0';
+  rtldef_3 <= '1' WHEN NOT(p177_2_def_7) ELSE
+     '0';
+  p177_2_def_7 <= (counter = "010");
+  p177_2_def_6 <= (wr_arg_p = '1');
+  p177_2_reddef_50 <= (state = '0');
+  rtldef_2 <= '1' WHEN NOT((wok_axy_p = '1')) ELSE
+     '0';
+  p177_2_reddef_51 <= (state = '1');
   LABEL0 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    counter <= GUARDED n_counter;
+    x_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
+     data_in WHEN (NOT(state) AND raz AND NOT(counter(0)) AND NOT(counter(1)) AND NOT(counter(2))
+ AND wr_arg_p) ELSE x_reg;
   END BLOCK LABEL0;
-  comp <= '1' WHEN (counter = "10") ELSE
-     '0';
-  n_counter <= "00" WHEN (wait0 OR send) ELSE
-     rtlsum_0 WHEN read0 ELSE
-     "00";
-  wr_axy_p <= send;
-  rd_nxy_p <= wait0;
   LABEL1 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    temp_a <= GUARDED ((rtldef_2 & rtldef_2 & rtldef_2 & rtldef_2 & rtldef_2 & rtldef_2 & rtldef_2 & rtldef_2
-) AND n_temp_a);
+    y_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
+     data_in WHEN (NOT(state) AND raz AND counter(0) AND NOT(counter(1)) AND NOT(counter(2)) AND wr_arg_p
+) ELSE y_reg;
   END BLOCK LABEL1;
   LABEL2 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    temp_y <= GUARDED ((rtldef_1 & rtldef_1 & rtldef_1 & rtldef_1 & rtldef_1 & rtldef_1 & rtldef_1 & rtldef_1
-) AND n_temp_y);
+    a_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
+     data_in WHEN (NOT(state) AND raz AND NOT(counter(0)) AND counter(1) AND NOT(counter(2)) AND wr_arg_p
+) ELSE a_reg;
   END BLOCK LABEL2;
   LABEL3 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    temp_x <= GUARDED ((rtldef_0 & rtldef_0 & rtldef_0 & rtldef_0 & rtldef_0 & rtldef_0 & rtldef_0 & rtldef_0
-) AND n_temp_x);
+    rx_reg <= GUARDED data_in WHEN (NOT(state) AND raz AND counter(0) AND counter(1) AND NOT(counter(2)) AND wr_arg_p
+) ELSE rx_reg;
   END BLOCK LABEL3;
   LABEL4 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    read0 <= GUARDED '1' WHEN (raz AND wait0 AND rok_nxy_p) ELSE
-     '0' WHEN (NOT(raz) OR (NOT(wait0 AND rok_nxy_p) AND comp)) ELSE read0;
+    ry_reg <= GUARDED data_in WHEN (NOT(state) AND raz AND NOT(counter(0)) AND NOT(counter(1)) AND counter(2) AND wr_arg_p
+) ELSE ry_reg;
   END BLOCK LABEL4;
   LABEL5 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    send <= GUARDED '1' WHEN (raz AND comp AND read0) ELSE
-     '0' WHEN (NOT(raz) OR (wok_axy_p AND (NOT(comp) OR NOT(read0)))) ELSE send;
+    counter <= GUARDED ((rtldef_1 & rtldef_1 & rtldef_1) AND n_counter);
   END BLOCK LABEL5;
   LABEL6 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    wait0 <= GUARDED '1' WHEN (NOT(raz) OR (wok_axy_p AND send)) ELSE
-     '0' WHEN (raz AND NOT(wok_axy_p AND send) AND rok_nxy_p) ELSE wait0;
+    state <= GUARDED (rtldef_0 AND n_state);
   END BLOCK LABEL6;
-  rtldef_2 <= '1' WHEN NOT(fsm_def_7) ELSE
+  rtldef_1 <= '1' WHEN NOT(p144_1_def_9) ELSE
      '0';
-  rtldef_1 <= '1' WHEN NOT(fsm_def_7) ELSE
+  rtldef_0 <= '1' WHEN NOT(p144_1_def_9) ELSE
      '0';
-  rtldef_0 <= '1' WHEN NOT(fsm_def_7) ELSE
-     '0';
-  fsm_def_7 <= (raz = '0');
+  p144_1_def_9 <= (raz = '0');
 END VBE;

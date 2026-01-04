@@ -86,18 +86,18 @@ int main ()
 
     // It is possible to see internal signals
     DECLAR ("wr_arg",   ":2", "B", SIGNAL, "", "");
-    DECLAR ("argd",     ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR ("data_in",     ":2", "X", SIGNAL, vector(VALWD-1,0), "");
     DECLAR ("wok_arg",   ":2", "B", SIGNAL, "", "");
     DECLAR ("rd_res",   ":2", "B", SIGNAL, "", "");
-    DECLAR ("res",      ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR ("res_in",      ":2", "X", SIGNAL, vector(VALWD-1,0), "");
     DECLAR ("rok_res",   ":2", "B", SIGNAL, "", "");
 
-    DECLAR("a_p_tb",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
-    DECLAR("x_p_tb",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
-    DECLAR("y_p_tb",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR("a_p",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR("y_p",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR("x_p",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
 
-    DECLAR("nx_tb",  ":2", "X", SIGNAL, vector(VALWD-1,0), "");
-    DECLAR("ny_tb",  ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR("ny",  ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    DECLAR("nx",  ":2", "X", SIGNAL, vector(VALWD-1,0), "");
 
     // DECLAR("in_phase", ":2", "X", SIGNAL, vector(1,0), "");
     // DECLAR("out_phase", ":2", "B", SIGNAL, "", "");

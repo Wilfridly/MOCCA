@@ -93,6 +93,8 @@ int main()
     FILE *f;
     double t,K;
     int i;
+    char n1_p;
+    char n2_p;
     for (i=0, t=1, K=1; i < 8; i++, t=t/2) {
         printf("B_%d = 0x%x\n", i, (short)(round(atan(t)*(1<< 7))));
         K = K * cos (atan(t));       
@@ -112,10 +114,14 @@ int main()
     for (short a = 0; a <= 2 * F_PI ; a += 1) {
         char nx_p;
         char ny_p;
-        cordic(a, 127, 0, &nx_p, &ny_p);
+        cordic(a, 180, 3, &nx_p, &ny_p);
         fprintf(f, "%4d %4d\n", nx_p, ny_p);
     }
     fclose(f);
 
+    cordic(145, 127, 03, &n1_p, &n2_p);
+    printf("cordic(145,127,3) = (%d,%d)\n", n1_p, n2_p);
+    cordic(0x82, 0x91, 0xb4, &n1_p, &n2_p);
+    printf("cordic(0x82,0x91,0xb4) = (%x,%x)\n", n1_p, n2_p);
     return 0;
 }

@@ -7,10 +7,10 @@ PORT(
   raz	: IN BIT;
   nx_p	: IN BIT_VECTOR(7 DOWNTO 0);
   ny_p	: IN BIT_VECTOR(7 DOWNTO 0);
-  rok_nxy_p	: IN BIT;
   rd_nxy_p	: OUT BIT;
-  wok_axy_p	: IN BIT;
-  wr_axy_p	: OUT BIT;
+  rok_nxy_p	: IN BIT;
+  rd_res_p	: IN BIT;
+  rok_res_p	: OUT BIT;
   data_out	: OUT BIT_VECTOR(7 DOWNTO 0);
   vdd	: IN BIT;
   vss	: IN BIT
@@ -19,48 +19,71 @@ END two_in_one_out;
 
 ARCHITECTURE VBE OF two_in_one_out IS
 
-  SIGNAL rtlsum_0	: BIT_VECTOR(0 DOWNTO 0);
-  SIGNAL rtlcarry_0	: BIT_VECTOR(0 DOWNTO 0);
-  SIGNAL rtl_internal_wr_axy_p	: BIT;
+  SIGNAL rtldef_10	: BIT;
+  SIGNAL rtldef_9	: BIT;
+  SIGNAL rtldef_8	: BIT;
+  SIGNAL rtldef_7	: BIT;
+  SIGNAL rtldef_6	: BIT;
+  SIGNAL rtldef_5	: BIT;
+  SIGNAL rtldef_4	: BIT;
+  SIGNAL rtldef_3	: BIT;
+  SIGNAL rtldef_2	: BIT;
   SIGNAL rtldef_1	: BIT;
   SIGNAL rtldef_0	: BIT;
-  SIGNAL n_send	: BIT;
-  SIGNAL send	: REG_BIT REGISTER;
-  SIGNAL n_wait0	: BIT;
-  SIGNAL wait0	: REG_BIT REGISTER;
+  SIGNAL state	: REG_BIT REGISTER;
+  SIGNAL n_state	: BIT;
   SIGNAL counter	: REG_BIT REGISTER;
   SIGNAL n_counter	: BIT;
-  SIGNAL fsm_def_4	: BIT;
+  SIGNAL p47_2_reddef_18	: BIT;
+  SIGNAL p31_1_def_8	: BIT;
+  SIGNAL p47_2_def_6	: BIT;
+  SIGNAL p47_2_def_5	: BIT;
+  SIGNAL p47_2_def_4	: BIT;
 BEGIN
 
-  rtlcarry_0(0) <= '0';
-  rtlsum_0(0) <= (NOT(counter) XOR rtlcarry_0(0));
-  wr_axy_p <= rtl_internal_wr_axy_p;
-  data_out <= nx_p WHEN ((counter = '0') AND rtl_internal_wr_axy_p) ELSE
-     ny_p WHEN (counter AND rtl_internal_wr_axy_p) ELSE
+  data_out <= nx_p WHEN ((state = '1') AND (counter = '0')) ELSE
+     ny_p WHEN ((state = '1') AND (counter = '1')) ELSE
      "00000000";
+  rok_res_p <= '1' WHEN (state = '1') ELSE
+     '0';
+  rd_nxy_p <= '1' WHEN (state = '0') ELSE
+     '0';
+  rtldef_10 <= '1' WHEN p47_2_reddef_18 ELSE
+     '0';
+  n_counter <= (rtldef_10 AND ((rtldef_5 AND p47_2_def_5) OR (rtldef_6 AND counter)));
+  rtldef_9 <= '1' WHEN p47_2_reddef_18 ELSE
+     '0';
+  rtldef_8 <= '1' WHEN (state = '0') ELSE
+     '0';
+  n_state <= ((rtldef_8 AND (p47_2_def_6 OR (rtldef_7 AND state))) OR (rtldef_9 AND ((rtldef_3
+ AND (rtldef_2 AND state)) OR (rtldef_4 AND state))));
+  rtldef_7 <= '1' WHEN NOT(p47_2_def_6) ELSE
+     '0';
+  p47_2_def_6 <= (rok_nxy_p = '1');
+  rtldef_6 <= '1' WHEN NOT(p47_2_def_4) ELSE
+     '0';
+  rtldef_5 <= '1' WHEN p47_2_def_4 ELSE
+     '0';
+  rtldef_4 <= '1' WHEN NOT(p47_2_def_4) ELSE
+     '0';
+  rtldef_3 <= '1' WHEN p47_2_def_4 ELSE
+     '0';
+  rtldef_2 <= '1' WHEN p47_2_def_5 ELSE
+     '0';
+  p47_2_def_5 <= (counter = '0');
+  p47_2_def_4 <= (rd_res_p = '1');
+  p47_2_reddef_18 <= (state = '1');
   LABEL0 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    counter <= GUARDED n_counter;
+    counter <= GUARDED (rtldef_1 AND n_counter);
   END BLOCK LABEL0;
-  n_counter <= '0' WHEN wait0 ELSE
-     rtlsum_0(0) WHEN send ELSE
-     counter;
-  rtl_internal_wr_axy_p <= send;
-  rd_nxy_p <= wait0;
   LABEL1 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    send <= GUARDED (rtldef_1 AND n_send);
+    state <= GUARDED (rtldef_0 AND n_state);
   END BLOCK LABEL1;
-  LABEL2 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
-  BEGIN
-    wait0 <= GUARDED ((rtldef_0 AND n_wait0) OR fsm_def_4);
-  END BLOCK LABEL2;
-  rtldef_1 <= '1' WHEN NOT(fsm_def_4) ELSE
+  rtldef_1 <= '1' WHEN NOT(p31_1_def_8) ELSE
      '0';
-  rtldef_0 <= '1' WHEN NOT(fsm_def_4) ELSE
+  rtldef_0 <= '1' WHEN NOT(p31_1_def_8) ELSE
      '0';
-  fsm_def_4 <= (raz = '0');
-  n_send <= ((send AND NOT(counter)) OR (wait0 AND rok_nxy_p));
-  n_wait0 <= ((wait0 AND NOT(rok_nxy_p)) OR (send AND counter));
+  p31_1_def_8 <= (raz = '0');
 END VBE;

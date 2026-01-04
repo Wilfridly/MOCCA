@@ -13,28 +13,37 @@ END cordic_tb;
 
 ARCHITECTURE VST OF cordic_tb IS
 
-  SIGNAL data_in	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL res_in	: BIT_VECTOR(7 DOWNTO 0);
+  SIGNAL data_in	: BIT_VECTOR(7 DOWNTO 0);
+  SIGNAL wr_arg	: BIT;
+  SIGNAL wok_arg	: BIT;
+  SIGNAL wr_axy	: BIT;
+  SIGNAL wok_axy	: BIT;
+  SIGNAL rd_res	: BIT;
+  SIGNAL rok_res	: BIT;
+  SIGNAL rd_nxy	: BIT;
+  SIGNAL rok_nxy	: BIT;
   SIGNAL x_p	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL y_p	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL a_p	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL nx	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL ny	: BIT_VECTOR(7 DOWNTO 0);
-  SIGNAL wr_arg_d2o	: BIT;
-  SIGNAL wok_arg_o2d	: BIT;
-  SIGNAL wr_axy_o2n	: BIT;
-  SIGNAL wok_axy_n2o	: BIT;
-  SIGNAL rd_nxy_o2n	: BIT;
-  SIGNAL rok_nxy_n2o	: BIT;
-  SIGNAL wr_res_t2d	: BIT;
-  SIGNAL wok_res_d2t	: BIT;
 
-  COMPONENT cordic_tb_model
+  COMPONENT cordic_net
   PORT(
-  vdd	: IN BIT;
   vss	: IN BIT;
-  wok_res_d2t	: OUT BIT;
-  wok_arg_o2d	: OUT BIT
+  vdd	: IN BIT;
+  ck	: IN BIT;
+  raz	: IN BIT;
+  a_p	: IN BIT_VECTOR(7 DOWNTO 0);
+  x_p	: IN BIT_VECTOR(7 DOWNTO 0);
+  y_p	: IN BIT_VECTOR(7 DOWNTO 0);
+  nx_p	: OUT BIT_VECTOR(7 DOWNTO 0);
+  ny_p	: OUT BIT_VECTOR(7 DOWNTO 0);
+  wr_axy_p	: IN BIT;
+  wok_axy_p	: OUT BIT;
+  rd_nxy_p	: IN BIT;
+  rok_nxy_p	: OUT BIT
   );
   END COMPONENT;
 
@@ -46,29 +55,11 @@ ARCHITECTURE VST OF cordic_tb IS
   raz	: IN BIT;
   nx_p	: IN BIT_VECTOR(7 DOWNTO 0);
   ny_p	: IN BIT_VECTOR(7 DOWNTO 0);
-  rok_nxy_p	: IN BIT;
+  rd_res_p	: IN BIT;
+  rok_res_p	: OUT BIT;
   rd_nxy_p	: OUT BIT;
-  data_out	: OUT BIT_VECTOR(7 DOWNTO 0);
-  wok_axy_p	: IN BIT;
-  wr_axy_p	: OUT BIT
-  );
-  END COMPONENT;
-
-  COMPONENT cordic_net
-  PORT(
-  vss	: IN BIT;
-  vdd	: IN BIT;
-  ck	: IN BIT;
-  raz	: IN BIT;
-  wr_axy_p	: IN BIT;
-  wok_axy_p	: OUT BIT;
-  x_p	: IN BIT_VECTOR(7 DOWNTO 0);
-  y_p	: IN BIT_VECTOR(7 DOWNTO 0);
-  a_p	: IN BIT_VECTOR(7 DOWNTO 0);
-  rok_nxy_p	: OUT BIT;
-  rd_nxy_p	: IN BIT;
-  nx_p	: OUT BIT_VECTOR(7 DOWNTO 0);
-  ny_p	: OUT BIT_VECTOR(7 DOWNTO 0)
+  rok_nxy_p	: IN BIT;
+  data_out	: OUT BIT_VECTOR(7 DOWNTO 0)
   );
   END COMPONENT;
 
@@ -78,14 +69,14 @@ ARCHITECTURE VST OF cordic_tb IS
   vdd	: IN BIT;
   ck	: IN BIT;
   raz	: IN BIT;
-  wok_axy_p	: IN BIT;
   data_in	: IN BIT_VECTOR(7 DOWNTO 0);
-  wr_axy_p	: OUT BIT;
+  a_p	: OUT BIT_VECTOR(7 DOWNTO 0);
   x_p	: OUT BIT_VECTOR(7 DOWNTO 0);
   y_p	: OUT BIT_VECTOR(7 DOWNTO 0);
-  a_p	: OUT BIT_VECTOR(7 DOWNTO 0);
-  rok_nxy_p	: IN BIT;
-  rd_nxy_p	: OUT BIT
+  wr_arg_p	: IN BIT;
+  wok_arg_p	: OUT BIT;
+  wr_axy_p	: OUT BIT;
+  wok_axy_p	: IN BIT
   );
   END COMPONENT;
 
@@ -107,22 +98,15 @@ ARCHITECTURE VST OF cordic_tb IS
 
 BEGIN
 
-  cordic_tb_inst : cordic_tb_model
-  PORT MAP (
-    vdd => vdd,
-    vss => vss,
-    wok_res_d2t => wok_res_d2t,
-    wok_arg_o2d => wok_arg_o2d
-  );
   tioo : two_in_one_out
   PORT MAP (
     nx_p(7 downto 0) => nx,
     ny_p(7 downto 0) => ny,
     data_out(7 downto 0) => res_in,
-    wr_axy_p => wr_res_t2d,
-    wok_axy_p => wok_res_d2t,
-    rd_nxy_p => wr_res_t2d,
-    rok_nxy_p => rok_nxy_n2o,
+    rok_res_p => rok_res,
+    rd_res_p => rd_res,
+    rok_nxy_p => rok_nxy,
+    rd_nxy_p => rd_nxy,
     raz => nreset,
     ck => ck,
     vdd => vdd,
@@ -130,15 +114,15 @@ BEGIN
   );
   net : cordic_net
   PORT MAP (
+    a_p => a_p,
     x_p => x_p,
     y_p => y_p,
-    a_p => a_p,
     nx_p(7 downto 0) => nx,
     ny_p(7 downto 0) => ny,
-    rd_nxy_p => rd_nxy_o2n,
-    rok_nxy_p => rok_nxy_n2o,
-    wok_axy_p => wok_axy_n2o,
-    wr_axy_p => wr_axy_o2n,
+    rok_nxy_p => rok_nxy,
+    rd_nxy_p => rd_nxy,
+    wok_axy_p => wok_axy,
+    wr_axy_p => wr_axy,
     raz => nreset,
     ck => ck,
     vdd => vdd,
@@ -150,10 +134,10 @@ BEGIN
     x_p => x_p,
     y_p => y_p,
     a_p => a_p,
-    rd_nxy_p => rd_nxy_o2n,
-    rok_nxy_p => rok_nxy_n2o,
-    wok_axy_p => wok_arg_o2d,
-    wr_axy_p => wr_axy_o2n,
+    wok_axy_p => wok_axy,
+    wr_axy_p => wr_axy,
+    wok_arg_p => wok_arg,
+    wr_arg_p => wr_arg,
     raz => nreset,
     ck => ck,
     vdd => vdd,
@@ -164,10 +148,10 @@ BEGIN
     arg_p(7 downto 0) => data_in,
     res_p(7 downto 0) => res_in,
     ko_p => ko_p,
-    rok_res_p => wok_res_d2t,
-    rd_res_p => wr_res_t2d,
-    wok_arg_p => wok_arg_o2d,
-    wr_arg_p => wr_arg_d2o,
+    rok_res_p => rok_res,
+    rd_res_p => rd_res,
+    wok_arg_p => wok_arg,
+    wr_arg_p => wr_arg,
     nreset => nreset,
     ck => ck,
     vdd => vdd,

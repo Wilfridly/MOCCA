@@ -310,8 +310,8 @@ BEGIN
   END BLOCK LABEL1;
   LABEL2 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    ny_p <= GUARDED '1' WHEN (nreset AND wok_arg_p AND nx_p) ELSE
-     '0' WHEN (NOT(nreset) OR (rok_res_p AND NOT(nx_p)) OR (NOT(wok_arg_p) AND rok_res_p)) ELSE ny_p;
+    ny_p <= GUARDED '1' WHEN (nreset AND NOT(wok_arg_p) AND nx_p) ELSE
+     '0' WHEN (NOT(nreset) OR (rok_res_p AND NOT(nx_p)) OR (wok_arg_p AND rok_res_p)) ELSE ny_p;
   END BLOCK LABEL2;
   LABEL3 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
@@ -320,8 +320,8 @@ BEGIN
   END BLOCK LABEL3;
   LABEL4 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    a_p <= GUARDED '1' WHEN (nreset AND wok_arg_p AND y_p) ELSE
-     '0' WHEN (NOT(nreset) OR (rok_res_p AND NOT(y_p)) OR (NOT(wok_arg_p) AND rok_res_p)) ELSE a_p;
+    a_p <= GUARDED '0' WHEN NOT(nreset) ELSE
+     y_p WHEN (nreset AND wok_arg_p) ELSE a_p;
   END BLOCK LABEL4;
   LABEL5 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN

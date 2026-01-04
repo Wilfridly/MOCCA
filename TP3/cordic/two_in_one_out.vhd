@@ -1,66 +1,91 @@
-entity two_in_one_out is 
+ entity two_in_one_out is
 port(
-    ck     : in std_logic; 
-    raz    : in std_logic;
+    ck      : in  std_logic;
+    raz     : in  std_logic;
 
-    nx_p    : in std_logic_vector(7 downto 0);
-    ny_p    : in std_logic_vector(7 downto 0); 
+    nx_p    : in  std_logic_vector(7 downto 0);
+    ny_p    : in  std_logic_vector(7 downto 0);
 
-    rok_nxy_p        : in std_logic; 
-    rd_nxy_p         : out std_logic;
+    -- interface net -> tioo
+    rd_nxy_p    : out std_logic;
+    rok_nxy_p : in  std_logic;
 
-    wok_axy_p        : in std_logic;
-    wr_axy_p         : out std_logic;
+    -- interface tioo -> data
+    rd_res_p    : in  std_logic;
+    rok_res_p   : out std_logic;
 
-    data_out           : out std_logic_vector(7 downto 0)
-        
+    data_out  : out std_logic_vector(7 downto 0)
 );
-end two_in_one_out; 
+end two_in_one_out;
 
-ARCHITECTURE vhd OF two_in_one_out IS 
+architecture vhd of two_in_one_out is
 
-    SIGNAL n_send, send, comp, n_wait0, wait0: std_logic;
-    SIGNAL counter,n_counter : std_logic;
+    signal state, n_state : std_logic;
+    signal counter, n_counter : std_logic;
 
-begin 
+begin
 
-    
-    n_wait0  <= (wait0 and  not rok_nxy_p) or (send and counter);
-    n_send  <= (send and not counter )   or (wait0 and rok_nxy_p );
-
-FSM : process(ck)
-begin 
-if ((ck = '1') AND NOT(ck'STABLE) ) then 
-    if(raz = '0') then 
-    wait0 <= '1';
-    send <= '0'; 
-    else
-    wait0 <= n_wait0;
-    send <= n_send; 
+-------------------------------------------------
+-- FSM synchrone
+-------------------------------------------------
+process(ck)
+begin
+    if (ck = '1' and not ck'stable) then
+        if raz = '0' then
+            state   <= '0';  -- READ
+            counter <= '0';
+        else
+            state   <= n_state;
+            counter <= n_counter;
+        end if;
     end if;
-end if; 
-end process FSM; 
+end process;
 
-rd_nxy_p <= wait0;
-wr_axy_p <= send;
+-------------------------------------------------
+-- FSM combinatoire
+-------------------------------------------------
+process(state, rok_nxy_p, rd_res_p, counter)
+begin
+    -- valeurs par défaut
+    n_state   <= state;
+    n_counter <= counter;
 
+    case state is
 
-n_counter  <= "0"              when wait0 
-              else counter + 1  when send 
-              else counter;
+        when '0' => -- READ
+            n_counter <= '0';
+            if rok_nxy_p = '1' then
+                n_state <= '1';
+            end if;
 
-update_counter: process(ck)
-begin 
-if ((ck = '1') AND NOT(ck'STABLE) ) then 
-    counter <= n_counter;
-end if; 
-end process update_counter; 
+        when '1' => -- SEND
+            if rd_res_p = '1' then
+                if counter = '0' then
+                    n_counter <= '1';
+                else
+                    n_state   <= '0';
+                    n_counter <= '0';
+                end if;
+            end if;
+            
+        when others =>
+            n_state   <= '0';
+            n_counter <= '0';
 
+    end case;
+end process;
 
+-------------------------------------------------
+-- Handshake
+-------------------------------------------------
+rd_nxy_p  <= '1' when state = '0' else '0';   -- READ
+rok_res_p <= '1' when state = '1' else '0';   -- SEND
 
-data_out <= nx_p when  counter = '0' and wr_axy_p   else 
-            ny_p when  counter       and wr_axy_p     else
+-------------------------------------------------
+-- Données
+-------------------------------------------------
+data_out <= nx_p when (state = '1' and counter = '0') else -- SEND
+            ny_p when (state = '1' and counter = '1') else -- SEND
             x"00";
 
-
-END vhd; 
+end vhd;
