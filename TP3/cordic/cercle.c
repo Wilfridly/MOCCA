@@ -121,7 +121,10 @@ int main()
 
     cordic(145, 127, 03, &n1_p, &n2_p);
     printf("cordic(145,127,3) = (%d,%d)\n", n1_p, n2_p);
+
     cordic(0x82, 0x91, 0xb4, &n1_p, &n2_p);
-    printf("cordic(0x82,0x91,0xb4) = (%x,%x)\n", n1_p, n2_p);
+    printf("cordic(0x82,0x91,0xb4) = (%x,%x)\n", (unsigned char)n1_p, (unsigned char)n2_p);
+
+    // A, X, Y 
     return 0;
 }

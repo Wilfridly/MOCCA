@@ -19,6 +19,7 @@ END two_in_one_out;
 
 ARCHITECTURE VBE OF two_in_one_out IS
 
+  SIGNAL rtldef_11	: BIT;
   SIGNAL rtldef_10	: BIT;
   SIGNAL rtldef_9	: BIT;
   SIGNAL rtldef_8	: BIT;
@@ -30,60 +31,65 @@ ARCHITECTURE VBE OF two_in_one_out IS
   SIGNAL rtldef_2	: BIT;
   SIGNAL rtldef_1	: BIT;
   SIGNAL rtldef_0	: BIT;
-  SIGNAL state	: REG_BIT REGISTER;
-  SIGNAL n_state	: BIT;
-  SIGNAL counter	: REG_BIT REGISTER;
-  SIGNAL n_counter	: BIT;
-  SIGNAL p47_2_reddef_18	: BIT;
-  SIGNAL p31_1_def_8	: BIT;
+  SIGNAL state	: REG_VECTOR(1 DOWNTO 0) REGISTER;
+  SIGNAL n_state	: BIT_VECTOR(1 DOWNTO 0);
+  SIGNAL nx_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
+  SIGNAL ny_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
   SIGNAL p47_2_def_6	: BIT;
   SIGNAL p47_2_def_5	: BIT;
   SIGNAL p47_2_def_4	: BIT;
 BEGIN
 
-  data_out <= nx_p WHEN ((state = '1') AND (counter = '0')) ELSE
-     ny_p WHEN ((state = '1') AND (counter = '1')) ELSE
-     "00000000";
-  rok_res_p <= '1' WHEN (state = '1') ELSE
+  data_out <= nx_reg WHEN (state = "10") ELSE
+     ny_reg;
+  rok_res_p <= '1' WHEN ((state = "10") OR (state = "11")) ELSE
      '0';
-  rd_nxy_p <= '1' WHEN (state = '0') ELSE
+  rd_nxy_p <= '1' WHEN (state = "01") ELSE
      '0';
-  rtldef_10 <= '1' WHEN p47_2_reddef_18 ELSE
+  rtldef_11 <= '1' WHEN ((state(0) AND state(1)) = '1') ELSE
      '0';
-  n_counter <= (rtldef_10 AND ((rtldef_5 AND p47_2_def_5) OR (rtldef_6 AND counter)));
-  rtldef_9 <= '1' WHEN p47_2_reddef_18 ELSE
+  rtldef_10 <= '1' WHEN ((NOT(state(0)) AND state(1)) = '1') ELSE
      '0';
-  rtldef_8 <= '1' WHEN (state = '0') ELSE
+  rtldef_9 <= '1' WHEN ((state(0) AND NOT(state(1))) = '1') ELSE
      '0';
-  n_state <= ((rtldef_8 AND (p47_2_def_6 OR (rtldef_7 AND state))) OR (rtldef_9 AND ((rtldef_3
- AND (rtldef_2 AND state)) OR (rtldef_4 AND state))));
+  rtldef_8 <= '1' WHEN ((NOT(state(0)) AND NOT(state(1))) = '1') ELSE
+     '0';
+  n_state <= (((rtldef_8 & rtldef_8) AND (((rtldef_6 & rtldef_6) AND "01") OR ((rtldef_7 & rtldef_7
+) AND state))) OR ((rtldef_9 & rtldef_9) AND (((rtldef_4 & rtldef_4) AND "10") 
+OR ((rtldef_5 & rtldef_5) AND state))) OR ((rtldef_10 & rtldef_10) AND ((rtldef_2
+ & rtldef_2) OR ((rtldef_3 & rtldef_3) AND state))) OR ((rtldef_11 & rtldef_11) 
+AND ((rtldef_1 & rtldef_1) AND state)));
   rtldef_7 <= '1' WHEN NOT(p47_2_def_6) ELSE
      '0';
-  p47_2_def_6 <= (rok_nxy_p = '1');
-  rtldef_6 <= '1' WHEN NOT(p47_2_def_4) ELSE
+  rtldef_6 <= '1' WHEN p47_2_def_6 ELSE
      '0';
-  rtldef_5 <= '1' WHEN p47_2_def_4 ELSE
+  p47_2_def_6 <= (rd_res_p = '1');
+  rtldef_5 <= '1' WHEN NOT(p47_2_def_5) ELSE
      '0';
-  rtldef_4 <= '1' WHEN NOT(p47_2_def_4) ELSE
+  rtldef_4 <= '1' WHEN p47_2_def_5 ELSE
      '0';
-  rtldef_3 <= '1' WHEN p47_2_def_4 ELSE
+  p47_2_def_5 <= (rok_nxy_p = '1');
+  rtldef_3 <= '1' WHEN NOT(p47_2_def_4) ELSE
      '0';
-  rtldef_2 <= '1' WHEN p47_2_def_5 ELSE
+  rtldef_2 <= '1' WHEN p47_2_def_4 ELSE
      '0';
-  p47_2_def_5 <= (counter = '0');
   p47_2_def_4 <= (rd_res_p = '1');
-  p47_2_reddef_18 <= (state = '1');
+  rtldef_1 <= '1' WHEN NOT((rd_res_p = '1')) ELSE
+     '0';
   LABEL0 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    counter <= GUARDED (rtldef_1 AND n_counter);
+    ny_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
+     ny_p WHEN (state(0) AND raz AND NOT(state(1)) AND rok_nxy_p) ELSE ny_reg;
   END BLOCK LABEL0;
   LABEL1 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    state <= GUARDED (rtldef_0 AND n_state);
+    nx_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
+     nx_p WHEN (state(0) AND raz AND NOT(state(1)) AND rok_nxy_p) ELSE nx_reg;
   END BLOCK LABEL1;
-  rtldef_1 <= '1' WHEN NOT(p31_1_def_8) ELSE
+  LABEL2 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
+  BEGIN
+    state <= GUARDED ((rtldef_0 & rtldef_0) AND n_state);
+  END BLOCK LABEL2;
+  rtldef_0 <= '1' WHEN NOT((raz = '0')) ELSE
      '0';
-  rtldef_0 <= '1' WHEN NOT(p31_1_def_8) ELSE
-     '0';
-  p31_1_def_8 <= (raz = '0');
 END VBE;

@@ -23,7 +23,7 @@
 -- architecture vhd of one_in_three_out is
 
 --     signal state, n_state : std_logic;
---     signal counter, n_counter : std_logic_vector(1 downto 0);
+--     signal counter, n_counter : std_logic_vector(2 downto 0);
 
 --     signal a_reg, x_reg, y_reg : std_logic_vector(7 downto 0);
 --     signal rx_reg, ry_reg     : std_logic_vector(7 downto 0);
@@ -38,7 +38,7 @@
 --     if (ck = '1' and not ck'stable) then
 --         if raz = '0' then
 --             state   <= '0';   -- IDLE
---             counter <= "00";
+--             counter <= "000";
 --             x_reg   <= (others => '0');
 --             y_reg   <= (others => '0');
 --             a_reg   <= (others => '0');
@@ -47,12 +47,16 @@
 --             counter <= n_counter;
 
 --             if (state = '0' and wr_arg_p = '1') then
---                 if counter = "00" then
+--                 if counter = "000" then
 --                     x_reg <= data_in;
---                 elsif counter = "01" then
+--                 elsif counter = "001" then
 --                     y_reg <= data_in;
---                 elsif counter = "10" then
+--                 elsif counter = "010" then
 --                     a_reg <= data_in;
+--                 elsif counter = "011" then
+--                     rx_reg <= data_in;
+--                 elsif counter = "100" then
+--                     ry_reg <= data_in;
 --                 end if;
 --             end if;
 --         end if;
@@ -71,9 +75,9 @@
 --     case state is
 --         when '0' => -- READ
 --             if wr_arg_p = '1' then
---                 if counter = "10" then
+--                 if counter = "010" then
 --                     n_state   <= '1'; -- SEND
---                     n_counter <= "00";
+--                     n_counter <= "000";
 --                 else
 --                     n_counter <= counter + 1;
 --                 end if;
@@ -81,12 +85,12 @@
 
 --         when '1' => -- SEND
 --             if wok_axy_p = '1' then
---                 n_state <= '0'; -- IDLE
+--                 n_state <= '0'; -- READ
 --             end if;
 
 --         when others =>
 --             n_state <= '0';
---             n_counter <= "00";
+--             n_counter <= "000";
 
 --     end case;
 -- end process;
@@ -131,7 +135,7 @@ end one_in_three_out;
 architecture vhd of one_in_three_out is
 
     signal state, n_state : std_logic;
-    signal counter, n_counter : std_logic_vector(2 downto 0);
+    signal counter, n_counter : std_logic_vector(1 downto 0);
 
     signal a_reg, x_reg, y_reg : std_logic_vector(7 downto 0);
     signal rx_reg, ry_reg     : std_logic_vector(7 downto 0);
@@ -146,7 +150,7 @@ begin
     if (ck = '1' and not ck'stable) then
         if raz = '0' then
             state   <= '0';   -- IDLE
-            counter <= "000";
+            counter <= "00";
             x_reg   <= (others => '0');
             y_reg   <= (others => '0');
             a_reg   <= (others => '0');
@@ -155,16 +159,12 @@ begin
             counter <= n_counter;
 
             if (state = '0' and wr_arg_p = '1') then
-                if counter = "000" then
-                    x_reg <= data_in;
-                elsif counter = "001" then
-                    y_reg <= data_in;
-                elsif counter = "010" then
+                if counter = "00" then
                     a_reg <= data_in;
-                elsif counter = "011" then
-                    rx_reg <= data_in;
-                elsif counter = "100" then
-                    ry_reg <= data_in;
+                elsif counter = "01" then
+                    x_reg <= data_in;
+                elsif counter = "10" then
+                    y_reg <= data_in;
                 end if;
             end if;
         end if;
@@ -183,9 +183,9 @@ begin
     case state is
         when '0' => -- READ
             if wr_arg_p = '1' then
-                if counter = "010" then
+                if counter = "10" then
                     n_state   <= '1'; -- SEND
-                    n_counter <= "000";
+                    n_counter <= "00";
                 else
                     n_counter <= counter + 1;
                 end if;
@@ -193,12 +193,12 @@ begin
 
         when '1' => -- SEND
             if wok_axy_p = '1' then
-                n_state <= '0'; -- READ
+                n_state <= '0'; -- IDLE
             end if;
 
         when others =>
             n_state <= '0';
-            n_counter <= "000";
+            n_counter <= "00";
 
     end case;
 end process;

@@ -18,18 +18,18 @@ END cordic_data;
 ARCHITECTURE vhd OF cordic_data IS
 
     SIGNAL          -- FSM states
-        x_p,        -- set x
-        y_p,        -- set y
-        a_p,        -- set angle
-        nx_p,        -- get result
-        ny_p,        -- get result
+        x_p,        -- set x coordinats
+        y_p,        -- set y coordinats
+        a_p,        -- set the angle of rotation
+        nx_p,        -- get x coordinat result
+        ny_p,        -- get y coordinat result
         stop,       -- it's over
         lastpt      -- 1 when pt = address of the last filled box in ROM 
     : std_logic;
-    
+
     SIGNAL
-        pt          -- rom_pointer
-    : std_logic_vector(ADDRWD-1 downto 0);
+        pt          -- rom_pointer 
+        : std_logic_vector(ADDRWD-1 downto 0);
 
     SIGNAL
         value       -- rom_value
@@ -43,34 +43,41 @@ BEGIN
             x_p  <= '1';
             y_p  <= '0';
             a_p  <= '0';
-            nx_p <= '0';
-            ny_p <= '0';            
+            nx_p  <= '0';
+            ny_p  <= '0';
             stop <= '0';
             pt   <= (others=>'0');
         else
-            x_p  <= (ny_p AND rok_res_p AND not lastpt) OR (x_p AND not wok_arg_p);
-            y_p  <= (x_p AND wok_arg_p) OR (y_p AND not wok_arg_p);
-            a_p  <= (y_p AND wok_arg_p) OR (a_p AND not wok_arg_p);
-            nx_p <= (a_p AND wok_arg_p) OR (nx_p AND not rok_res_p);
-            ny_p <= (nx_p AND not wok_arg_p) OR (ny_p AND not rok_res_p);
-            stop <= (ny_p AND rok_res_p AND lastpt) OR stop;
+            x_p  <= (ny_p AND rok_res_p AND not lastpt)
+                 OR (x_p AND not wok_arg_p);
 
-            if ((x_p AND wok_arg_p) OR (y_p AND wok_arg_p) OR (a_p AND wok_arg_p)) OR ((nx_p OR ny_p) and rok_res_p)then
+            y_p  <= (x_p AND wok_arg_p)
+                 OR (y_p AND not wok_arg_p);
+
+            a_p  <= (y_p AND wok_arg_p)
+                    OR (a_p AND not wok_arg_p);
+
+            nx_p  <= (a_p AND wok_arg_p)
+                 OR (nx_p AND not rok_res_p);
+            
+            ny_p  <= (nx_p AND rok_res_p)
+                OR (ny_p AND not rok_res_p);
+            
+            stop <= (ny_p AND rok_res_p AND lastpt)
+                 OR stop;
+
+            if (wr_arg_p = '1' AND wok_arg_p = '1') OR (rd_res_p = '1' AND rok_res_p = '1') then
                 pt   <= pt + 1;
             end if;
-
-            // if (((x_p OR y_p OR a_p) and wr_arg_p = '1' and wok_arg_p = '1') or ((nx_p OR ny_p) and rd_res_p = '1' and rok_res_p = '1')) then
-            //     pt <= pt + 1;
-            // end if;
         end if;
     end if;
     end process REG;
 
-    lastpt   <= (pt = LASTPT);
-    wr_arg_p <= x_p OR y_p OR a_p;
-    rd_res_p <= nx_p OR ny_p;
-    arg_p    <= value;
-    ko_p     <= (nx_p OR ny_p) AND rok_res_p AND (value /= res_p);
+    lastpt     <= (pt = LASTPT);
+    wr_arg_p   <= x_p OR y_p OR a_p;
+    rd_res_p   <= nx_p OR ny_p;
+    arg_p      <= value;
+    ko_p       <= ((nx_p) AND rok_res_p AND (value /= res_p)) OR ((ny_p) AND rok_res_p AND (value /= res_p));
 
 --  #include <rom.txt> incudes a file with a generated ROM, defined as below
 --  value       <= x"12"    when pt = 0

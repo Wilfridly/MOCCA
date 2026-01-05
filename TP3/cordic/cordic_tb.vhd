@@ -23,9 +23,9 @@ ARCHITECTURE vhd OF cordic_tb IS
     signal rd_nxy    : std_logic;
     signal rok_nxy   : std_logic;
 
+    signal a_p       : std_logic_vector(7 downto 0);
     signal x_p       : std_logic_vector(7 downto 0);
     signal y_p       : std_logic_vector(7 downto 0);
-    signal a_p       : std_logic_vector(7 downto 0);
     signal nx        : std_logic_vector(7 downto 0);
     signal ny        : std_logic_vector(7 downto 0);
 
@@ -89,6 +89,7 @@ ARCHITECTURE vhd OF cordic_tb IS
     );
     end COMPONENT; 
 
+
     COMPONENT cordic_net
     PORT(
         ck          : IN  std_logic;
@@ -128,6 +129,7 @@ BEGIN
         ko_p        => ko_p      --out
     );
 
+
     oito : one_in_three_out
     PORT MAP(
         ck     => ck,
@@ -137,9 +139,9 @@ BEGIN
         data_in => data_in, --data -> oito ok
         wok_arg_p => wok_arg,  --data -> oito ok
         
+        a_p    => a_p, --oito -> net ok
         x_p    => x_p, --oito -> net ok 
         y_p    => y_p, --oito -> net ok
-        a_p    => a_p, --oito -> net ok
         
         wr_axy_p => wr_axy, --oito -> net ok
         wok_axy_p => wok_axy -- oito -> net ok

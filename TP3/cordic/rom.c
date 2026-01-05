@@ -128,23 +128,23 @@ int main( int argc, char * argv[]) {
     unsigned rangelen = 1+(valwd-1)/4;
     
     for(int i=0; i < valuenb; i++) {
+        unsigned a = value(valrange);
         unsigned x = value(valrange);
         unsigned y = value(valrange);
-        unsigned a = value(valrange);
         char resnx, resny;
-        cordic(x, y, a, &resnx, &resny);
+        cordic(a, x, y, &resnx, &resny);
 
         if (i==0) 
-            printf ("%*s <= x\"%0*x\" when pt = %d\n", namelen, name, rangelen, x, i);
+            printf ("%*s <= x\"%0*x\" when pt = %d\n", namelen, name, rangelen, a, i);
         else
-            printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, x, 5*i);
-        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, y, 5*i+1);
-        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, a, 5*i+2);
+            printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, a, 5*i);
+        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, x, 5*i+1);
+        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, y, 5*i+2);
         printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, resnx, 5*i+3);
         printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, resny, 5*i+4);
     }
     printf ("%*s x\"%0*x\";\n", namelen+3, "else", rangelen, 0);
 
-    fprintf (stderr, "rom generated with %d quintuplet (x, y, a, resnx, resny)\n", valuenb);
+    fprintf (stderr, "rom generated with %d quintuplet (a, x, y, resnx, resny)\n", valuenb);
     return 0;
 }

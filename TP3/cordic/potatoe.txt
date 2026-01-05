@@ -1,0 +1,31 @@
+    ck       : in  std_logic;
+    raz      : in  std_logic;
+
+    data_in  : in  std_logic_vector(7 downto 0);
+
+    -- opérandes en sortie
+    a_p      : out std_logic_vector(7 downto 0);
+    x_p      : out std_logic_vector(7 downto 0);
+    y_p      : out std_logic_vector(7 downto 0);
+
+    nx_p    : in  std_logic_vector(7 downto 0);
+    ny_p    : in  std_logic_vector(7 downto 0);
+
+    -- interface DATA -> one_in_three_out
+    wr_arg_p : in  std_logic;  -- DATA écrit un argument
+    wok_arg_p: out std_logic;  -- prêt à recevoir
+
+    -- interface one_in_three_out -> NET
+    wr_axy_p : out std_logic;  -- écrit A,X,Y
+    wok_axy_p: in  std_logic   -- aval prêt
+
+
+    -- interface net -> tioo
+    rd_nxy_p    : out std_logic;
+    rok_nxy_p : in  std_logic;
+
+    -- interface tioo -> data
+    rd_res_p    : in  std_logic;
+    rok_res_p   : out std_logic;
+
+    data_out  : out std_logic_vector(7 downto 0),

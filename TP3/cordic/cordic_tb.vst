@@ -23,9 +23,9 @@ ARCHITECTURE VST OF cordic_tb IS
   SIGNAL rok_res	: BIT;
   SIGNAL rd_nxy	: BIT;
   SIGNAL rok_nxy	: BIT;
+  SIGNAL a_p	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL x_p	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL y_p	: BIT_VECTOR(7 DOWNTO 0);
-  SIGNAL a_p	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL nx	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL ny	: BIT_VECTOR(7 DOWNTO 0);
 
@@ -131,9 +131,9 @@ BEGIN
   oito : one_in_three_out
   PORT MAP (
     data_in => data_in,
+    a_p => a_p,
     x_p => x_p,
     y_p => y_p,
-    a_p => a_p,
     wok_axy_p => wok_axy,
     wr_axy_p => wr_axy,
     wok_arg_p => wok_arg,

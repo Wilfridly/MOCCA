@@ -21,6 +21,8 @@ ARCHITECTURE VBE OF cordic_data IS
 
   SIGNAL rtlsum_0	: BIT_VECTOR(7 DOWNTO 0);
   SIGNAL rtlcarry_0	: BIT_VECTOR(7 DOWNTO 0);
+  SIGNAL rtl_internal_rd_res_p	: BIT;
+  SIGNAL rtl_internal_wr_arg_p	: BIT;
   SIGNAL x_p	: REG_BIT REGISTER;
   SIGNAL y_p	: REG_BIT REGISTER;
   SIGNAL a_p	: REG_BIT REGISTER;
@@ -36,6 +38,8 @@ BEGIN
   rtlsum_0 <= ((pt XOR "00000001") XOR rtlcarry_0);
   rtlcarry_0(7 downto 1) <= (((pt(6 downto 0) AND "0000001") OR (pt(6 downto 0) AND rtlcarry_0(6 downto 0))
 ) OR ("0000001" AND rtlcarry_0(6 downto 0)));
+  rd_res_p <= rtl_internal_rd_res_p;
+  wr_arg_p <= rtl_internal_wr_arg_p;
   value <= "10000010" WHEN (pt = "00000000") ELSE
      "10010001" WHEN (pt = "00000001") ELSE
      "10110100" WHEN (pt = "00000010") ELSE
@@ -292,16 +296,16 @@ BEGIN
      "01100100" WHEN (pt = "11111101") ELSE
      "11100010" WHEN (pt = "11111110") ELSE
      "00000000";
-  ko_p <= (((nx_p OR ny_p) AND rok_res_p) AND (value /= res_p));
+  ko_p <= (((nx_p AND rok_res_p) AND (value /= res_p)) OR ((ny_p AND rok_res_p) AND (value /= res_p)));
   arg_p <= value;
-  rd_res_p <= (nx_p OR ny_p);
-  wr_arg_p <= ((x_p OR y_p) OR a_p);
+  rtl_internal_rd_res_p <= (nx_p OR ny_p);
+  rtl_internal_wr_arg_p <= ((x_p OR y_p) OR a_p);
   lastpt <= (pt = "11111110");
   LABEL0 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
     pt <= GUARDED "00000000" WHEN NOT(nreset) ELSE
-     rtlsum_0 WHEN (nreset AND ((rok_res_p AND (ny_p OR nx_p)) OR (wok_arg_p AND (x_p OR y_p OR a_p
- OR (rok_res_p AND (ny_p OR y_p OR a_p OR nx_p)))))) ELSE pt;
+     rtlsum_0 WHEN (nreset AND ((rok_res_p AND rtl_internal_rd_res_p) OR (wok_arg_p AND (rtl_internal_wr_arg_p
+ OR (rok_res_p AND (rtl_internal_wr_arg_p OR rtl_internal_rd_res_p)))))) ELSE pt;
   END BLOCK LABEL0;
   LABEL1 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
@@ -310,8 +314,8 @@ BEGIN
   END BLOCK LABEL1;
   LABEL2 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
-    ny_p <= GUARDED '1' WHEN (nreset AND NOT(wok_arg_p) AND nx_p) ELSE
-     '0' WHEN (NOT(nreset) OR (rok_res_p AND NOT(nx_p)) OR (wok_arg_p AND rok_res_p)) ELSE ny_p;
+    ny_p <= GUARDED '0' WHEN NOT(nreset) ELSE
+     nx_p WHEN (nreset AND rok_res_p) ELSE ny_p;
   END BLOCK LABEL2;
   LABEL3 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN

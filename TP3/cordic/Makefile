@@ -53,14 +53,17 @@ potatoe:
 	export PATNAME=$(MODEL)_tb ADDRWD=$(ADDRWD) VALWD=$(VALWD) CYCLES=$(CYCLES); genpat $(MODEL)_pat2
 	gcc -w -E -DADDRWD=$(ADDRWD) -DVALWD=$(VALWD) -DLASTPT=$(LASTPT) $(MODEL)_data.vhd.c | grep -v "^#" > $(MODEL)_data.vhd
 	
+# 	vasy -a -I vhd -p -o cordic_cor cordic_cor
 	vasy -a -I vhd -p -o $(MODEL)_ctl $(MODEL)_ctl
 	vasy -a -I vhd -p -o $(MODEL)_dp $(MODEL)_dp
 	vasy -a -I vhd -p -o $(MODEL)_net $(MODEL)_net
 	vasy -a -I vhd -p -o $(MODEL)_data $(MODEL)_data 
+
 	vasy -a -I vhd -p -o $(MODEL)_tb   $(MODEL)_tb 
+
 	vasy -a -I vhd -p -o one_in_three_out one_in_three_out
 	vasy -a -I vhd -p -o two_in_one_out two_in_one_out
-# 	asimut $(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres
+
 	asimut $(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres | awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
 	@grep ": ?1" $(MODEL)_tbres.pat || echo "Lucky no error"
 
@@ -95,5 +98,5 @@ clean:
 		*.vst \
 		*.pat \
 		.txt \
-		*.vbe
+		*.vbe \
 		a.out
