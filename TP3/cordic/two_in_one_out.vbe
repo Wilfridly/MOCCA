@@ -35,13 +35,14 @@ ARCHITECTURE VBE OF two_in_one_out IS
   SIGNAL n_state	: BIT_VECTOR(1 DOWNTO 0);
   SIGNAL nx_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
   SIGNAL ny_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
-  SIGNAL p47_2_def_6	: BIT;
-  SIGNAL p47_2_def_5	: BIT;
-  SIGNAL p47_2_def_4	: BIT;
+  SIGNAL p48_2_def_7	: BIT;
+  SIGNAL p48_2_def_6	: BIT;
+  SIGNAL p48_2_def_5	: BIT;
 BEGIN
 
-  data_out <= nx_reg WHEN (state = "10") ELSE
-     ny_reg;
+  data_out <= nx_p WHEN (state = "10") ELSE
+     ny_p WHEN (state = "11") ELSE
+     "00000000";
   rok_res_p <= '1' WHEN ((state = "10") OR (state = "11")) ELSE
      '0';
   rd_nxy_p <= '1' WHEN (state = "01") ELSE
@@ -59,32 +60,32 @@ BEGIN
 OR ((rtldef_5 & rtldef_5) AND state))) OR ((rtldef_10 & rtldef_10) AND ((rtldef_2
  & rtldef_2) OR ((rtldef_3 & rtldef_3) AND state))) OR ((rtldef_11 & rtldef_11) 
 AND ((rtldef_1 & rtldef_1) AND state)));
-  rtldef_7 <= '1' WHEN NOT(p47_2_def_6) ELSE
+  rtldef_7 <= '1' WHEN NOT(p48_2_def_7) ELSE
      '0';
-  rtldef_6 <= '1' WHEN p47_2_def_6 ELSE
+  rtldef_6 <= '1' WHEN p48_2_def_7 ELSE
      '0';
-  p47_2_def_6 <= (rd_res_p = '1');
-  rtldef_5 <= '1' WHEN NOT(p47_2_def_5) ELSE
+  p48_2_def_7 <= (rd_res_p = '1');
+  rtldef_5 <= '1' WHEN NOT(p48_2_def_6) ELSE
      '0';
-  rtldef_4 <= '1' WHEN p47_2_def_5 ELSE
+  rtldef_4 <= '1' WHEN p48_2_def_6 ELSE
      '0';
-  p47_2_def_5 <= (rok_nxy_p = '1');
-  rtldef_3 <= '1' WHEN NOT(p47_2_def_4) ELSE
+  p48_2_def_6 <= (rok_nxy_p = '1');
+  rtldef_3 <= '1' WHEN NOT(p48_2_def_5) ELSE
      '0';
-  rtldef_2 <= '1' WHEN p47_2_def_4 ELSE
+  rtldef_2 <= '1' WHEN p48_2_def_5 ELSE
      '0';
-  p47_2_def_4 <= (rd_res_p = '1');
+  p48_2_def_5 <= (rd_res_p = '1');
   rtldef_1 <= '1' WHEN NOT((rd_res_p = '1')) ELSE
      '0';
   LABEL0 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
     ny_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
-     ny_p WHEN (state(0) AND raz AND NOT(state(1)) AND rok_nxy_p) ELSE ny_reg;
+     ny_p WHEN (state(0) AND raz AND state(1) AND rd_res_p) ELSE ny_reg;
   END BLOCK LABEL0;
   LABEL1 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
     nx_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
-     nx_p WHEN (state(0) AND raz AND NOT(state(1)) AND rok_nxy_p) ELSE nx_reg;
+     nx_p WHEN (NOT(state(0)) AND raz AND state(1) AND rd_res_p) ELSE nx_reg;
   END BLOCK LABEL1;
   LABEL2 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN

@@ -19,26 +19,27 @@ port(
 end two_in_one_out;
 
 architecture vhd of two_in_one_out is
-
-    signal state, n_state   : std_logic_vector(1 downto 0);
+    signal state, n_state : std_logic_vector(1 downto 0);
     signal nx_reg, ny_reg : std_logic_vector(7 downto 0);
-
 begin
 
 process(ck)
 begin
     if (ck = '1' and not ck'stable) then
         if raz = '0' then
-            state <= "00";  -- IDLE
+            state <= "00";
             nx_reg <= (others => '0');
             ny_reg <= (others => '0');
         else
             state <= n_state;
 
-            -- Capturer quand on passe de WAIT à SEND
-            if state = "01" and rok_nxy_p = '1' then
-                nx_reg <= nx_p;
-                ny_reg <= ny_p;
+            -- ✅ Capturer PENDANT l'état SEND (état "10")
+            if state = "10" and rd_res_p = '1' then
+                nx_reg <= nx_p;  -- Capture NX maintenant stable
+            end if;
+            
+            if state = "11" and rd_res_p = '1' then
+                ny_reg <= ny_p;  -- Capture NY maintenant stable
             end if;
         end if;
     end if;
@@ -47,16 +48,15 @@ end process;
 process(state, rok_nxy_p, rd_res_p)
 begin
     n_state <= state;
-
     case state is
-        when "00" => -- IDLE (attendre demande)
+        when "00" => -- IDLE
             if rd_res_p = '1' then
-                n_state <= "01"; -- WAIT pour les données
+                n_state <= "01"; -- WAIT
             end if;
 
-        when "01" => -- WAIT (attendre rok_nxy)
+        when "01" => -- WAIT
             if rok_nxy_p = '1' then
-                n_state <= "10"; -- SEND premier résultat
+                n_state <= "10"; -- SEND nx
             end if;
 
         when "10" => -- SEND nx
@@ -66,7 +66,7 @@ begin
 
         when "11" => -- SEND ny
             if rd_res_p = '1' then
-                n_state <= "00"; -- retour IDLE
+                n_state <= "00";
             end if;
 
         when others =>
@@ -74,11 +74,12 @@ begin
     end case;
 end process;
 
--- Handshake : rd_nxy seulement en WAIT
 rd_nxy_p  <= '1' when state = "01" else '0';
 rok_res_p <= '1' when (state = "10" or state = "11") else '0';
 
--- Sortie
-data_out <= nx_reg when state = "10" else ny_reg;
+-- ✅ Sortir directement les valeurs (pas les registres)
+data_out <= nx_p when state = "10" else
+            ny_p when state = "11" else
+            (others => '0');
 
 end vhd;

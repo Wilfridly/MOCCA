@@ -42,11 +42,11 @@ ARCHITECTURE VBE OF one_in_three_out IS
   SIGNAL a_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
   SIGNAL x_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
   SIGNAL y_reg	: REG_VECTOR(7 DOWNTO 0) REGISTER;
-  SIGNAL p177_2_reddef_36	: BIT;
-  SIGNAL p177_2_reddef_35	: BIT;
-  SIGNAL p148_1_def_9	: BIT;
-  SIGNAL p177_2_def_7	: BIT;
-  SIGNAL p177_2_def_6	: BIT;
+  SIGNAL p65_2_reddef_36	: BIT;
+  SIGNAL p65_2_reddef_35	: BIT;
+  SIGNAL p36_1_def_9	: BIT;
+  SIGNAL p65_2_def_7	: BIT;
+  SIGNAL p65_2_def_6	: BIT;
 BEGIN
 
   rtlcarry_0(0) <= '0';
@@ -62,37 +62,37 @@ BEGIN
      '0';
   wok_arg_p <= '1' WHEN (state = '0') ELSE
      '0';
-  rtldef_12 <= '1' WHEN p177_2_reddef_36 ELSE
+  rtldef_12 <= '1' WHEN p65_2_reddef_36 ELSE
      '0';
-  rtldef_11 <= '1' WHEN p177_2_reddef_35 ELSE
+  rtldef_11 <= '1' WHEN p65_2_reddef_35 ELSE
      '0';
   n_counter <= (((rtldef_11 & rtldef_11) AND (((rtldef_5 & rtldef_5) AND ((rtldef_3 & rtldef_3
 ) AND rtlsum_0)) OR ((rtldef_6 & rtldef_6) AND counter))) OR ((rtldef_12 & rtldef_12
 ) AND counter));
-  rtldef_10 <= '1' WHEN p177_2_reddef_36 ELSE
+  rtldef_10 <= '1' WHEN p65_2_reddef_36 ELSE
      '0';
-  rtldef_9 <= '1' WHEN p177_2_reddef_35 ELSE
+  rtldef_9 <= '1' WHEN p65_2_reddef_35 ELSE
      '0';
-  n_state <= ((rtldef_9 AND ((rtldef_7 AND (p177_2_def_7 OR (rtldef_4 AND state))) OR (rtldef_8
+  n_state <= ((rtldef_9 AND ((rtldef_7 AND (p65_2_def_7 OR (rtldef_4 AND state))) OR (rtldef_8
  AND state))) OR (rtldef_10 AND (rtldef_2 AND state)));
-  rtldef_8 <= '1' WHEN NOT(p177_2_def_6) ELSE
+  rtldef_8 <= '1' WHEN NOT(p65_2_def_6) ELSE
      '0';
-  rtldef_7 <= '1' WHEN p177_2_def_6 ELSE
+  rtldef_7 <= '1' WHEN p65_2_def_6 ELSE
      '0';
-  rtldef_6 <= '1' WHEN NOT(p177_2_def_6) ELSE
+  rtldef_6 <= '1' WHEN NOT(p65_2_def_6) ELSE
      '0';
-  rtldef_5 <= '1' WHEN p177_2_def_6 ELSE
+  rtldef_5 <= '1' WHEN p65_2_def_6 ELSE
      '0';
-  rtldef_4 <= '1' WHEN NOT(p177_2_def_7) ELSE
+  rtldef_4 <= '1' WHEN NOT(p65_2_def_7) ELSE
      '0';
-  rtldef_3 <= '1' WHEN NOT(p177_2_def_7) ELSE
+  rtldef_3 <= '1' WHEN NOT(p65_2_def_7) ELSE
      '0';
-  p177_2_def_7 <= (counter = "10");
-  p177_2_def_6 <= (wr_arg_p = '1');
-  p177_2_reddef_35 <= (state = '0');
+  p65_2_def_7 <= (counter = "10");
+  p65_2_def_6 <= (wr_arg_p = '1');
+  p65_2_reddef_35 <= (state = '0');
   rtldef_2 <= '1' WHEN NOT((wok_axy_p = '1')) ELSE
      '0';
-  p177_2_reddef_36 <= (state = '1');
+  p65_2_reddef_36 <= (state = '1');
   LABEL0 : BLOCK  ((ck = '1') AND NOT(ck'STABLE) )
   BEGIN
     a_reg <= GUARDED "00000000" WHEN NOT(raz) ELSE
@@ -116,9 +116,9 @@ BEGIN
   BEGIN
     state <= GUARDED (rtldef_0 AND n_state);
   END BLOCK LABEL4;
-  rtldef_1 <= '1' WHEN NOT(p148_1_def_9) ELSE
+  rtldef_1 <= '1' WHEN NOT(p36_1_def_9) ELSE
      '0';
-  rtldef_0 <= '1' WHEN NOT(p148_1_def_9) ELSE
+  rtldef_0 <= '1' WHEN NOT(p36_1_def_9) ELSE
      '0';
-  p148_1_def_9 <= (raz = '0');
+  p36_1_def_9 <= (raz = '0');
 END VBE;
