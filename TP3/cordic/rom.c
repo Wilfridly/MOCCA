@@ -129,8 +129,8 @@ int main( int argc, char * argv[]) {
     
     for(int i=0; i < valuenb; i++) {
         unsigned a = value(valrange);
-        unsigned x = value(valrange);
-        unsigned y = value(valrange);
+        unsigned x = 127;
+        unsigned y = 0;
         char resnx, resny;
         cordic(a, x, y, &resnx, &resny);
 

@@ -1,17 +1,23 @@
 ENTITY cordic_data IS
 PORT(
-    ck          : IN  std_logic;
-    nreset      : IN  std_logic;
+        ck          : IN std_logic;
+        nreset      : IN std_logic;
 
-    wr_arg_p    : OUT std_logic;
-    arg_p       : OUT std_logic_vector(VALWD-1 DOWNTO 0);
-    wok_arg_p   : IN  std_logic;
+        -- juste pour les arguments
+        wr_arg_p    : OUT std_logic; --producteur
+        a_p         : OUT  std_logic_vector(7 DOWNTO 0);
+        x_p         : OUT  std_logic_vector(7 DOWNTO 0);
+        y_p         : OUT  std_logic_vector(7 DOWNTO 0);
 
-    rd_res_p    : OUT std_logic;
-    res_p       : IN  std_logic_vector(VALWD-1 DOWNTO 0);
-    rok_res_p   : IN  std_logic;
+        wok_arg_p   : IN std_logic; --consommateur
+        
+        -- juste pour les résultats
+        rd_res_p    : OUT std_logic; --producteur
+        nx_p        : IN std_logic_vector(7 DOWNTO 0);
+        ny_p        : IN std_logic_vector(7 DOWNTO 0);
+        rok_res_p   : IN std_logic; --consommateur
 
-    ko_p        : OUT std_logic
+        ko_p        : OUT std_logic
 );
 END cordic_data;
 

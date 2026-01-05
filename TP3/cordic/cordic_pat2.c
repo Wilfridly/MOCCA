@@ -106,7 +106,6 @@ int main ()
     DECLAR("x_p",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
     DECLAR("a_p",   ":2", "X", SIGNAL, vector(VALWD-1,0), "");
 
-
     // signal wr_axy    : std_logic;
     // signal wok_axy   : std_logic;
     
