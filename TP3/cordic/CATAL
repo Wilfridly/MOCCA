@@ -1,8 +1,5 @@
-cordic_cor C
+cordic_tb_model C
 cordic_dp C
 cordic_ctl C
 cordic_data C
-one_in_three_out C 
-two_in_one_out C
-cordic_tb_model C
 cordic_net_model C

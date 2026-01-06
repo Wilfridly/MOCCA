@@ -61,8 +61,8 @@ potatoe:
 
 	vasy -a -I vhd -p -o $(MODEL)_tb   $(MODEL)_tb 
 
-	vasy -a -I vhd -p -o one_in_three_out one_in_three_out
-	vasy -a -I vhd -p -o two_in_one_out two_in_one_out
+# 	vasy -a -I vhd -p -o one_in_three_out one_in_three_out
+# 	vasy -a -I vhd -p -o two_in_one_out two_in_one_out
 
 	asimut $(MODEL)_tb $(MODEL)_tb $(MODEL)_tbres | awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
 	@grep ": ?1" $(MODEL)_tbres.pat || echo "Lucky no error"

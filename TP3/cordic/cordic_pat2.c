@@ -6,7 +6,7 @@
 #include "mut.h"
 
 // Constante g�n�rales
-const PERIOD = 2;
+const PERIOD = 4;
 
 //--------------------------------------------------------------------------------------------------
 // rend la date du cycle n�i ou du cycle n�i + 1 demi-cycle 
@@ -88,17 +88,17 @@ int main ()
     DECLAR ("wok_arg",   ":2", "B", SIGNAL, "", "");
     DECLAR ("wr_arg",   ":2", "B", SIGNAL, "", "");
 
-    DECLAR ("wok_axy",   ":2", "B", SIGNAL, "", "");
-    DECLAR ("wr_axy",   ":2", "B", SIGNAL, "", "");
+    // DECLAR ("wok_axy",   ":2", "B", SIGNAL, "", "");
+    // DECLAR ("wr_axy",   ":2", "B", SIGNAL, "", "");
 
-    DECLAR ("data_in",     ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    // DECLAR ("data_in",     ":2", "X", SIGNAL, vector(VALWD-1,0), "");
 
-    DECLAR ("rok_nxy",   ":2", "B", SIGNAL, "", "");
-    DECLAR ("rd_nxy",   ":2", "B", SIGNAL, "", "");
+    // DECLAR ("rok_nxy",   ":2", "B", SIGNAL, "", "");
+    // DECLAR ("rd_nxy",   ":2", "B", SIGNAL, "", "");
     DECLAR ("rok_res",   ":2", "B", SIGNAL, "", "");
     DECLAR ("rd_res",   ":2", "B", SIGNAL, "", "");
     
-    DECLAR ("res_in",      ":2", "X", SIGNAL, vector(VALWD-1,0), "");
+    // DECLAR ("res_in",      ":2", "X", SIGNAL, vector(VALWD-1,0), "");
 
     DECLAR("ny",  ":2", "X", SIGNAL, vector(VALWD-1,0), "");
     DECLAR("nx",  ":2", "X", SIGNAL, vector(VALWD-1,0), "");
@@ -128,7 +128,6 @@ int main ()
         AFFECT (cycle (c), "ck", inttostr (0));
         AFFECT (next_cycle (c), "ck", inttostr (1));
     }
-    AFFECT (cycle (0), "nreset", "0");
 
     SAV_GENPAT ();
     return 0;
