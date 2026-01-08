@@ -11,11 +11,6 @@
 #define ADDRWDMAX   16
 #endif
 
-void cossin(double a_p, char x_p, char y_p, char *nx_p, char *ny_p)
-{
-    *nx_p = (char) round(x_p * cos(a_p) - y_p * sin(a_p));
-    *ny_p = (char) round(x_p * sin(a_p) + y_p * cos(a_p));
-}
 
 
 short F_PI = (short)((M_PI) * (1<<7));
@@ -33,10 +28,10 @@ short ATAN[8] = {
 void cordic(short a_p, char x_p, char y_p, char *nx_p, char *ny_p)
 {
     unsigned char i, q;
-    short a, x, y, dx, dy;   
+    short a = 0, x = 0, y = 0, dx = 0, dy = 0;   
     
     // conversion en virgule fixe : 7 chiffres après la virgule
-    a = a_p & 0b1111111100;
+    a = a_p << 2;
     x = x_p << 7;         
     y = y_p << 7;
 
@@ -121,56 +116,30 @@ int main( int argc, char * argv[]) {
     if (addrwd > ADDRWDMAX) usage("<addrwd> too big (change ADDRWDMAX in source code)");
 
     unsigned valrange = twopow(valwd)-1; 
-    unsigned valuenb = twopow(addrwd)/1;
+    unsigned valuenb = twopow(addrwd)/5;
 
-    unsigned a_tab[1 << ADDRWDMAX];
-    char nx_tab[1 << ADDRWDMAX];
-    char ny_tab[1 << ADDRWDMAX];
-
-    unsigned rangelen = 1+(valwd-1)/4;
-    char *name = "a_in";
+    char *name = "value";
     unsigned namelen = strlen(name);
-    char *name2 = "nx_in";
-    unsigned namelen2 = strlen(name2);
-    char *name3 = "ny_in";
-    unsigned namelen3 = strlen(name3);
+    unsigned rangelen = 1+(valwd-1)/4;
     
     for(int i=0; i < valuenb; i++) {
-        unsigned a = value(valrange);
-        unsigned x = 127;
-        unsigned y = 0;
+        unsigned a = i;
+        unsigned x = value(valrange);
+        unsigned y = value(valrange);
         char resnx, resny;
         cordic(a, x, y, &resnx, &resny);
-        a_tab[i] = a;
-        nx_tab[i] = resnx;
-        ny_tab[i] = resny;
-    }
 
-    for(int i=0; i < valuenb; i++) {
         if (i==0) 
-            printf ("%*s <= x\"%0*x\" when pt = %d\n", namelen, name, rangelen, a_tab[i], i);
+            printf ("%*s <= x\"%0*x\" when pt = %d\n", namelen, name, rangelen, a, i);
         else
-            printf ("%*s x\"%0*x\" when pt = %d\n", namelen+3, "else", rangelen, a_tab[i], i);
+            printf ("%*s x\"%0*x\" when pt = %d\n", namelen+5, "else", rangelen, a, 5*i);
+        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+5, "else", rangelen, x, 5*i+1);
+        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+5, "else", rangelen, y, 5*i+2);
+        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+5, "else", rangelen, resnx, 5*i+3);
+        printf ("%*s x\"%0*x\" when pt = %d\n", namelen+5, "else", rangelen, resny, 5*i+4);
     }
-    printf ("%*s x\"%0*x\";\n", namelen+3, "else", rangelen, 0);
+    printf ("%*s x\"%0*x\";\n", namelen+5, "else", rangelen, 0);
 
-    printf("\n");
-    for(int i=0; i < valuenb; i++) {
-        if (i==0) 
-            printf ("%*s <= x\"%0*x\" when pt = %d\n", namelen2, name2, rangelen, nx_tab[i], i);
-        else
-            printf ("%*s x\"%0*x\" when pt = %d\n", namelen2+3, "else", rangelen, nx_tab[i], i);
-    }
-    printf ("%*s x\"%0*x\";\n", namelen2+3, "else", rangelen, 0);
-
-    printf("\n");
-    for(int i=0; i < valuenb; i++) {
-        if (i==0) 
-            printf ("%*s <= x\"%0*x\" when pt = %d\n", namelen3, name3, rangelen, ny_tab[i], i);
-        else
-            printf ("%*s x\"%0*x\" when pt = %d\n", namelen3+3, "else", rangelen, ny_tab[i], i);
-    }
-    printf ("%*s x\"%0*x\";\n", namelen3+3, "else", rangelen, 0);
-
+    fprintf (stderr, "rom generated with %d quintuplet (a, x, y, resnx, resny)\n", valuenb);
     return 0;
 }

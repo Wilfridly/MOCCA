@@ -33,7 +33,6 @@ ARCHITECTURE vhd OF cordic_tb IS
         a_p         : OUT  std_logic_vector(7 DOWNTO 0);
         x_p         : OUT  std_logic_vector(7 DOWNTO 0);
         y_p         : OUT  std_logic_vector(7 DOWNTO 0);
-
         wok_arg_p   : IN std_logic; --consommateur
         
         -- juste pour les résultats

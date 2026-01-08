@@ -4,8 +4,8 @@ MODEL=cordic
 ADDRWD  = 8#		bit width of addresses for the rom
 VALWD   = 8#		bit width of operands for the rom
 CYCLES  = 4000 #	number of cycles to simulate (should be suffisant for all triplets)
-VALNB   = $(shell awk -v ADDRWD=$(ADDRWD) 'BEGIN{print int((2**ADDRWD)/3) }')
-LASTPT  = $(shell awk -v VALNB=$(VALNB) 'BEGIN{print 3*VALNB-1}')
+VALNB   = $(shell awk -v ADDRWD=$(ADDRWD) 'BEGIN{print int((2**ADDRWD))}')
+LASTPT  = $(shell awk -v VALNB=$(VALNB) 'BEGIN{print VALNB-1}')
 
 help:
 	@echo ""
@@ -86,7 +86,8 @@ post_synth:
 #Cherche dans le CATAL
 	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res2
 
-
+error :
+	awk '/: \?/ {err++} {total++} END {printf("Erreurs : %d / %d (%.2f%%)\n", err, total, (err/total)*100)}' $(MODEL)_tbres.pat
 clean:
 	rm  *.dat *~ cercle Makefile.*\
 		$(MODEL)_cor.vbe \

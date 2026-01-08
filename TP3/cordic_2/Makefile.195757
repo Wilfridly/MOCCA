@@ -1,0 +1,13 @@
+
+ALLIANCE_LIBRARY = -L$(ALLIANCE_TOP)/lib \
+                     -lPgn \
+                     -lPat \
+                     -lMut \
+                     -lRcn
+
+
+ALLIANCE_INC = -I$(ALLIANCE_TOP)/include 
+
+cordic_pat2 : cordic_pat2.c
+	$(CC)  -o cordic_pat2 cordic_pat2.c $(ALLIANCE_INC) $(ALLIANCE_LIBRARY)
+

@@ -50,18 +50,25 @@ BEGIN
             stop <= '0';
             pt   <= (others=>'0');
         else
-            sendarg  <= (getres AND rok_res_p AND not lastpt)
-                 OR (sendarg AND not wok_arg_p);
+  -- SENDARG : attendre acceptation des arguments
+            IF (sendarg = '1' AND wok_arg_p = '1') THEN
+                sendarg <= '0';
+                getres  <= '1';
+            END IF;
 
-            getres   <= (sendarg AND wok_arg_p) 
-                 OR (getres AND not rok_res_p);
-                 
-            stop <= (getres AND rok_res_p AND lastpt)
-                 OR stop;
+            -- GETRES : attendre le résultat
+            IF (getres = '1' AND rok_res_p = '1') THEN
+                getres <= '0';
 
-            if ((sendarg AND wok_arg_p)) then
-                pt   <= pt + 1;
-            end if;
+                IF (lastpt = '1') THEN
+                    stop <= '1';
+                ELSE
+                    sendarg <= '1';
+                END IF;
+
+                -- avancement du pointeur UNIQUEMENT ici
+                pt <= pt + 1;
+            END IF;
         end if;
     end if;
     end process REG;
@@ -70,12 +77,8 @@ BEGIN
     wr_arg_p   <= sendarg;
     rd_res_p   <= getres;
     a_p      <= a_in;
-
-    x_in      <= x"7F"; --127
-    y_in      <= x"00"; --0
-    
-    x_p      <= x_in; --127
-    y_p      <= y_in; --0
+    x_p      <= x_in;
+    y_p      <= y_in;
 
     ko_p       <= (getres AND rok_res_p AND (nx_in /= nx_p)) OR (getres AND rok_res_p AND (ny_in /= ny_p));
     

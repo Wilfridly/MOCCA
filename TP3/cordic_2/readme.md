@@ -1,0 +1,6 @@
+- cercle.c :  Modèle comportemental : calcul des points d'un cercle par l'algorithme Cordic
+- cordic_cor.vhd : Contrôle + opération arithmétiques 
+- cordic_ctl.vhd : pilote les différentes étapes de l’algorithme
+- cordic_dp.vhd : réalise les opérations arithmétiques
+- cordic_net.vhd : rassemblement de ctl dp et cor
+- cordic_pat.c : Génère des motifs de tests pour un circuit
