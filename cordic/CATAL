@@ -1,5 +1,0 @@
-cordic_tb_model C
-cordic_dp C
-cordic_ctl C
-cordic_data C
-cordic_net_model C
