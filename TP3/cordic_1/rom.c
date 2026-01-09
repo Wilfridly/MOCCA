@@ -31,7 +31,7 @@ void cordic(short a_p, char x_p, char y_p, char *nx_p, char *ny_p)
     short a = 0, x = 0, y = 0, dx = 0, dy = 0;   
     
     // conversion en virgule fixe : 7 chiffres après la virgule
-    a = a_p << 2;
+    a = a_p << 2; // IT WAS AN ERROR
     x = x_p << 7;         
     y = y_p << 7;
 

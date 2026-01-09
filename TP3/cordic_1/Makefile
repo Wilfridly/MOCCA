@@ -3,7 +3,7 @@ LDFLAGS=-lm
 MODEL=cordic
 ADDRWD  = 8#		bit width of addresses for the rom
 VALWD   = 8#		bit width of operands for the rom
-CYCLES  = 4000 #	number of cycles to simulate (should be suffisant for all triplets)
+CYCLES  = 8000 #	number of cycles to simulate (should be suffisant for all triplets)
 VALNB   = $(shell awk -v ADDRWD=$(ADDRWD) 'BEGIN{print int((2**ADDRWD)/3) }')
 LASTPT  = $(shell awk -v VALNB=$(VALNB) 'BEGIN{print 3*VALNB-1}')
 
