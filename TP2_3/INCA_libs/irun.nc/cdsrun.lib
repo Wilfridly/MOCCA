@@ -1,0 +1,3 @@
+SOFTINCLUDE /users/soft/opus/Linux/INCISIV-15.20-034/tools/inca/files/cds.lib
+define worklib ../worklib
+define vhdlspice_skeletons ../vhdlspice_skeletons

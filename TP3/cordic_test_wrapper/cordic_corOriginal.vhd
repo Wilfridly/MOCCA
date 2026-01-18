@@ -4,19 +4,19 @@ PORT(
     raz         : IN  std_logic;
 
     wr_axy_p    : IN  std_logic;
-    data_in_p         : IN  std_logic_vector(7 DOWNTO 0);
+    a_p         : IN  std_logic_vector(7 DOWNTO 0);
+    x_p         : IN  std_logic_vector(7 DOWNTO 0);
+    y_p         : IN  std_logic_vector(7 DOWNTO 0);
     wok_axy_p   : OUT std_logic;
 
     rd_nxy_p    : IN  std_logic;
-    data_out_p        : OUT std_logic_vector(7 DOWNTO 0);
+    nx_p        : OUT std_logic_vector(7 DOWNTO 0);
+    ny_p        : OUT std_logic_vector(7 DOWNTO 0);
     rok_nxy_p   : OUT std_logic
 );
 END cordic_cor;
 
 ARCHITECTURE vhd OF cordic_cor IS
-
-    signal a_x, x_p, y_p : std_logic_vector(7 downto 0);
-    signal nx_p, ny_p : std_logic_vector(15 downto 0);
 
     SIGNAL
         n_get,  get,                -- get coordinates and angle
@@ -55,69 +55,7 @@ ARCHITECTURE vhd OF cordic_cor IS
         x_sra_i, y_sra_i            -- x >> i et y >> i
     : std_logic_vector(15 downto 0);
 
-
-    COMPONENT one_in_three_out_for_cordic
-    port(
-        ck       : in  std_logic;
-        raz      : in  std_logic;
-
-        data_in  : in  std_logic_vector(7 downto 0);
-
-        a_p      : out std_logic_vector(7 downto 0);
-        x_p      : out std_logic_vector(7 downto 0);
-        y_p      : out std_logic_vector(7 downto 0);
-
-        -- data -> one_in_three_out
-        wr_arg_p : in  std_logic;  -- DATA écrit un argument
-        wok_arg_p: out std_logic  -- prêt à recevoir
-
-    );
-    end COMPONENT;
-
-    COMPONENT two_in_one_out_for_cordic
-    port(
-        ck      : in  std_logic;
-        raz     : in  std_logic;
-
-        nx_p    : in  std_logic_vector(7 downto 0);
-        ny_p    : in  std_logic_vector(7 downto 0);
-
-        -- interface  data -> tioo
-        rd_res_p    : in  std_logic;
-        rok_res_p   : out std_logic;
-
-        data_out  : out std_logic_vector(7 downto 0)
-    );
-    end COMPONENT; 
-
 BEGIN
-
-    oito : one_in_three_out_for_cordic
-    PORT MAP(
-        ck     => ck,
-        raz    => nreset,
-
-        wr_arg_p => wr_axy_p,
-        data_in => data_in,
-        wok_arg_p => wok_axy_p,
-        
-        a_p    => a_x, --oito -> net ok
-        x_p    => x_p, --oito -> net ok 
-        y_p    => y_p, --oito -> net ok
-    );
-
-    tioo : two_in_one_out_for_cordic
-    PORT MAP(
-        ck     => ck,
-        raz    => nreset,
-        
-        nx_p    => nx_p, --in_net ok 
-        ny_p    => ny_p, --in_net ok
-        data_out => data_out_p, --out_data_tioo ok
-        
-        rd_res_p => rd_nxy_p, --out_data TODO
-        rok_res_p => rok_nxy_p  --in_data TODO 
-    );
 
 -------------------------------------------------------------------------------
 -- FSM

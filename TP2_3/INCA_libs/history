@@ -1,0 +1,6 @@
+//
+// File created by:  irun
+// Do not modify this file
+
+s1::(13Jan2026:19:05:48):( irun reset_sync.vhd reset_sync_tb.vhdl )
+s2::(13Jan2026:19:06:54):( irun reset_sync.vhd reset_sync_tb.vhdl -top sync_reset )

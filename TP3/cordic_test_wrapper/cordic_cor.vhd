@@ -3,20 +3,22 @@ PORT(
     ck          : IN  std_logic;
     raz         : IN  std_logic;
 
-    wr_axy_p    : IN  std_logic;
-    data_in_p         : IN  std_logic_vector(7 DOWNTO 0);
-    wok_axy_p   : OUT std_logic;
+    wr_arg_p    : IN  std_logic;
+    data_in_p   : IN  std_logic_vector(7 DOWNTO 0);
+    wok_arg_p   : OUT std_logic;
 
-    rd_nxy_p    : IN  std_logic;
-    data_out_p        : OUT std_logic_vector(7 DOWNTO 0);
-    rok_nxy_p   : OUT std_logic
+    rd_res_p    : IN  std_logic;
+    data_out_p  : OUT std_logic_vector(7 DOWNTO 0);
+    rok_res_p   : OUT std_logic
 );
 END cordic_cor;
 
 ARCHITECTURE vhd OF cordic_cor IS
 
-    signal a_x, x_p, y_p : std_logic_vector(7 downto 0);
+    signal a_p, x_p, y_p : std_logic_vector(7 downto 0);
     signal nx_p, ny_p : std_logic_vector(15 downto 0);
+    signal wr_axy_p, wok_axy_p : std_logic;
+    signal rd_nxy_p, rok_nxy_p : std_logic;
 
     SIGNAL
         n_get,  get,                -- get coordinates and angle
@@ -36,7 +38,7 @@ ARCHITECTURE vhd OF cordic_cor IS
     SIGNAL
         n_i, i                      -- compteur de recherche dichotomique
     : std_logic_vector(2 downto 0);
-
+    
     SIGNAL
         n_x,    x,                  -- coordonnée x
         n_y,    y,                  -- coordonnée y
@@ -56,7 +58,7 @@ ARCHITECTURE vhd OF cordic_cor IS
     : std_logic_vector(15 downto 0);
 
 
-    COMPONENT one_in_three_out_for_cordic
+    COMPONENT one_in_three_out
     port(
         ck       : in  std_logic;
         raz      : in  std_logic;
@@ -69,12 +71,15 @@ ARCHITECTURE vhd OF cordic_cor IS
 
         -- data -> one_in_three_out
         wr_arg_p : in  std_logic;  -- DATA écrit un argument
-        wok_arg_p: out std_logic  -- prêt à recevoir
+        wok_arg_p: out std_logic;  -- prêt à recevoir
+
+        wr_axy_p : out std_logic;  -- écrit A,X,Y
+        wok_axy_p: in  std_logic   -- net prêt
 
     );
     end COMPONENT;
 
-    COMPONENT two_in_one_out_for_cordic
+    COMPONENT two_in_one_out
     port(
         ck      : in  std_logic;
         raz     : in  std_logic;
@@ -86,37 +91,45 @@ ARCHITECTURE vhd OF cordic_cor IS
         rd_res_p    : in  std_logic;
         rok_res_p   : out std_logic;
 
-        data_out  : out std_logic_vector(7 downto 0)
+        data_out  : out std_logic_vector(7 downto 0);
+        rd_nxy_p    : out std_logic;
+        rok_nxy_p : in  std_logic
     );
     end COMPONENT; 
 
 BEGIN
 
-    oito : one_in_three_out_for_cordic
+    oito : one_in_three_out
     PORT MAP(
         ck     => ck,
-        raz    => nreset,
+        raz    => raz,
 
-        wr_arg_p => wr_axy_p,
-        data_in => data_in,
-        wok_arg_p => wok_axy_p,
+        wr_arg_p => wr_arg_p,
+        data_in => data_in_p,
+        wok_arg_p => wok_arg_p,
         
-        a_p    => a_x, --oito -> net ok
+        a_p    => a_p, --oito -> net ok
         x_p    => x_p, --oito -> net ok 
         y_p    => y_p, --oito -> net ok
+
+        wr_axy_p => wr_axy_p, --out_net ok
+        wok_axy_p => wok_axy_p  --in_net ok
     );
 
-    tioo : two_in_one_out_for_cordic
+    tioo : two_in_one_out
     PORT MAP(
         ck     => ck,
-        raz    => nreset,
+        raz    => raz,
         
         nx_p    => nx_p, --in_net ok 
         ny_p    => ny_p, --in_net ok
         data_out => data_out_p, --out_data_tioo ok
         
-        rd_res_p => rd_nxy_p, --out_data TODO
-        rok_res_p => rok_nxy_p  --in_data TODO 
+        rd_res_p => rd_res_p, --out_data TODO
+        rok_res_p => rok_res_p,  --in_data TODO 
+
+        rd_nxy_p   => rd_nxy_p, --out_data TODO
+        rok_nxy_p  => rok_nxy_p  --in_data TODO 
     );
 
 -------------------------------------------------------------------------------

@@ -1,0 +1,1305 @@
+Checking out license 'RTL_Compiler_Ultra'... (0 seconds elapsed)
+License 'RTL_Compiler_Ultra' checkout failed.
+Checking out license 'RTL_Compiler_Physical'... (1 second elapsed)
+License 'RTL_Compiler_Physical' checkout failed.
+Checking out license 'RTL_Compiler_Verification'... (0 seconds elapsed)
+License 'RTL_Compiler_Verification' checkout failed.
+Checking out license 'RTL_Compiler_L'... (0 seconds elapsed)
+License 'RTL_Compiler_L' checkout failed.
+Checking out license 'Virtuoso_Digital_Implem'... (0 seconds elapsed)
+License 'Virtuoso_Digital_Implem' checkout failed.
+Checking out license 'Virtuoso_Digital_Implem_XL'... (1 second elapsed)
+Finished loading tool scripts (4 seconds elapsed)
+
+                                                                             Cadence Encounter(R) RTL Compiler
+                                                                Version RC13.12 - v13.10-s021_1 (64-bit), built Jun  5 2014
+
+
+Copyright notice: Copyright 1997-2014 Cadence Design Systems, Inc. All rights reserved worldwide. 
+
+WARNING: This version of RC is 4240 days old.
+         Visit downloads.cadence.com for the latest release of RC.
+
+
+===========================================================================================================================================================================================
+                                                                       Welcome to Cadence Encounter(R) RTL Compiler
+
+Notice: Upcoming end of support for Linux 32-bit.
+Support for Linux 32-bit will be discontinued starting with the RC 13.1 release.
+To ensure continued access to the forthcoming releases, RC 13.1 and up, you are
+advised to start the transitioning to Linux 64-bit.
+
+Here is a quick introduction on how to access our product information.  
+If you do not want this message to appear in the future, create an 
+initialization file (an empty file will do) in your home directory 
+called '~/.cadence/.synth_init'.
+
+  To access the product documentation in HTML and PDF, type 'cdnshelp'
+    at the system prompt. 
+  For a list of available commands, type 'help'. 
+  To view a man page for a command, type 'man <commandName>'.
+  To view a man page for an error message, type 'man <messageID>'.
+  For a list of all possible object types, type 'get_attribute -help'.
+  For a list of all available attributes by object type, type
+    'get_attribute * <object_type> -help'.
+  For a list of all attributes for every object type, type
+    'get_attribute * * -help'
+  To list only writable attributes, substitute 'get_attribute' with
+    'set_attribute'.
+  To get a template script to run RTL Compiler, use the 'write_template'
+    command.
+  To get a template script to run Conformal based on the current RTL
+    Compiler session, use the 'write_do_lec' command.
+  
+  Obsolete attributes in the current tool version.
+  To learn more, type 'get_attribute -help <attribute> <object>'.
+
+            object  attribute
+            ------  ---------
+       cpf_command  synthesize_complex_expressions
+    cpf_command_id  current_set_instance_macro
+    cpf_command_id  current_set_instance_module
+    cpf_command_id  done_in_apply_cpf
+    cpf_command_id  done_in_write_cpf
+    cpf_command_id  macro_definition_command
+    cpf_command_id  rc_command
+            design  dp_perform_rewriting_operations
+            design  lp_clock_gating_hierarchical
+            design  lp_map_to_srpg_cells
+            design  lp_optimize_dynamic_power_first
+            design  lp_srpg_pg_driver
+          instance  black_box
+          instance  dft_inherited_dont_scan
+          instance  lp_map_to_srpg_cells
+          instance  lp_map_to_srpg_type
+          instance  lp_srpg_pg_driver
+           libcell  black_box
+           libcell  location
+               net  logic0_driven
+               net  logic1_driven
+              root  auto_ungroup_min_effort
+              root  degenerate_complex_seqs
+              root  disable_power_mode
+              root  dp_perform_csa_operations
+              root  dp_perform_rewriting_operations
+              root  dp_perform_sharing_operations
+              root  dp_perform_speculation_operations
+              root  driver_for_unloaded_ports
+              root  enable_parallel_iopt
+              root  enc_in_place_opt
+              root  enc_opt_drv
+              root  exact_match_seqs_async_controls
+              root  hdl_flatten_array
+              root  hdl_old_reg_naming
+              root  hdl_reg_naming_style_scalar
+              root  hdl_reg_naming_style_vector
+              root  hdl_trim_target_index
+              root  ignore_unknown_embedded_commands
+              root  lbr_async_clr_pre_seqs_interchangable
+              root  lp_clock_gating_hierarchical
+              root  lp_insert_clock_gating_incremental
+              root  lp_iopt_mvt_multipass_flow
+              root  lp_multi_vt_optimization_effort
+              root  ovf_mode
+              root  ovf_verification_directory
+              root  ple_parameter_source_priority
+              root  power_optimization_effort
+              root  pqos_virtual_buffer
+              root  retime_preserve_state_points
+              root  wlec_env_var
+              root  wlec_flat_r2n
+              root  wlec_no_exit
+              root  wlec_old_lp_ec_flow
+              root  wlec_save_ssion
+              root  wlec_sim_lib
+              root  wlec_sim_plus_lib
+              root  wlec_skip_iso_check_hier_compare
+              root  wlec_skip_lvl_check_hier_compare
+              root  wlec_verbose
+         subdesign  allow_csa_subdesign
+         subdesign  allow_sharing_subdesign
+         subdesign  allow_speculation_subdesign
+         subdesign  auto_ungroup_ok
+         subdesign  dp_perform_rewriting_operations
+         subdesign  lp_clock_gating_hierarchical
+
+Send us feedback at rc_feedback@cadence.com.
+===========================================================================================================================================================================================
+
+Sourcing './TP2_3.tcl' (Tue Jan 13 20:18:33 +0100 2026)...
+  Setting attribute of root '/': 'lib_search_path' = /users/soft/techno/dev/grenoble/hcmos9gp_920/CORE9GPHS_SNPS_AVT_4.1.a/SNPS/bc_1.32V_0C_wc_1.08V_125C/PHS/
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.200000, 1.080000, 125.000000) in library 'CORE9GPHS_Worst.lib'.
+        : The nominal operating condition represents either the nominal PVT values if specified in the library source, or the default PVT values (1.0, 1.0, 1.0).
+
+  Message Summary for Library CORE9GPHS_Worst.lib:
+  ************************************************
+  An unsupported construct was detected in this library. [LBR-40]: 3
+  Created nominal operating condition. [LBR-412]: 1
+  ************************************************
+ 
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2ABHSP/Z'.
+        : Although the delay model for this library is table lookup, it appears that linear delay model parameters are also present.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2ABHSX4/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2ABHSX6/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2ABHSX8/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2BHS/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2BHSP/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2BHSX4/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2BHSX6/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2BHSX8/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2HS/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2HSP/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2HSX4/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2HSX6/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN2HSX8/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN3ABCHSP/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN3ABCHSX4/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN3ABCHSX6/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN3ABCHSX8/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN3BCHS/Z'.
+Warning : Timing attributes intrinsic_rise and intrinsic_fall are not expected and will be ignored. [LBR-21]
+        : The library pin involved is 'AN3BCHSP/Z'.
+  Setting attribute of root '/': 'library' = CORE9GPHS_Worst.lib
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHS'.
+        : Rising edge-triggered sequential cells should have rising hold/setup checks and falling edge-triggered sequential cells should have falling hold/setup checks.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1QHSX8'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHS'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'QN' has the 'rising_edge' value in library cell 'LD1QNHSX8'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHS'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'G' and 'D' has the 'setup_falling' value whereas the 'timing_type' for the timing arc between pins 'G' and 'Q' has the 'rising_edge' value in library cell 'LD1TQHSX8'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'Q' has the 'falling_edge' value in library cell 'LD2QHS'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'Q' has the 'falling_edge' value in library cell 'LD2QHSP'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'Q' has the 'falling_edge' value in library cell 'LD2QHSX4'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'Q' has the 'falling_edge' value in library cell 'LD2QHSX6'.
+Warning : Mismatch in 'timing_type' values for setup and clock timing arcs. [LBR-420]
+        : The 'timing_type' for the setup check between pins 'GN' and 'D' has the 'setup_rising' value whereas the 'timing_type' for the timing arc between pins 'GN' and 'Q' has the 'falling_edge' value in library cell 'LD2QHSX8'.
+Info    : Found unusable library cells. [LBR-415]
+        : Library: 'CORE9GPHS_Worst.lib', Total cells: 693, Unusable cells: 25.
+	List of unusable cells: 'BK1HSX05 BK1SHSX05 BTSHS FD9QHS FD9QHSP FD9QHSX4 FD9SQHS FD9SQHSP FD9SQHSX4 ITSHS ... and others.'
+        : For more information, refer to 'Cells Identified as Unusable' in the RC User Guide. The number of unusable cells that is listed depends on the setting of the 'information_level' root attribute. If set to a value less than 6, the list is limited to 10 unusable cells. If set to a value equal to or higher than 6, all unusable cells are listed.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'MIPS_32_1P_MUL_DIV' from file '/users/enseig/lyautey/M2_SESI/MOCCA/PART2/TP2_3/mips_32_1p_mul_div_async.vhd'.
+Info    : Binding to architecture. [ELAB-5]
+        : Elaborating architecture 'BEHAVIOURAL' for entity 'MIPS_32_1P_MUL_DIV'.
+Warning : Using default parameter value for module elaboration. [CDFG-818]
+        : Elaborating block 'MIPS_32_1P_MUL_DIV' with default parameters value.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/lyautey/M2_SESI/MOCCA/PART2/TP2_3/mips_32_1p_mul_div_async.vhd' on line 2181.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/lyautey/M2_SESI/MOCCA/PART2/TP2_3/mips_32_1p_mul_div_async.vhd' on line 2216.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/lyautey/M2_SESI/MOCCA/PART2/TP2_3/mips_32_1p_mul_div_async.vhd' on line 2577.
+Warning : Unreachable statements for case item. [CDFG-472]
+        : Case item 'others' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/lyautey/M2_SESI/MOCCA/PART2/TP2_3/mips_32_1p_mul_div_async.vhd' on line 3940.
+Warning : Removing unused register. [CDFG-508]
+        : Removing unused flip-flop register 'I_RM' in module 'MIPS_32_1P_MUL_DIV' in file '/users/enseig/lyautey/M2_SESI/MOCCA/PART2/TP2_3/mips_32_1p_mul_div_async.vhd' on line 5460.
+        : A flip-flop or latch that was inferred for an unused signal or variable was removed. Use 'set_attribute hdl_preserve_unused_registers true /' to preserve the flip-flop or latch.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'MIPS_32_1P_MUL_DIV'.
+  Checking the design.
+
+ 	 Check Design Report
+	 -------------------- 
+
+ Summary
+ ------- 
+
+                Name                 Total 
+-------------------------------------------
+Unresolved References                    0 
+Empty Modules                            0 
+Unloaded Port(s)                         0 
+Unloaded Sequential Pin(s)              37 
+Assigns                                 94 
+Undriven Port(s)                         0 
+Undriven Leaf Pin(s)                     0 
+Undriven hierarchical pin(s)             0 
+Multidriven Port(s)                      0 
+Multidriven Leaf Pin(s)                  0 
+Multidriven hierarchical Pin(s)          0 
+Multidriven unloaded net(s)              0 
+Constant Port(s)                         1 
+Constant Leaf Pin(s)                     0 
+Constant hierarchical Pin(s)          7932 
+Preserved leaf instance(s)               0 
+Preserved hierarchical instance(s)       0 
+Libcells with no LEF cell                0 
+Physical (LEF) cells with no libcell     0 
+Subdesigns with long module name         0 
+Physical only instance(s)                0 
+
+  Done Checking the design.
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 47 hierarchical instances.
+        : Optimizations such as constant propagation or redundancy removal could change the connections so an instance does not drive any primary outputs anymore. To see the list of deleted instances, set the 'information_level' attribute to 2 or above.
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 98 sequential instances.
+Mapping MIPS_32_1P_MUL_DIV to gates.
+Multi-threaded constant propagation [1|1] ...
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'SASVIOL_RE_reg'. The constant is '0'.
+        : The value used to replace the flop can be set by the root attribute 'optimize_seq_x_to'. The assigned constant might also conflict with the simulation and/or verification setup.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[23]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[22]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[21]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[20]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[19]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[18]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[17]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[16]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[15]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[14]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[13]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[12]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S04MUL2_RE_reg[0]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[15]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[14]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[13]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[12]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S03MUL2_RE_reg[0]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S02MUL2_RE_reg[0]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S01MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S01MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S01MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'S01MUL2_RE_reg[0]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'LASVIOL_RE_reg'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[30]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[29]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[28]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[27]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[26]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[25]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[24]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[23]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[22]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[21]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[20]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[19]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[18]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[17]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[16]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[15]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[14]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[13]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[12]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C07MUL1_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[22]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[21]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[20]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[19]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[18]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[17]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[16]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[15]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[14]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[13]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[12]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C05MUL1_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[27]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[26]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[25]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[24]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[23]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[22]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[21]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[20]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[19]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[18]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[17]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[16]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[15]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[14]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[13]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[12]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C04MUL2_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[19]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[18]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[17]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[16]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[15]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[14]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[13]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[12]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C03MUL2_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[9]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[8]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[12]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C02MUL2_RE_reg[10]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C01MUL2_RE_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C01MUL2_RE_reg[6]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C01MUL2_RE_reg[5]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C01MUL2_RE_reg[4]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C01MUL2_RE_reg[3]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C01MUL2_RE_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C01MUL2_RE_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'IASVIOL_RI_reg'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[7]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[30]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[26]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[25]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[24]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[21]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[20]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[19]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[18]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[17]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[16]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[0]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C00MUL7_RM_reg[1]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'EBASE_RM_reg[11]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'EBASE_RM_reg[10]'. The constant is '0'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CPNBR_RD_reg[0]'.
+        : This optimization was enabled by the root attribute 'optimize_constant_0_flops'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C00MUL7_RM_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C00MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'SASVIOL_RE_reg'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[23]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[22]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[21]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[20]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[19]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[18]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[17]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[16]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[15]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[14]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[13]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[12]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S04MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[15]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[14]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[13]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[12]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S03MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S02MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S01MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S01MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S01MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'S01MUL2_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'LASVIOL_RE_reg'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[30]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[29]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[28]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[27]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[26]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[25]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[24]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[23]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[22]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[21]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[20]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[19]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[18]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[17]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[16]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[15]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[14]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[13]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[12]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C07MUL1_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[22]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[21]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[20]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[19]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[18]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[17]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[16]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[15]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[14]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[13]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[12]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C05MUL1_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[27]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[26]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[25]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[24]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[23]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[22]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[21]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[20]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[19]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[18]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[17]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[16]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[15]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[14]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[13]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[12]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C04MUL2_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[19]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[18]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[17]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[16]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[15]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[14]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[13]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[12]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C03MUL2_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[9]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[8]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[12]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C02MUL2_RE_reg[10]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[6]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[5]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[4]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[3]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C01MUL2_RE_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'IASVIOL_RI_reg'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[7]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[30]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[26]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[25]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[24]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[21]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[20]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[19]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[18]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[17]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[16]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C00MUL7_RM_reg[1]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'EBASE_RM_reg[11]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'EBASE_RM_reg[10]'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CPNBR_RE_reg[0]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'IASVIOL_RD_reg'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C00MUL7_RM_reg[2]'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'C00MUL7_RM_reg[3]'. The constant is '0'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CPNBR_RE_reg[0]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'IASVIOL_RD_reg'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C00MUL7_RM_reg[2]'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'C00MUL7_RM_reg[3]'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'IASVIOL_RE_reg'. The constant is '0'.
+Info    : Replacing the synchronous part of an always feeding back flip-flop with a logic constant. [GLO-45]
+        : The instance is 'CAUSE_RX_reg[28]'. The constant is '0'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'IASVIOL_RE_reg'.
+Info    : Replacing a flip-flop with a logic constant 0. [GLO-12]
+        : The instance is 'CAUSE_RX_reg[28]'.
+Info    : Deleting instances not driving any primary outputs. [GLO-34]
+        : Deleting 206 sequential instances.
+ 
+Global mapping target info
+==========================
+Cost Group 'default' target slack: Unconstrained
+
+ 
+Global mapping status
+=====================
+                                    Worst 
+                           Total  Weighted
+Operation                   Area  Neg Slk Worst Path
+-------------------------------------------------------------------------------
+ global_map               223841        0  N/A
+ 
+Global incremental target info
+==============================
+Cost Group 'default' target slack: Unconstrained
+
+ 
+Global incremental optimization status
+======================================
+                                    Worst 
+                           Total  Weighted
+Operation                   Area  Neg Slk Worst Path
+-------------------------------------------------------------------------------
+ global_incr              219901        0  N/A
+Info    : 'Conformal LEC12.1-p100' or later builds is recommended for verification. [WDO-600]
+        : The use of 'Conformal LEC12.1-p100' or later builds is recommended to get better verification results.
+Generating a dofile for design 'MIPS_32_1P_MUL_DIV' in file 'fv/MIPS_32_1P_MUL_DIV/rtl_to_g1.do' ...
+Info    : Forcing flat compare. [WDO-212]
+        : No hierarchies found in design.
+ 
+Incremental optimization status
+===============================
+                                    Worst     Total - - - - DRC Totals - - - -
+                           Total  Weighted     Neg      Max       Max     Max  
+Operation                   Area  Neg Slk     Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_iopt                219901        0         0         0        0     4497
+ 
+Incremental optimization status (pre-loop)
+==========================================
+                                    Worst     Total - - - - DRC Totals - - - -
+                           Total  Weighted     Neg      Max       Max     Max  
+Operation                   Area  Neg Slk     Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ simp_cc_inputs           219869        0         0         0        0     4495
+ 
+Incremental optimization status
+===============================
+                                    Worst     Total - - - - DRC Totals - - - -
+                           Total  Weighted     Neg      Max       Max     Max  
+Operation                   Area  Neg Slk     Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_delay               219869        0         0         0        0     4495
+ init_drc                 219869        0         0         0        0     4495
+ incr_max_fo              227381        0         0         0        0        0
+ init_tns                 227381        0         0         0        0        0
+ init_area                227381        0         0         0        0        0
+ rem_buf                  227284        0         0         0        0        0
+ rem_inv                  223490        0         0         0        0        0
+ merge_bi                 223155        0         0         0        0        0
+ rem_inv_qb               223155        0         0         0        0        0
+ io_phase                 223145        0         0         0        0        0
+ gate_comp                223143        0         0         0        0        0
+ glob_area                222840        0         0         0        0        0
+ area_down                221196        0         0         0        0        0
+ rem_inv                  221186        0         0         0        0        0
+ merge_bi                 221186        0         0         0        0        0
+ 
+Incremental optimization status
+===============================
+                                    Worst     Total - - - - DRC Totals - - - -
+                           Total  Weighted     Neg      Max       Max     Max  
+Operation                   Area  Neg Slk     Slack    Trans      Cap   Fanout 
+-------------------------------------------------------------------------------
+ init_delay               221186        0         0         0        0        0
+ init_drc                 221186        0         0         0        0        0
+ init_area                221186        0         0         0        0        0
+ rem_inv                  221182        0         0         0        0        0
+ area_down                221176        0         0         0        0        0
+
+  Done mapping MIPS_32_1P_MUL_DIV
+  Synthesis succeeded.
+============================================================
+  Generated by:           Encounter(R) RTL Compiler RC13.12 - v13.10-s021_1
+  Generated on:           Jan 13 2026  08:22:56 pm
+  Module:                 MIPS_32_1P_MUL_DIV
+  Technology library:     CORE9GPHS 
+  Operating conditions:   _nominal_ (balanced_tree)
+  Wireload mode:          enclosed
+  Area mode:              timing library
+============================================================
+
+     Instance       Cells  Cell Area  Net Area  Total Area     Wireload        
+-------------------------------------------------------------------------------
+MIPS_32_1P_MUL_DIV  14075     221176         0      221176 area_216Kto240K (S) 
+
+ (S) = wireload was automatically selected
+============================================================
+  Generated by:           Encounter(R) RTL Compiler RC13.12 - v13.10-s021_1
+  Generated on:           Jan 13 2026  08:22:56 pm
+  Module:                 MIPS_32_1P_MUL_DIV
+  Technology library:     CORE9GPHS 
+  Operating conditions:   _nominal_ (balanced_tree)
+  Wireload mode:          enclosed
+  Area mode:              timing library
+============================================================
+
+-------------------------------------------------------------------------------
+Sequential clock pins without clock waveform
+
+The following sequential clock pins have no clock waveform driving them.  No    
+timing constraints will be derived for paths leading to or from these pins.     
+
+/designs/MIPS_32_1P_MUL_DIV/instances_seq/BADVA_RX_reg[0]/pins_in/CP
+/designs/MIPS_32_1P_MUL_DIV/instances_seq/BADVA_RX_reg[10]/pins_in/CP
+/designs/MIPS_32_1P_MUL_DIV/instances_seq/BADVA_RX_reg[11]/pins_in/CP
+  ... 2873 other warnings in this category.
+ Use the -verbose option for more details.
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Inputs without clocked external delays
+
+The following primary inputs have no clocked external delays.  As a result the  
+timing paths leading from the ports have no timing constraints derived from     
+clock waveforms.  The'external_delay' command is used to create new external    
+delays.                                                                         
+
+/designs/MIPS_32_1P_MUL_DIV/ports_in/CK
+/designs/MIPS_32_1P_MUL_DIV/ports_in/CPU_NBR[0]
+/designs/MIPS_32_1P_MUL_DIV/ports_in/CPU_NBR[1]
+  ... 85 other warnings in this category.
+ Use the -verbose option for more details.
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Outputs without clocked external delays
+
+The following primary outputs have no clocked external delays.  As a result the 
+timing paths leading to the ports have no timing constraints derived from clock 
+waveforms.  The'external_delay' command is used to create new external delays.  
+
+/designs/MIPS_32_1P_MUL_DIV/ports_out/D_ACK
+/designs/MIPS_32_1P_MUL_DIV/ports_out/D_A[10]
+/designs/MIPS_32_1P_MUL_DIV/ports_out/D_A[11]
+  ... 113 other warnings in this category.
+ Use the -verbose option for more details.
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Inputs without external driver/transition
+
+The following primary inputs have no external driver or input transition set.   
+As a result the transition on the ports will be assumed as zero. The            
+'external_driver' attribute is used to add and external driver or the           
+'fixed_slew' attribute to add an external transition.                           
+
+/designs/MIPS_32_1P_MUL_DIV/ports_in/CK
+/designs/MIPS_32_1P_MUL_DIV/ports_in/CPU_NBR[0]
+/designs/MIPS_32_1P_MUL_DIV/ports_in/CPU_NBR[1]
+  ... 85 other warnings in this category.
+ Use the -verbose option for more details.
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+Outputs without external load
+
+The following primary outputs have no external load set. As a result the load   
+on the ports will be assumed as zero. The 'external_pin_cap' attribute is used  
+to add and external pin cap.                                                    
+
+/designs/MIPS_32_1P_MUL_DIV/ports_out/D_ACK
+/designs/MIPS_32_1P_MUL_DIV/ports_out/D_A[10]
+/designs/MIPS_32_1P_MUL_DIV/ports_out/D_A[11]
+  ... 113 other warnings in this category.
+ Use the -verbose option for more details.
+-------------------------------------------------------------------------------
+
+
+Lint summary
+ Unconnected/logic driven clocks                                  0
+ Sequential data pins driven by a clock signal                    0
+ Sequential clock pins without clock waveform                  2876
+ Sequential clock pins with multiple clock waveforms              0
+ Generated clocks without clock waveform                          0
+ Generated clocks with incompatible options                       0
+ Generated clocks with multi-master clock                         0
+ Paths constrained with different clocks                          0
+ Loop-breaking cells for combinational feedback                   0
+ Nets with multiple drivers                                       0
+ Timing exceptions with no effect                                 0
+ Suspicious multi_cycle exceptions                                0
+ Pins/ports with conflicting case constants                       0
+ Inputs without clocked external delays                          88
+ Outputs without clocked external delays                        116
+ Inputs without external driver/transition                       88
+ Outputs without external load                                  116
+ Exceptions with invalid timing start-/endpoints                  0
+
+                                                  Total:       3284
+
+Statistics for commands executed by read_sdc:
+ "create_clock"            - successful      1 , failed      0 (runtime  0.00)
+ "get_ports"               - successful      1 , failed      0 (runtime  0.00)
+Total runtime 0
+rc:/> 
+rc:/> 

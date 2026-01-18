@@ -1,0 +1,10 @@
+# Version:1.0 MMMC View Definition File
+# Do Not Remove Above Line
+create_library_set -name libsWC -timing {../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/CLOCK9GPHS_SNPS_AVT_4.1/SNPS/bc_1.32V_0C_wc_1.08V_125C/PHS/CLOCK9GPHS_Worst.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/CORE9GPHS_SNPS_AVT_4.1.a/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/CORE9GPHS_Worst.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/PR9M6_SNPS_AVT_2.1.a/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/PR9M6_Worst.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/IOLIB_65_M6_LL_HCMOS9GP_SNPS_AVT_7.1.a/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/IOLIB_65_M6_LL_Worst.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/IOLIB_65_3V3_M6_LL_50A_HCMOS9GP_SNPS_AVT_7.1/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/IOLIB_65_3V3_M6_LL_50A_Worst.lib}
+create_library_set -name libsBC -timing {../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/CLOCK9GPHS_SNPS_AVT_4.1/SNPS/bc_1.32V_0C_wc_1.08V_125C/PHS/CLOCK9GPHS_Best.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/CORE9GPHS_SNPS_AVT_4.1.a/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/CORE9GPHS_Best.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/PR9M6_SNPS_AVT_2.1.a/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/PR9M6_Best.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/IOLIB_65_M6_LL_HCMOS9GP_SNPS_AVT_7.1.a/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/IOLIB_65_M6_LL_Best.lib ../../../../../../soft/techno/dev/grenoble/hcmos9gp_920/IOLIB_65_3V3_M6_LL_50A_HCMOS9GP_SNPS_AVT_7.1/SNPS/bc_1.32V_m40C_wc_1.08V_125C/PHS/IOLIB_65_3V3_M6_LL_50A_Best.lib}
+create_constraint_mode -name const -sdc_files {mips.sdc}
+create_delay_corner -name cornerWC -library_set {libsWC}
+create_delay_corner -name cornerBC -library_set {libsBC}
+create_analysis_view -name setup -constraint_mode {const} -delay_corner {cornerWC}
+create_analysis_view -name hold -constraint_mode {const} -delay_corner {cornerBC}
+set_analysis_view -setup {setup} -hold {hold}

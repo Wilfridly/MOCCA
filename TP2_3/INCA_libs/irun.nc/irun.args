@@ -1,0 +1,8 @@
+//
+// File created by:  irun
+// Do not modify this file
+//
+reset_sync.vhd
+reset_sync_tb.vhdl
+-top
+sync_reset

@@ -1,0 +1,7 @@
+v 4
+file . "reset_sync.vhdl" "6aa7e1e817ca094b6713e68bcc257cec4288179f" "20260113183729.971":
+  entity reset_sync at 1( 0) + 0 on 47;
+  architecture vhd of reset_sync at 12( 266) + 0 on 48;
+file . "tb_reset_sync.vhdl" "19e6ba5b5e87f580fae07739f0f151279031eec1" "20260113183730.027":
+  entity tb_reset_sync at 1( 0) + 0 on 49;
+  architecture sim of tb_reset_sync at 7( 88) + 0 on 50;
