@@ -54,6 +54,20 @@ ARCHITECTURE vhd OF cordic_tb IS
 
 BEGIN
 
+    core : cordic_cor
+    PORT MAP(
+        ck         => ck,
+        raz        => nreset,
+
+        wr_axy_p   => wr_axy,
+        data_in_p  => data_in,
+        wok_axy_p  => wok_axy,
+
+        rd_nxy_p   => rd_nxy,
+        data_out_p  => data_out,
+        rok_nxy_p  => rok_nxy
+    );
+
     data : cordic_data
     PORT MAP(
         ck          => ck      ,
@@ -71,18 +85,6 @@ BEGIN
     );
 
 
-    core : cordic_cor
-    PORT MAP(
-        ck         => ck,
-        raz        => nreset,
 
-        wr_axy_p   => wr_axy,
-        data_in_p  => data_in,
-        wok_axy_p  => wok_axy,
-
-        rd_nxy_p   => rd_nxy,
-        data_out_p  => data_out,
-        rok_nxy_p  => rok_nxy
-    );
 
 END vhd;
