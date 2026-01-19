@@ -3,7 +3,9 @@ port(
     ck       : in  std_logic;
     raz      : in  std_logic;
 
+    wr_arg_p : in  std_logic;  -- DATA écrit un argument
     data_in  : in  std_logic_vector(7 downto 0);
+    wok_arg_p: out std_logic;  -- prêt à recevoir
 
     -- opérandes en sortie
     a_p      : out std_logic_vector(7 downto 0);
@@ -11,8 +13,6 @@ port(
     y_p      : out std_logic_vector(7 downto 0);
 
     -- interface DATA -> one_in_three_out
-    wr_arg_p : in  std_logic;  -- DATA écrit un argument
-    wok_arg_p: out std_logic;  -- prêt à recevoir
 
     -- interface one_in_three_out -> NET
     wr_axy_p : out std_logic;  -- écrit A,X,Y

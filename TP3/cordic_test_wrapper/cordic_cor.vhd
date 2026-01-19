@@ -3,21 +3,20 @@ PORT(
     ck          : IN  std_logic;
     raz         : IN  std_logic;
 
-    wr_arg_p    : IN  std_logic;
-    data_in_p   : IN  std_logic_vector(7 DOWNTO 0);
-    wok_arg_p   : OUT std_logic;
+    wr_axy_p    : IN  std_logic;
+    a_p         : IN  std_logic_vector(7 DOWNTO 0);
+    x_p         : IN  std_logic_vector(7 DOWNTO 0);
+    y_p         : IN  std_logic_vector(7 DOWNTO 0);
+    wok_axy_p   : OUT std_logic;
 
-    rd_res_p    : IN  std_logic;
-    data_out_p  : OUT std_logic_vector(7 DOWNTO 0);
-    rok_res_p   : OUT std_logic
+    rd_nxy_p    : IN  std_logic;
+    nx_p        : OUT std_logic_vector(7 DOWNTO 0);
+    ny_p        : OUT std_logic_vector(7 DOWNTO 0);
+    rok_nxy_p   : OUT std_logic
 );
 END cordic_cor;
 
 ARCHITECTURE vhd OF cordic_cor IS
-
-    signal a_p, x_p, y_p : std_logic_vector(7 downto 0);
-    signal nx_p, ny_p : std_logic_vector(15 downto 0);
-
 
     SIGNAL
         n_get,  get,                -- get coordinates and angle
@@ -37,7 +36,7 @@ ARCHITECTURE vhd OF cordic_cor IS
     SIGNAL
         n_i, i                      -- compteur de recherche dichotomique
     : std_logic_vector(2 downto 0);
-    
+
     SIGNAL
         n_x,    x,                  -- coordonnée x
         n_y,    y,                  -- coordonnée y
@@ -56,70 +55,7 @@ ARCHITECTURE vhd OF cordic_cor IS
         x_sra_i, y_sra_i            -- x >> i et y >> i
     : std_logic_vector(15 downto 0);
 
-
-    COMPONENT one_in_three_out
-    port(
-        ck      : in  std_logic;
-        raz     : in  std_logic;
-
-        data_in : in  std_logic_vector(7 downto 0);
-
-        wr_arg  : in  std_logic;  -- écriture / validation
-        wok_arg : out std_logic;  -- prêt
-
-        -- sortie vers CORE
-        a_p     : out std_logic_vector(7 downto 0);
-        x_p     : out std_logic_vector(7 downto 0);
-        y_p     : out std_logic_vector(7 downto 0)
-    );
-    end COMPONENT;
-
-    COMPONENT two_in_one_out
-    port(
-        ck      : in  std_logic;
-        raz     : in  std_logic;
-
-        nx_p    : in  std_logic_vector(7 downto 0);
-        ny_p    : in  std_logic_vector(7 downto 0);
-
-        -- handshake unique DATA <-> CORE
-        rd_res  : in  std_logic;   -- DATA demande
-        rok_res : out std_logic;   -- prêt
-
-        data_out : out std_logic_vector(7 downto 0)
-    );
-    end COMPONENT; 
-
 BEGIN
-
-    oito : one_in_three_out
-    PORT MAP(
-        ck     => ck,
-        raz    => raz,
-
-        wr_arg => wr_arg_p,
-        data_in => data_in_p,
-        wok_arg => wok_arg_p,
-        
-        a_p    => a_p, --oito -> net ok
-        x_p    => x_p, --oito -> net ok 
-        y_p    => y_p --oito -> net ok
-
-    );
-
-    tioo : two_in_one_out
-    PORT MAP(
-        ck     => ck,
-        raz    => raz,
-        
-        nx_p    => nx_p, --in_net ok 
-        ny_p    => ny_p, --in_net ok
-        data_out => data_out_p, --out_data_tioo ok
-        
-        rd_res => rd_res_p, --out_data TODO
-        rok_res => rok_res_p  --in_data TODO 
-
-    );
 
 -------------------------------------------------------------------------------
 -- FSM
@@ -127,12 +63,12 @@ BEGIN
 
     -- FSM transition
 
-    n_get       <= (get  AND NOT wr_arg_p) OR (put  AND rd_res_p);
-    n_norm      <= (get  AND wr_arg_p) OR (norm AND NOT quadrant_0);
+    n_get       <= (get  AND NOT wr_axy_p) OR (put  AND rd_nxy_p);
+    n_norm      <= (get  AND wr_axy_p) OR (norm AND NOT quadrant_0);
     n_calc      <= (norm AND quadrant_0) OR (calc AND NOT (i = 7));
     n_mkc       <= (calc AND (i = 7)) OR (mkc  AND NOT (i = 2));
     n_place     <= (mkc  AND (i = 2));
-    n_put       <= (place) OR (put  AND NOT rd_res_p);
+    n_put       <= (place) OR (put  AND NOT rd_nxy_p);
 
     FSM : PROCESS (ck) begin
     if ((ck = '1') AND NOT(ck'STABLE) )
@@ -157,8 +93,8 @@ BEGIN
 
     -- Sorties issues de l'automate
 
-    wok_arg_p   <=  get;
-    rok_res_p   <=  put;
+    wok_axy_p   <=  get;
+    rok_nxy_p   <=  put;
 
 -------------------------------------------------------------------------------
 -- Compteurs de l'algorithme et calcul de l'angle de rotation@
