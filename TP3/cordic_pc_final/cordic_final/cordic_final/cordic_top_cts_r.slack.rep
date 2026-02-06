@@ -1,0 +1,768 @@
+#  
+#  Avertec Release v3.4p5 (64 bits on Linux 5.14.0-611.26.1.el9_7.x86_64)
+#  argv: /usr/lib64/python3.9/site-packages/coriolis/designflow/scripts/calcCPath.tcl -Target cordic_top_cts_r -SpiceModel mos_tt.lib -SpiceType hspice -VddVoltage 1.8 -ClockSignal clk -VddName vdd -VssName vss -Temperature 25.0 -OsdiDll /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2/libs.tech/verilog-a/psp103/psp103.osdi -OsdiDll /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2/libs.tech/verilog-a/psp103/psp103t.osdi -OsdiDll /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2/libs.tech/verilog-a/psp103/psp103_nqs.osdi 
+#  
+#  User: lyautey
+#  Generation date Wed Feb  4 11:33:13 2026
+#  
+#  Timing figure: cordic_top_cts_r   generated on Wed Feb  4 11:33:13 2026
+#                 supply: 1.8  temperature: 25
+#                 slope thresholds : 0.2 / 0.8
+#                 delay threshold : 0.5
+#  
+
+      *** Setup Slack report (unit:[ns]) ***
+
+ Path     Slack     Data_valid       Data_required               From_node                   To_node                   
+______________________________________________________________________________________________________________________
+    1     1.649     3.525             5.174           S-L    (R) reset                  (R)  subckt_2442_dff_x1._dff_m 
+    2     1.666     3.508             5.174           S-L    (R) reset                  (R)  subckt_2445_dff_x1._dff_m 
+    3     1.666     3.508             5.174           S-L    (R) reset                  (R)  subckt_2447_dff_x1._dff_m 
+    4     1.666     3.508             5.174           S-L    (R) reset                  (R)  subckt_2449_dff_x1._dff_m 
+    5     1.667     3.508             5.175           S-L    (R) reset                  (R)  subckt_2443_dff_x1._dff_m 
+    6     1.667     3.508             5.175           S-L    (R) reset                  (R)  subckt_2448_dff_x1._dff_m 
+    7     1.670     3.508             5.178           S-L    (R) reset                  (R)  subckt_2444_dff_x1._dff_m 
+    8     1.670     3.508             5.178           S-L    (R) reset                  (R)  subckt_2446_dff_x1._dff_m 
+    9     1.680     3.494             5.174           S-L    (F) reset                  (R)  subckt_2442_dff_x1._dff_m 
+   10     1.680     3.455             5.135           S-L    (R) reset                  (F)  subckt_2450_dff_x1._dff_m 
+
+
+Path (1) :  Slack of 1.649
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.322   0.038 0.037 F      0.007          abc_7357_new_n2347                         abc_7357_new_n2347                           <Dg>   
+     3.425   0.103 0.136 R      0.009          abc_7357_auto_rtlil_cc_3381_MuxGate_7212   abc_7357_auto_rtlil_cc_3381_MuxGate_7212      nr3   
+     3.447   0.022 0.021 F      0.006          subckt_2442_dff_x1._u                      subckt_2442_dff_x1._u                         inv   
+     3.525   0.078 0.097 R      0.009    (L)   subckt_2442_dff_x1._dff_m                  subckt_2442_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.525   0.525            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_28._i_n          spare_buffer_28._i_n           inv   
+     5.144   0.022 0.020 R      0.029    (C)   clk_root_bl_tl_0              clk_root_bl_tl_0               inv   
+     5.165   0.021 0.017 F      0.011   (CK)   subckt_2442_dff_x1._clk_n     subckt_2442_dff_x1._clk_n      inv   
+     5.192   0.027 0.027 R      0.008   (CK)   subckt_2442_dff_x1._clk_buf   subckt_2442_dff_x1._clk_buf    inv   
+     5.174  -0.019                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.174   0.174            (total)                                                                             
+
+Path (2) :  Slack of 1.666
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.333   0.050 0.056 F      0.010          abc_7357_new_n2356                         abc_7357_new_n2356                            nd3   
+     3.411   0.077 0.091 R      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7224   abc_7357_auto_rtlil_cc_3381_MuxGate_7224     <Dg>   
+     3.432   0.021 0.017 F      0.006          subckt_2445_dff_x1._u                      subckt_2445_dff_x1._u                         inv   
+     3.508   0.076 0.097 R      0.009    (L)   subckt_2445_dff_x1._dff_m                  subckt_2445_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.508   0.508            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_28._i_n          spare_buffer_28._i_n           inv   
+     5.144   0.022 0.020 R      0.029    (C)   clk_root_bl_tl_0              clk_root_bl_tl_0               inv   
+     5.165   0.021 0.017 F      0.011   (CK)   subckt_2445_dff_x1._clk_n     subckt_2445_dff_x1._clk_n      inv   
+     5.192   0.027 0.027 R      0.008   (CK)   subckt_2445_dff_x1._clk_buf   subckt_2445_dff_x1._clk_buf    inv   
+     5.174  -0.019                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.174   0.174            (total)                                                                             
+
+Path (3) :  Slack of 1.666
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.333   0.050 0.056 F      0.010          abc_7357_new_n2362                         abc_7357_new_n2362                            nd3   
+     3.411   0.077 0.091 R      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7232   abc_7357_auto_rtlil_cc_3381_MuxGate_7232     <Dg>   
+     3.432   0.021 0.017 F      0.006          subckt_2447_dff_x1._u                      subckt_2447_dff_x1._u                         inv   
+     3.508   0.076 0.097 R      0.009    (L)   subckt_2447_dff_x1._dff_m                  subckt_2447_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.508   0.508            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_28._i_n          spare_buffer_28._i_n           inv   
+     5.144   0.022 0.020 R      0.029    (C)   clk_root_bl_tl_0              clk_root_bl_tl_0               inv   
+     5.165   0.021 0.017 F      0.011   (CK)   subckt_2447_dff_x1._clk_n     subckt_2447_dff_x1._clk_n      inv   
+     5.192   0.027 0.027 R      0.008   (CK)   subckt_2447_dff_x1._clk_buf   subckt_2447_dff_x1._clk_buf    inv   
+     5.174  -0.019                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.174   0.174            (total)                                                                             
+
+Path (4) :  Slack of 1.666
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.333   0.050 0.056 F      0.010          abc_7357_new_n2368                         abc_7357_new_n2368                            nd3   
+     3.411   0.077 0.091 R      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7240   abc_7357_auto_rtlil_cc_3381_MuxGate_7240     <Dg>   
+     3.432   0.021 0.017 F      0.006          subckt_2449_dff_x1._u                      subckt_2449_dff_x1._u                         inv   
+     3.508   0.076 0.097 R      0.009    (L)   subckt_2449_dff_x1._dff_m                  subckt_2449_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.508   0.508            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_28._i_n          spare_buffer_28._i_n           inv   
+     5.144   0.022 0.020 R      0.029    (C)   clk_root_bl_tl_0              clk_root_bl_tl_0               inv   
+     5.165   0.021 0.017 F      0.011   (CK)   subckt_2449_dff_x1._clk_n     subckt_2449_dff_x1._clk_n      inv   
+     5.192   0.027 0.027 R      0.008   (CK)   subckt_2449_dff_x1._clk_buf   subckt_2449_dff_x1._clk_buf    inv   
+     5.174  -0.019                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.174   0.174            (total)                                                                             
+
+Path (5) :  Slack of 1.667
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.333   0.050 0.056 F      0.010          abc_7357_new_n2350                         abc_7357_new_n2350                            nd3   
+     3.411   0.077 0.091 R      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7216   abc_7357_auto_rtlil_cc_3381_MuxGate_7216     <Dg>   
+     3.432   0.021 0.017 F      0.006          subckt_2443_dff_x1._u                      subckt_2443_dff_x1._u                         inv   
+     3.508   0.076 0.097 R      0.009    (L)   subckt_2443_dff_x1._dff_m                  subckt_2443_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.508   0.508            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_30._i_n          spare_buffer_30._i_n           inv   
+     5.145   0.023 0.021 R      0.032    (C)   clk_root_bl_tl_2              clk_root_bl_tl_2               inv   
+     5.166   0.021 0.017 F      0.011   (CK)   subckt_2443_dff_x1._clk_n     subckt_2443_dff_x1._clk_n      inv   
+     5.193   0.027 0.027 R      0.008   (CK)   subckt_2443_dff_x1._clk_buf   subckt_2443_dff_x1._clk_buf    inv   
+     5.175  -0.018                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.175   0.175            (total)                                                                             
+
+Path (6) :  Slack of 1.667
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.333   0.050 0.056 F      0.010          abc_7357_new_n2365                         abc_7357_new_n2365                            nd3   
+     3.411   0.077 0.091 R      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7236   abc_7357_auto_rtlil_cc_3381_MuxGate_7236     <Dg>   
+     3.432   0.021 0.017 F      0.006          subckt_2448_dff_x1._u                      subckt_2448_dff_x1._u                         inv   
+     3.508   0.076 0.097 R      0.009    (L)   subckt_2448_dff_x1._dff_m                  subckt_2448_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.508   0.508            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_30._i_n          spare_buffer_30._i_n           inv   
+     5.145   0.023 0.021 R      0.032    (C)   clk_root_bl_tl_2              clk_root_bl_tl_2               inv   
+     5.166   0.021 0.017 F      0.011   (CK)   subckt_2448_dff_x1._clk_n     subckt_2448_dff_x1._clk_n      inv   
+     5.193   0.027 0.027 R      0.008   (CK)   subckt_2448_dff_x1._clk_buf   subckt_2448_dff_x1._clk_buf    inv   
+     5.175  -0.018                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.175   0.175            (total)                                                                             
+
+Path (7) :  Slack of 1.670
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.333   0.050 0.056 F      0.010          abc_7357_new_n2353                         abc_7357_new_n2353                            nd3   
+     3.411   0.077 0.091 R      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7220   abc_7357_auto_rtlil_cc_3381_MuxGate_7220     <Dg>   
+     3.432   0.021 0.017 F      0.006          subckt_2444_dff_x1._u                      subckt_2444_dff_x1._u                         inv   
+     3.508   0.076 0.097 R      0.009    (L)   subckt_2444_dff_x1._dff_m                  subckt_2444_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.508   0.508            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_29._i_n          spare_buffer_29._i_n           inv   
+     5.147   0.025 0.023 R      0.039    (C)   clk_root_bl_tl_1              clk_root_bl_tl_1               inv   
+     5.169   0.022 0.017 F      0.011   (CK)   subckt_2444_dff_x1._clk_n     subckt_2444_dff_x1._clk_n      inv   
+     5.196   0.027 0.027 R      0.008   (CK)   subckt_2444_dff_x1._clk_buf   subckt_2444_dff_x1._clk_buf    inv   
+     5.178  -0.018                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.178   0.178            (total)                                                                             
+
+Path (8) :  Slack of 1.670
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.133   0.021 0.019 R      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.209   0.076 0.099 F      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.284   0.074 0.073 R      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.333   0.050 0.056 F      0.010          abc_7357_new_n2359                         abc_7357_new_n2359                            nd3   
+     3.411   0.077 0.091 R      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7228   abc_7357_auto_rtlil_cc_3381_MuxGate_7228     <Dg>   
+     3.432   0.021 0.017 F      0.006          subckt_2446_dff_x1._u                      subckt_2446_dff_x1._u                         inv   
+     3.508   0.076 0.097 R      0.009    (L)   subckt_2446_dff_x1._dff_m                  subckt_2446_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.508   0.508            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_29._i_n          spare_buffer_29._i_n           inv   
+     5.147   0.025 0.023 R      0.039    (C)   clk_root_bl_tl_1              clk_root_bl_tl_1               inv   
+     5.169   0.022 0.017 F      0.011   (CK)   subckt_2446_dff_x1._clk_n     subckt_2446_dff_x1._clk_n      inv   
+     5.196   0.027 0.027 R      0.008   (CK)   subckt_2446_dff_x1._clk_buf   subckt_2446_dff_x1._clk_buf    inv   
+     5.178  -0.018                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.178   0.178            (total)                                                                             
+
+Path (9) :  Slack of 1.680
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 F      0.004          reset                                      reset                                               
+     3.030   0.030 0.035 R      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.047   0.018 0.015 F      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.080   0.032 0.035 R      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.097   0.018 0.015 F      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.130   0.032 0.035 R      0.020          spare_buffer_31._i_n                       spare_buffer_31._i_n                          inv   
+     3.145   0.015 0.013 F      0.027          reset_root_bl_tl_0                         reset_root_bl_tl_0                            inv   
+     3.199   0.055 0.070 R      0.015          subckt_193_and4_x1.nq                      subckt_193_and4_x1.nq                         nd4   
+     3.246   0.046 0.038 F      0.048          abc_7357_new_n487                          abc_7357_new_n487                             inv   
+     3.293   0.047 0.047 R      0.013          subckt_2052_and3_x1.nq                     subckt_2052_and3_x1.nq                        nd3   
+     3.307   0.014 0.013 F      0.009          abc_7357_new_n2346                         abc_7357_new_n2346                            inv   
+     3.394   0.087 0.113 R      0.009          abc_7357_auto_rtlil_cc_3381_MuxGate_7212   abc_7357_auto_rtlil_cc_3381_MuxGate_7212      nr3   
+     3.416   0.022 0.021 F      0.006          subckt_2442_dff_x1._u                      subckt_2442_dff_x1._u                         inv   
+     3.494   0.078 0.097 R      0.009    (L)   subckt_2442_dff_x1._dff_m                  subckt_2442_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.494   0.494            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                     
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                     Net_Name                      Line   
+   _______________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                           clk                                  
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n           spare_buffer_0._i_n            inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                    clk_root_0                     inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n           spare_buffer_4._i_n            inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0                 clk_root_bl_0                  inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_28._i_n          spare_buffer_28._i_n           inv   
+     5.144   0.022 0.020 R      0.029    (C)   clk_root_bl_tl_0              clk_root_bl_tl_0               inv   
+     5.165   0.021 0.017 F      0.011   (CK)   subckt_2442_dff_x1._clk_n     subckt_2442_dff_x1._clk_n      inv   
+     5.192   0.027 0.027 R      0.008   (CK)   subckt_2442_dff_x1._clk_buf   subckt_2442_dff_x1._clk_buf    inv   
+     5.174  -0.019                             [INTRINSIC SETUP]                                                  
+   _______________________________________________________________________________________________________________
+     5.174   0.174            (total)                                                                             
+
+Path (10) :  Slack of 1.680
+     DATA VALID:
+        Delay                                                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                                  Net_Name                                     Line   
+   ___________________________________________________________________________________________________________________________________________
+     3.000   0.000 0.010 R      0.004          reset                                      reset                                               
+     3.019   0.019 0.017 F      0.020          spare_buffer_3._i_n                        spare_buffer_3._i_n                           inv   
+     3.042   0.022 0.021 R      0.035          reset_root_0                               reset_root_0                                  inv   
+     3.065   0.023 0.019 F      0.020          spare_buffer_7._i_n                        spare_buffer_7._i_n                           inv   
+     3.088   0.023 0.022 R      0.035          reset_root_bl_0                            reset_root_bl_0                               inv   
+     3.112   0.024 0.019 F      0.020          spare_buffer_23._i_n                       spare_buffer_23._i_n                          inv   
+     3.140   0.028 0.028 R      0.054          reset_root_bl_bl_0                         reset_root_bl_bl_0                            inv   
+     3.173   0.033 0.034 F      0.011          subckt_195_and2_x1.nq                      subckt_195_and2_x1.nq                         nd2   
+     3.199   0.026 0.023 R      0.011          abc_7357_new_n489                          abc_7357_new_n489                             inv   
+     3.242   0.043 0.047 F      0.013          subckt_2076_and3_x1.nq                     subckt_2076_and3_x1.nq                        nd3   
+     3.302   0.060 0.060 R      0.046          abc_7357_new_n2370                         abc_7357_new_n2370                            inv   
+     3.321   0.019 0.016 F      0.006          subckt_2079_mux2_x1.cmd_n                  subckt_2079_mux2_x1.cmd_n                     inv   
+     3.378   0.057 0.070 R      0.011          subckt_2079_mux2_x1._q_n                   subckt_2079_mux2_x1._q_n                     ao22   
+     3.396   0.017 0.017 F      0.007          abc_7357_auto_rtlil_cc_3381_MuxGate_7244   abc_7357_auto_rtlil_cc_3381_MuxGate_7244      inv   
+     3.420   0.025 0.022 R      0.006          subckt_2450_dff_x1._u                      subckt_2450_dff_x1._u                         inv   
+     3.454   0.034 0.035 F      0.009    (L)   subckt_2450_dff_x1._dff_m                  subckt_2450_dff_x1._dff_m                  master   
+   ___________________________________________________________________________________________________________________________________________
+     3.454   0.455            (total)                                                                                                         
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     5.000   0.000 0.010 R      0.004    (C)   clk                         clk                                
+     5.019   0.019 0.017 F      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     5.042   0.022 0.021 R      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     5.065   0.023 0.019 F      0.020    (C)   spare_buffer_4._i_n         spare_buffer_4._i_n          inv   
+     5.096   0.031 0.032 R      0.066    (C)   clk_root_bl_0               clk_root_bl_0                inv   
+     5.122   0.026 0.021 F      0.020    (C)   spare_buffer_20._i_n        spare_buffer_20._i_n         inv   
+     5.146   0.024 0.022 R      0.037    (C)   clk_root_bl_bl_0            clk_root_bl_bl_0             inv   
+     5.168   0.022 0.017 F      0.011   (CK)   subckt_2450_dff_x1._clk_n   subckt_2450_dff_x1._clk_n    inv   
+     5.135  -0.034                             [INTRINSIC SETUP]                                              
+   ___________________________________________________________________________________________________________
+     5.135   0.135            (total)                                                                         
+
+      *** Hold Slack report (unit:[ns]) ***
+
+ Path     Slack     Data_valid       Data_required               From_node                   To_node                   
+______________________________________________________________________________________________________________________
+    1     0.090     0.295             0.205           C-L    (F) clk                    (R)  subckt_2399_dff_x1._dff_s 
+    2     0.090     0.290             0.200           C-L    (F) clk                    (R)  subckt_2379_dff_x1._dff_s 
+    3     0.090     0.291             0.201           C-L    (F) clk                    (R)  subckt_2382_dff_x1._dff_s 
+    4     0.090     0.289             0.199           C-L    (F) clk                    (R)  subckt_2383_dff_x1._dff_s 
+    5     0.090     0.289             0.199           C-L    (F) clk                    (R)  subckt_2387_dff_x1._dff_s 
+    6     0.090     0.292             0.202           C-L    (F) clk                    (R)  subckt_2391_dff_x1._dff_s 
+    7     0.090     0.293             0.203           C-L    (F) clk                    (R)  subckt_2394_dff_x1._dff_s 
+    8     0.090     0.289             0.199           C-L    (F) clk                    (R)  subckt_2398_dff_x1._dff_s 
+    9     0.090     0.292             0.202           C-L    (F) clk                    (R)  subckt_2400_dff_x1._dff_s 
+   10     0.090     0.292             0.202           C-L    (F) clk                    (R)  subckt_2401_dff_x1._dff_s 
+
+
+Path (1) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_4._i_n         spare_buffer_4._i_n            inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_bl_0               clk_root_bl_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_22._i_n        spare_buffer_22._i_n           inv   
+     0.160   0.021 0.017 F      0.044    (C)   clk_root_bl_bl_2            clk_root_bl_bl_2               inv   
+     0.190   0.030 0.032 R      0.011   (CK)   subckt_2399_dff_x1._clk_n   subckt_2399_dff_x1._clk_n      inv   
+     0.220   0.030 0.027 F      0.009    (L)   subckt_2399_dff_x1._dff_m   subckt_2399_dff_x1._dff_m   master   
+     0.295   0.074 0.089 R      0.010    (L)   subckt_2399_dff_x1._dff_s   subckt_2399_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.295   0.295            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_4._i_n         spare_buffer_4._i_n          inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_bl_0               clk_root_bl_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_22._i_n        spare_buffer_22._i_n         inv   
+     0.160   0.021 0.017 F      0.044    (C)   clk_root_bl_bl_2            clk_root_bl_bl_2             inv   
+     0.190   0.030 0.032 R      0.011   (CK)   subckt_2399_dff_x1._clk_n   subckt_2399_dff_x1._clk_n    inv   
+     0.205  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.205   0.205            (total)                                                                         
+
+Path (2) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_16._i_n        spare_buffer_16._i_n           inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_tr_0               clk_root_tr_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_80._i_n        spare_buffer_80._i_n           inv   
+     0.156   0.017 0.014 F      0.032    (C)   clk_root_tr_tr_0            clk_root_tr_tr_0               inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2379_dff_x1._clk_n   subckt_2379_dff_x1._clk_n      inv   
+     0.215   0.030 0.027 F      0.009    (L)   subckt_2379_dff_x1._dff_m   subckt_2379_dff_x1._dff_m   master   
+     0.290   0.074 0.089 R      0.010    (L)   subckt_2379_dff_x1._dff_s   subckt_2379_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.290   0.290            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_16._i_n        spare_buffer_16._i_n         inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_tr_0               clk_root_tr_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_80._i_n        spare_buffer_80._i_n         inv   
+     0.156   0.017 0.014 F      0.032    (C)   clk_root_tr_tr_0            clk_root_tr_tr_0             inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2379_dff_x1._clk_n   subckt_2379_dff_x1._clk_n    inv   
+     0.200  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.200   0.200            (total)                                                                         
+
+Path (3) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n            inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_48._i_n        spare_buffer_48._i_n           inv   
+     0.157   0.018 0.015 F      0.034    (C)   clk_root_br_tr_0            clk_root_br_tr_0               inv   
+     0.187   0.030 0.031 R      0.011   (CK)   subckt_2382_dff_x1._clk_n   subckt_2382_dff_x1._clk_n      inv   
+     0.217   0.030 0.027 F      0.009    (L)   subckt_2382_dff_x1._dff_m   subckt_2382_dff_x1._dff_m   master   
+     0.291   0.074 0.089 R      0.010    (L)   subckt_2382_dff_x1._dff_s   subckt_2382_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.291   0.291            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n          inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_48._i_n        spare_buffer_48._i_n         inv   
+     0.157   0.018 0.015 F      0.034    (C)   clk_root_br_tr_0            clk_root_br_tr_0             inv   
+     0.187   0.030 0.031 R      0.011   (CK)   subckt_2382_dff_x1._clk_n   subckt_2382_dff_x1._clk_n    inv   
+     0.201  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.201   0.201            (total)                                                                         
+
+Path (4) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n            inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_44._i_n        spare_buffer_44._i_n           inv   
+     0.156   0.016 0.014 F      0.029    (C)   clk_root_br_tl_0            clk_root_br_tl_0               inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2383_dff_x1._clk_n   subckt_2383_dff_x1._clk_n      inv   
+     0.215   0.030 0.027 F      0.009    (L)   subckt_2383_dff_x1._dff_m   subckt_2383_dff_x1._dff_m   master   
+     0.289   0.074 0.089 R      0.010    (L)   subckt_2383_dff_x1._dff_s   subckt_2383_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.289   0.289            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n          inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_44._i_n        spare_buffer_44._i_n         inv   
+     0.156   0.016 0.014 F      0.029    (C)   clk_root_br_tl_0            clk_root_br_tl_0             inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2383_dff_x1._clk_n   subckt_2383_dff_x1._clk_n    inv   
+     0.199  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.199   0.199            (total)                                                                         
+
+Path (5) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n            inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_42._i_n        spare_buffer_42._i_n           inv   
+     0.156   0.016 0.014 F      0.029    (C)   clk_root_br_br_2            clk_root_br_br_2               inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2387_dff_x1._clk_n   subckt_2387_dff_x1._clk_n      inv   
+     0.215   0.030 0.027 F      0.009    (L)   subckt_2387_dff_x1._dff_m   subckt_2387_dff_x1._dff_m   master   
+     0.289   0.074 0.089 R      0.010    (L)   subckt_2387_dff_x1._dff_s   subckt_2387_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.289   0.289            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n          inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_42._i_n        spare_buffer_42._i_n         inv   
+     0.156   0.016 0.014 F      0.029    (C)   clk_root_br_br_2            clk_root_br_br_2             inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2387_dff_x1._clk_n   subckt_2387_dff_x1._clk_n    inv   
+     0.199  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.199   0.199            (total)                                                                         
+
+Path (6) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_12._i_n        spare_buffer_12._i_n           inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_tl_0               clk_root_tl_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_64._i_n        spare_buffer_64._i_n           inv   
+     0.158   0.018 0.016 F      0.037    (C)   clk_root_tl_tr_0            clk_root_tl_tr_0               inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2391_dff_x1._clk_n   subckt_2391_dff_x1._clk_n      inv   
+     0.218   0.030 0.027 F      0.009    (L)   subckt_2391_dff_x1._dff_m   subckt_2391_dff_x1._dff_m   master   
+     0.292   0.074 0.089 R      0.010    (L)   subckt_2391_dff_x1._dff_s   subckt_2391_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.292   0.292            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_12._i_n        spare_buffer_12._i_n         inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_tl_0               clk_root_tl_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_64._i_n        spare_buffer_64._i_n         inv   
+     0.158   0.018 0.016 F      0.037    (C)   clk_root_tl_tr_0            clk_root_tl_tr_0             inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2391_dff_x1._clk_n   subckt_2391_dff_x1._clk_n    inv   
+     0.202  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.202   0.202            (total)                                                                         
+
+Path (7) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_16._i_n        spare_buffer_16._i_n           inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_tr_0               clk_root_tr_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_76._i_n        spare_buffer_76._i_n           inv   
+     0.159   0.019 0.016 F      0.039    (C)   clk_root_tr_tl_0            clk_root_tr_tl_0               inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2394_dff_x1._clk_n   subckt_2394_dff_x1._clk_n      inv   
+     0.219   0.030 0.027 F      0.009    (L)   subckt_2394_dff_x1._dff_m   subckt_2394_dff_x1._dff_m   master   
+     0.293   0.074 0.089 R      0.010    (L)   subckt_2394_dff_x1._dff_s   subckt_2394_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.293   0.293            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_16._i_n        spare_buffer_16._i_n         inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_tr_0               clk_root_tr_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_76._i_n        spare_buffer_76._i_n         inv   
+     0.159   0.019 0.016 F      0.039    (C)   clk_root_tr_tl_0            clk_root_tr_tl_0             inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2394_dff_x1._clk_n   subckt_2394_dff_x1._clk_n    inv   
+     0.203  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.203   0.203            (total)                                                                         
+
+Path (8) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n            inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_44._i_n        spare_buffer_44._i_n           inv   
+     0.156   0.016 0.014 F      0.029    (C)   clk_root_br_tl_0            clk_root_br_tl_0               inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2398_dff_x1._clk_n   subckt_2398_dff_x1._clk_n      inv   
+     0.215   0.030 0.027 F      0.009    (L)   subckt_2398_dff_x1._dff_m   subckt_2398_dff_x1._dff_m   master   
+     0.289   0.074 0.089 R      0.010    (L)   subckt_2398_dff_x1._dff_s   subckt_2398_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.289   0.289            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_8._i_n         spare_buffer_8._i_n          inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_br_0               clk_root_br_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_44._i_n        spare_buffer_44._i_n         inv   
+     0.156   0.016 0.014 F      0.029    (C)   clk_root_br_tl_0            clk_root_br_tl_0             inv   
+     0.185   0.029 0.031 R      0.011   (CK)   subckt_2398_dff_x1._clk_n   subckt_2398_dff_x1._clk_n    inv   
+     0.199  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.199   0.199            (total)                                                                         
+
+Path (9) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_4._i_n         spare_buffer_4._i_n            inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_bl_0               clk_root_bl_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_24._i_n        spare_buffer_24._i_n           inv   
+     0.158   0.018 0.016 F      0.037    (C)   clk_root_bl_br_0            clk_root_bl_br_0               inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2400_dff_x1._clk_n   subckt_2400_dff_x1._clk_n      inv   
+     0.218   0.030 0.027 F      0.009    (L)   subckt_2400_dff_x1._dff_m   subckt_2400_dff_x1._dff_m   master   
+     0.292   0.074 0.089 R      0.010    (L)   subckt_2400_dff_x1._dff_s   subckt_2400_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.292   0.292            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_4._i_n         spare_buffer_4._i_n          inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_bl_0               clk_root_bl_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_24._i_n        spare_buffer_24._i_n         inv   
+     0.158   0.018 0.016 F      0.037    (C)   clk_root_bl_br_0            clk_root_bl_br_0             inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2400_dff_x1._clk_n   subckt_2400_dff_x1._clk_n    inv   
+     0.202  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.202   0.202            (total)                                                                         
+
+Path (10) :  Slack of 0.090
+     DATA VALID:
+        Delay                                                                                                   
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                      Line   
+   _____________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                  
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n            inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                     inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_4._i_n         spare_buffer_4._i_n            inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_bl_0               clk_root_bl_0                  inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_24._i_n        spare_buffer_24._i_n           inv   
+     0.158   0.018 0.016 F      0.037    (C)   clk_root_bl_br_0            clk_root_bl_br_0               inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2401_dff_x1._clk_n   subckt_2401_dff_x1._clk_n      inv   
+     0.218   0.030 0.027 F      0.009    (L)   subckt_2401_dff_x1._dff_m   subckt_2401_dff_x1._dff_m   master   
+     0.292   0.074 0.089 R      0.010    (L)   subckt_2401_dff_x1._dff_s   subckt_2401_dff_x1._dff_s    slave   
+   _____________________________________________________________________________________________________________
+     0.292   0.292            (total)                                                                           
+
+     DATA REQUIRED:
+        Delay                                                                                                 
+      Acc    Delta    R/F     Cap[pf]   Type   Node_Name                   Net_Name                    Line   
+   ___________________________________________________________________________________________________________
+     0.000   0.000 0.010 F      0.004    (C)   clk                         clk                                
+     0.030   0.030 0.035 R      0.020    (C)   spare_buffer_0._i_n         spare_buffer_0._i_n          inv   
+     0.048   0.018 0.015 F      0.035    (C)   clk_root_0                  clk_root_0                   inv   
+     0.080   0.032 0.035 R      0.020    (C)   spare_buffer_4._i_n         spare_buffer_4._i_n          inv   
+     0.105   0.025 0.021 F      0.066    (C)   clk_root_bl_0               clk_root_bl_0                inv   
+     0.139   0.034 0.036 R      0.020    (C)   spare_buffer_24._i_n        spare_buffer_24._i_n         inv   
+     0.158   0.018 0.016 F      0.037    (C)   clk_root_bl_br_0            clk_root_bl_br_0             inv   
+     0.188   0.030 0.031 R      0.011   (CK)   subckt_2401_dff_x1._clk_n   subckt_2401_dff_x1._clk_n    inv   
+     0.202  +0.014                             [INTRINSIC HOLD]                                               
+   ___________________________________________________________________________________________________________
+     0.202   0.202            (total)                                                                         
+

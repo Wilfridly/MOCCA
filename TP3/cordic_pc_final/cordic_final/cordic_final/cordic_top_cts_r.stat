@@ -1,0 +1,42 @@
+#  
+#  Avertec Release v3.4p5 (64 bits on Linux 5.14.0-611.26.1.el9_7.x86_64)
+#  argv: /usr/lib64/python3.9/site-packages/coriolis/designflow/scripts/calcCPath.tcl -Target cordic_top_cts_r -SpiceModel mos_tt.lib -SpiceType hspice -VddVoltage 1.8 -ClockSignal clk -VddName vdd -VssName vss -Temperature 25.0 -OsdiDll /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2/libs.tech/verilog-a/psp103/psp103.osdi -OsdiDll /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2/libs.tech/verilog-a/psp103/psp103t.osdi -OsdiDll /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2/libs.tech/verilog-a/psp103/psp103_nqs.osdi 
+#  
+#  User: lyautey
+#  Generation date Wed Feb  4 11:33:09 2026
+#  
+#  Statistic file : cordic_top_cts_r.stat
+#  
+
+Number of devices for circuit cordic_top_cts_r
+net                        :  11164
+R devices                  :      0
+C devices                  :      0
+NMOS devices               :  10556
+PMOS devices               :  10556
+diode devices              :      0
+
+No devices ignored during parse of cordic_top_cts_r.spi
+
+No devices ignored during parse of mos_tt.lib
+
+VDD signal(s)                  : 1 
+VDD connector(s)               : 0 
+VSS signal(s)                  : 1 
+VSS connector(s)               : 0 
+Transistors as diodes          : 0 
+Transistors as capacitances    : 0 
+Transistors as resistances     : 0 
+Transistors blocked            : 0 
+Transistors paired             : 444 
+Transistors unconnected        : 0 
+------------------------------------------------------------
+264 unused transistors
+------------------------------------------------------------
+272 latches
+527 unknown loops
+33 signal which drive nothing
+1054 potentially tristate signals
+------------------------------------------------------------
+CMOS DUAL cones : 4359
+Total cones : 5849

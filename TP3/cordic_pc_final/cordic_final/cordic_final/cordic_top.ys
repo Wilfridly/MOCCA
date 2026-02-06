@@ -1,0 +1,11 @@
+read_verilog -sv cordic_top.v
+hierarchy -check -top cordic_top
+synth            -top cordic_top
+flatten        
+hierarchy -top cordic_top
+memory
+dfflibmap -liberty /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2_c4m/libs.ref/StdCellLib/liberty/StdCellLib_nom.lib
+abc       -liberty /usr/lib64/python3.9/site-packages/pdks/ihpsg13g2_c4m/libs.ref/StdCellLib/liberty/StdCellLib_nom.lib
+stat
+clean
+write_blif cordic_top.blif

@@ -84,10 +84,11 @@ synthesis:
 	rm $(MODEL)_dp_boom.*
 	rm $(MODEL)_dp_boog.*
 
-post_synth:
+post_synth: synthesis
+	asimut  $(MODEL)_net $(MODEL)_net $(MODEL)_netres | awk '/pattern/{printf("->"$$3" "$$4"\r")}END{print}'
+	@grep ": ?1" $(MODEL)_netres.pat || echo "Lucky no error"
 #Cherche dans le CATAL
-	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res2
-
+# 	asimut $(MODEL)_net $(MODEL)_net $(MODEL)_net_res2
 
 clean:
 	rm  *.dat *~ cercle Makefile.*\

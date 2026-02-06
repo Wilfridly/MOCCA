@@ -1,0 +1,216 @@
+* Coriolis Structural SPICE Driver
+* Generated on Jan 23, 2026, 19:09
+* Cell/Subckt "chip".
+* 
+* INTERF vss
+* INTERF vdd
+* INTERF reset
+* INTERF iovss
+* INTERF iovdd
+* INTERF clk
+* INTERF a[15]
+* INTERF a[14]
+* INTERF WE
+* INTERF RDY
+* INTERF NMI
+* INTERF IRQ
+* INTERF DO[7]
+* INTERF DO[6]
+* INTERF DO[5]
+* INTERF DO[4]
+* INTERF DO[3]
+* INTERF DO[2]
+* INTERF DO[1]
+* INTERF DO[0]
+* INTERF DI[7]
+* INTERF DI[6]
+* INTERF DI[5]
+* INTERF DI[4]
+* INTERF DI[3]
+* INTERF DI[2]
+* INTERF DI[1]
+* INTERF DI[0]
+* INTERF A[9]
+* INTERF A[8]
+* INTERF A[7]
+* INTERF A[6]
+* INTERF A[5]
+* INTERF A[4]
+* INTERF A[3]
+* INTERF A[2]
+* INTERF A[13]
+* INTERF A[12]
+* INTERF A[11]
+* INTERF A[10]
+* INTERF A[1]
+* INTERF A[0]
+
+* Terminal models (aka standard cells) used througout all the hierarchy.
+.include sg13g2_IOPadIn_full.spi
+.include sg13g2_IOPadOut16mA_full.spi
+.include sg13g2_IOPadIOVss_full.spi
+.include sg13g2_IOPadVss_full.spi
+.include sg13g2_IOPadVdd_full.spi
+.include sg13g2_IOPadIOVdd_full.spi
+.include dff_x1.spi
+.include and21nor_x0.spi
+.include and3_x1.spi
+.include and4_x1.spi
+.include nand4_x0.spi
+.include nand3_x0.spi
+.include inv_x0.spi
+.include or2_x1.spi
+.include or3_x1.spi
+.include or21nand_x0.spi
+.include nand2_x0.spi
+.include mux2_x1.spi
+.include and2_x1.spi
+.include nor2_x0.spi
+.include or4_x1.spi
+.include nor4_x0.spi
+.include nor3_x0.spi
+.include nexor2_x0.spi
+.include xor2_x0.spi
+
+* Non-terminal models (part of the user's design hierarchy).
+.include corona.spi
+.include Arlet6502.spi
+
+.subckt chip 0 1 2 3 4 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79
+* NET     0 = vss
+* NET     1 = vdd
+* NET     2 = reset
+* NET     3 = iovss
+* NET     4 = iovdd
+* NET     5 = internal_reset_from_pad
+* NET     6 = internal_clk_from_pad
+* NET     7 = internal_WE_to_pad
+* NET     8 = internal_RDY_from_pad
+* NET     9 = internal_NMI_from_pad
+* NET    10 = internal_IRQ_from_pad
+* NET    11 = internal_DO_to_pad[7]
+* NET    12 = internal_DO_to_pad[6]
+* NET    13 = internal_DO_to_pad[5]
+* NET    14 = internal_DO_to_pad[4]
+* NET    15 = internal_DO_to_pad[3]
+* NET    16 = internal_DO_to_pad[2]
+* NET    17 = internal_DO_to_pad[1]
+* NET    18 = internal_DO_to_pad[0]
+* NET    19 = internal_DI_from_pad[7]
+* NET    20 = internal_DI_from_pad[6]
+* NET    21 = internal_DI_from_pad[5]
+* NET    22 = internal_DI_from_pad[4]
+* NET    23 = internal_DI_from_pad[3]
+* NET    24 = internal_DI_from_pad[2]
+* NET    25 = internal_DI_from_pad[1]
+* NET    26 = internal_DI_from_pad[0]
+* NET    27 = internal_A_to_pad[9]
+* NET    28 = internal_A_to_pad[8]
+* NET    29 = internal_A_to_pad[7]
+* NET    30 = internal_A_to_pad[6]
+* NET    31 = internal_A_to_pad[5]
+* NET    32 = internal_A_to_pad[4]
+* NET    33 = internal_A_to_pad[3]
+* NET    34 = internal_A_to_pad[2]
+* NET    35 = internal_A_to_pad[15]
+* NET    36 = internal_A_to_pad[14]
+* NET    37 = internal_A_to_pad[13]
+* NET    38 = internal_A_to_pad[12]
+* NET    39 = internal_A_to_pad[11]
+* NET    40 = internal_A_to_pad[10]
+* NET    41 = internal_A_to_pad[1]
+* NET    42 = internal_A_to_pad[0]
+* NET    43 = clk
+* NET    44 = a[15]
+* NET    45 = a[14]
+* NET    46 = WE
+* NET    47 = RDY
+* NET    48 = NMI
+* NET    49 = IRQ
+* NET    50 = DO[7]
+* NET    51 = DO[6]
+* NET    52 = DO[5]
+* NET    53 = DO[4]
+* NET    54 = DO[3]
+* NET    55 = DO[2]
+* NET    56 = DO[1]
+* NET    57 = DO[0]
+* NET    58 = DI[7]
+* NET    59 = DI[6]
+* NET    60 = DI[5]
+* NET    61 = DI[4]
+* NET    62 = DI[3]
+* NET    63 = DI[2]
+* NET    64 = DI[1]
+* NET    65 = DI[0]
+* NET    66 = A[9]
+* NET    67 = A[8]
+* NET    68 = A[7]
+* NET    69 = A[6]
+* NET    70 = A[5]
+* NET    71 = A[4]
+* NET    72 = A[3]
+* NET    73 = A[2]
+* NET    74 = A[13]
+* NET    75 = A[12]
+* NET    76 = A[11]
+* NET    77 = A[10]
+* NET    78 = A[1]
+* NET    79 = A[0]
+
+xrdy 0 1 47 8 3 4 sg13g2_IOPadIn_full
+xa_12 0 1 75 3 4 38 sg13g2_IOPadOut16mA_full
+xp_iovss_3 0 1 3 4 sg13g2_IOPadIOVss_full
+xp_vss_3 0 1 3 4 sg13g2_IOPadVss_full
+xdi_5 0 1 60 21 3 4 sg13g2_IOPadIn_full
+xdo_7 0 1 50 3 4 11 sg13g2_IOPadOut16mA_full
+xa_7 0 1 68 3 4 29 sg13g2_IOPadOut16mA_full
+xirq 0 1 49 10 3 4 sg13g2_IOPadIn_full
+xa_13 0 1 74 3 4 37 sg13g2_IOPadOut16mA_full
+xp_iovss_2 0 1 3 4 sg13g2_IOPadIOVss_full
+xp_vss_2 0 1 3 4 sg13g2_IOPadVss_full
+xdi_4 0 1 61 22 3 4 sg13g2_IOPadIn_full
+xdo_6 0 1 51 3 4 12 sg13g2_IOPadOut16mA_full
+xa_6 0 1 69 3 4 30 sg13g2_IOPadOut16mA_full
+xreset 0 1 2 5 3 4 sg13g2_IOPadIn_full
+xa_10 0 1 77 3 4 40 sg13g2_IOPadOut16mA_full
+xp_vss_1 0 1 3 4 sg13g2_IOPadVss_full
+xp_iovss_1 0 1 3 4 sg13g2_IOPadIOVss_full
+xdi_7 0 1 58 19 3 4 sg13g2_IOPadIn_full
+xdo_5 0 1 52 3 4 13 sg13g2_IOPadOut16mA_full
+xa_5 0 1 70 3 4 31 sg13g2_IOPadOut16mA_full
+xclk 0 1 43 6 3 4 sg13g2_IOPadIn_full
+xnmi 0 1 48 9 3 4 sg13g2_IOPadIn_full
+xa_11 0 1 76 3 4 39 sg13g2_IOPadOut16mA_full
+xp_vss_0 0 1 3 4 sg13g2_IOPadVss_full
+xp_iovss_0 0 1 3 4 sg13g2_IOPadIOVss_full
+xdi_6 0 1 59 20 3 4 sg13g2_IOPadIn_full
+xdo_4 0 1 53 3 4 14 sg13g2_IOPadOut16mA_full
+xa_4 0 1 71 3 4 32 sg13g2_IOPadOut16mA_full
+xdi_1 0 1 64 25 3 4 sg13g2_IOPadIn_full
+xp_vdd_1 0 1 3 4 sg13g2_IOPadVdd_full
+xp_iovdd_1 0 1 3 4 sg13g2_IOPadIOVdd_full
+xdo_3 0 1 54 3 4 15 sg13g2_IOPadOut16mA_full
+xa_3 0 1 72 3 4 33 sg13g2_IOPadOut16mA_full
+xwe 0 1 46 3 4 7 sg13g2_IOPadOut16mA_full
+xdi_0 0 1 65 26 3 4 sg13g2_IOPadIn_full
+xcorona 0 1 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 corona
+xp_vdd_0 0 1 3 4 sg13g2_IOPadVdd_full
+xp_iovdd_0 0 1 3 4 sg13g2_IOPadIOVdd_full
+xdo_2 0 1 55 3 4 16 sg13g2_IOPadOut16mA_full
+xa_2 0 1 73 3 4 34 sg13g2_IOPadOut16mA_full
+xa_14 0 1 45 3 4 36 sg13g2_IOPadOut16mA_full
+xa_9 0 1 66 3 4 27 sg13g2_IOPadOut16mA_full
+xdi_3 0 1 62 23 3 4 sg13g2_IOPadIn_full
+xp_iovdd_3 0 1 3 4 sg13g2_IOPadIOVdd_full
+xp_vdd_3 0 1 3 4 sg13g2_IOPadVdd_full
+xdo_1 0 1 56 3 4 17 sg13g2_IOPadOut16mA_full
+xa_1 0 1 78 3 4 41 sg13g2_IOPadOut16mA_full
+xa_15 0 1 44 3 4 35 sg13g2_IOPadOut16mA_full
+xa_8 0 1 67 3 4 28 sg13g2_IOPadOut16mA_full
+xdi_2 0 1 63 24 3 4 sg13g2_IOPadIn_full
+xp_vdd_2 0 1 3 4 sg13g2_IOPadVdd_full
+xp_iovdd_2 0 1 3 4 sg13g2_IOPadIOVdd_full
+xdo_0 0 1 57 3 4 18 sg13g2_IOPadOut16mA_full
+xa_0 0 1 79 3 4 42 sg13g2_IOPadOut16mA_full
+.ends chip

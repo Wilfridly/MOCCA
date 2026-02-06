@@ -1,9 +1,0 @@
-make[1]: Entering directory '/home/wixley/MOCCA/TP3/cordic'
-cc  -o cordic_pat cordic_pat.c -I/home/wixley/alliance/install/include  -L/home/wixley/alliance/install/lib -lPgn -lPat -lMut -lRcn
-cordic_pat.c:9:7: warning: type defaults to ‘int’ in declaration of ‘PERIOD’ [-Wimplicit-int]
-    9 | const PERIOD=2;
-      |       ^~~~~~
-cordic_pat.c:202:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
-  202 | main()
-      | ^~~~
-make[1]: *** [Makefile.372165:12: cordic_pat] Interrupt
